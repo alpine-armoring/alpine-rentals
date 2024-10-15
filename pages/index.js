@@ -12,6 +12,8 @@ function Home(props) {
     video: data?.bannerVideo,
   };
 
+  console.log(props);
+
   return <>{topBanner ? <BannerFull props={topBanner} /> : null}</>;
 }
 
