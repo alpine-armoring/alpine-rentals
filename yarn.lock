@@ -34,6 +34,11 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.57.1.tgz#de633db3ec2ef6a3c89e2f19038063e8a122e2c2"
   integrity sha512-d9zaMRSTIKDLhctzH12MtXvJKSSUhaHcjV+2Z+GK+EEY7XKpP5yR4x+N3TAcHTcu963nIr+TMcCb4DBCYX1z6Q==
 
+"@este93/shared-components@^1.0.8":
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/@este93/shared-components/-/shared-components-1.0.8.tgz#3fe0691885cff08a4575a71db09081fd7a810312"
+  integrity sha512-TxIDWkEdWDhafJ1DDlfi99g2wWRyWsVh+P9y1CNm+2anU95GU4KC1PoeMROQ3Un/csrLJuY4dwqqr2MI6qJSsQ==
+
 "@humanwhocodes/config-array@^0.13.0":
   version "0.13.0"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.13.0.tgz#fb907624df3256d04b9aa2df50d7aa97ec648748"
