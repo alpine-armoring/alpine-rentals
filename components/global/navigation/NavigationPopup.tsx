@@ -23,62 +23,10 @@ const NavigationPopup = ({ isNavOpen, setNavOpen }: NavigationProps) => {
   >(null);
 
   const links = [
-    { path: '/available-now', text: 'Available Now' },
-    {
-      text: 'Vehicles We Armor',
-      submenu: [
-        {
-          text: 'SUVs',
-          path: '/vehicles-we-armor/type/armored-suvs',
-        },
-        {
-          text: 'Sedans',
-          path: '/vehicles-we-armor/type/armored-sedans',
-        },
-        {
-          text: 'Pickup Trucks',
-          path: '/vehicles-we-armor/type/armored-pickup-trucks',
-        },
-        {
-          text: 'Law Enforcement',
-          path: '/vehicles-we-armor/type/armored-law-enforcement',
-        },
-        {
-          text: 'Cash-In-Transit (CIT)',
-          path: '/vehicles-we-armor/type/armored-cash-in-transit-cit',
-        },
-        {
-          text: 'Specialty Vehicles',
-          path: '/vehicles-we-armor/type/armored-specialty-vehicles',
-        },
-      ],
-    },
+    { path: '/listing', text: 'VEHICLES TO RENT' },
     { path: '/ballistic-testing', text: 'Ballistic Testing' },
-  ];
-
-  const linksRight = [
-    { path: '/about-us', text: 'About Us' },
-    { path: '/ballistic-chart', text: 'Ballistic Chart' },
-    { path: '/news', text: 'All News' },
-    { path: '/media', text: 'Videos & Trade Shows' },
-    { path: '/available-now/type/armored-rental', text: 'Rental vehicles' },
-    { path: '/design-and-engineering', text: 'Design & Engineering' },
-    { path: '/manufacturing', text: 'Manufacturing' },
-    { path: '/shipping-and-logistics', text: 'Shipping & Logistics' },
-    { path: '/become-a-dealer', text: 'Become a Dealer' },
-    { path: '/faqs', text: 'FAQ' },
     { path: '/contact', text: 'Contact' },
   ];
-
-  const showSubmenu = (
-    submenu: { text: string; path: string }[] | undefined
-  ) => {
-    if (submenu) {
-      setActiveSubmenu(submenu);
-    } else {
-      setActiveSubmenu(null);
-    }
-  };
 
   const closeNavAndSubmenu = () => {
     setNavOpen(false);
@@ -119,9 +67,7 @@ const NavigationPopup = ({ isNavOpen, setNavOpen }: NavigationProps) => {
                           ? `${styles.navigationPopup_item_active}`
                           : ''
                       }`}
-                    onClick={() =>
-                      link.path ? setNavOpen(false) : showSubmenu(link.submenu)
-                    }
+                    onClick={() => setNavOpen(false)}
                   >
                     {link.path ? (
                       <Link
@@ -135,31 +81,6 @@ const NavigationPopup = ({ isNavOpen, setNavOpen }: NavigationProps) => {
                         {link.text}
                       </span>
                     )}
-                  </li>
-                ))}
-              </ul>
-
-              <ul
-                className={`${styles.navigationPopup_list_right} ${styles.navigationPopup_list}`}
-              >
-                {linksRight.map((link, index) => (
-                  <li
-                    key={index}
-                    className={`
-                      ${styles.navigationPopup_item} 
-                      ${
-                        router.asPath === link.path
-                          ? `${styles.navigationPopup_item_active}`
-                          : ''
-                      }`}
-                    onClick={closeNavAndSubmenu}
-                  >
-                    <Link
-                      className={`${styles.navigationPopup_link}`}
-                      href={link.path}
-                    >
-                      {link.text}
-                    </Link>
                   </li>
                 ))}
               </ul>

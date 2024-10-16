@@ -118,22 +118,24 @@ const Header = ({
             {isSearchVisible ? 'X' : <SearchIcon />}
           </div>
 
-          <Button
-            href="/contact"
-            className={`${styles.header_contact} rounded shiny transparent uppercase desktop-only`}
-          >
-            <span onClick={() => setNavOpen(false)}>Contact</span>
-          </Button>
-
-          {/* <div
-            className={`${styles.header_burger}`}
+          <div
+            className={`${styles.header_burger} mobile-only`}
             onClick={() => {
               setNavOpen((prevState) => !prevState);
               openSearchPopup(false);
             }}
           >
             <div className={`${styles.header_burger_inner}`}></div>
-          </div> */}
+          </div>
+
+          <div className={`desktop-only`}>
+            <Button
+              href="/contact"
+              className={`${styles.header_contact} rounded shiny transparent uppercase`}
+            >
+              <span onClick={() => setNavOpen(false)}>Contact</span>
+            </Button>
+          </div>
         </div>
       </div>
     </header>
