@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import localFont from 'next/font/local';
 import dynamic from 'next/dynamic';
@@ -13,9 +13,6 @@ const NavigationPopup = dynamic(
     ssr: false,
   }
 );
-const Search = dynamic(() => import('components/global/search/Search'), {
-  ssr: false,
-});
 const ScrollToTopButton = dynamic(
   () => import('components/global/scroll-to-top-button/ScrollToTopButton'),
   {
@@ -78,30 +75,7 @@ const Layout = ({ children }) => {
     router.pathname.startsWith(path)
   );
 
-  // const isNotSticky = /^\/vehicles-we-armor\/.+/.test(router.pathname);
-
   const [isNavOpen, setNavOpen] = useState(false);
-
-  // Search
-  const [isSearchVisible, setSearchVisibility] = useState(false);
-
-  const openSearchPopup = (visible) => {
-    setSearchVisibility(visible);
-    if (visible) {
-      setNavOpen(false);
-    }
-    setTimeout(() => {
-      const input = document.querySelector('.search-box') as HTMLInputElement;
-      if (input) {
-        input.focus();
-      }
-    }, 100);
-  };
-
-  useEffect(() => {
-    openSearchPopup(false);
-    setNavOpen(false);
-  }, [router.pathname]);
 
   return (
     <>
@@ -175,21 +149,13 @@ const Layout = ({ children }) => {
 
       <div className={termina.className}>
         <Header
-          isDarkMode={isDarkMode || isSearchVisible}
+          isDarkMode={isDarkMode}
           setNavOpen={setNavOpen}
           isNavOpen={isNavOpen}
           isHeaderGray={isHeaderGray}
-          openSearchPopup={openSearchPopup}
-          isSearchVisible={isSearchVisible}
         />
 
-        {isSearchVisible && <Search openSearchPopup={openSearchPopup} />}
-
-        <NavigationPopup
-          isNavOpen={isNavOpen}
-          setNavOpen={setNavOpen}
-          openSearchPopup={openSearchPopup}
-        />
+        <NavigationPopup isNavOpen={isNavOpen} setNavOpen={setNavOpen} />
 
         {children}
 

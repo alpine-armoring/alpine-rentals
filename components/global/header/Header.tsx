@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Button from 'components/global/button/Button';
@@ -6,38 +6,17 @@ import Logo from 'components/icons/Logo';
 import Navigation from 'components/global/navigation/Navigation';
 import styles from './Header.module.scss';
 import { HeaderProps } from 'types';
-import SearchIcon from 'components/icons/Search';
-import { useRouter } from 'next/router';
 
 const Header = ({
   setNavOpen,
   isNavOpen,
   isDarkMode,
   isHeaderGray,
-  openSearchPopup,
-  isSearchVisible,
 }: HeaderProps) => {
   const [hState, sethState] = useState('-top');
-  const router = useRouter();
-
-  const handleSearchClick = useCallback(() => {
-    openSearchPopup(!isSearchVisible);
-  }, [openSearchPopup, isSearchVisible]);
 
   useEffect(() => {
-    const handleRouteChange = () => {
-      openSearchPopup(false);
-    };
-
-    router.events.on('routeChangeStart', handleRouteChange);
-
-    return () => {
-      router.events.off('routeChangeStart', handleRouteChange);
-    };
-  }, [router, openSearchPopup]);
-
-  useEffect(() => {
-    if (isNavOpen || isSearchVisible) {
+    if (isNavOpen) {
       document.body.style.marginRight =
         window.innerWidth - document.body.offsetWidth + 'px';
       document.body.classList.add('no-scroll');
@@ -45,7 +24,7 @@ const Header = ({
       document.body.style.marginRight = '0';
       document.body.classList.remove('no-scroll');
     }
-  }, [isNavOpen, isSearchVisible]);
+  }, [isNavOpen]);
 
   useEffect(() => {
     let lastVal = 68;
@@ -84,7 +63,6 @@ const Header = ({
         ${isDarkMode ? styles.header_transparent : ''}
         ${isNavOpen ? styles.header_navOpen : ''}
         ${isHeaderGray ? styles.header_gray : ''}     
-        ${isSearchVisible ? styles.header_searchOpen : ''} 
         b-header
       `}
     >
@@ -112,17 +90,9 @@ const Header = ({
 
         <div className={`${styles.header_right}`}>
           <div
-            onClick={handleSearchClick}
-            className={`${styles.header_search} header_search`}
-          >
-            {isSearchVisible ? 'X' : <SearchIcon />}
-          </div>
-
-          <div
             className={`${styles.header_burger} mobile-only`}
             onClick={() => {
               setNavOpen((prevState) => !prevState);
-              openSearchPopup(false);
             }}
           >
             <div className={`${styles.header_burger_inner}`}></div>

@@ -43,8 +43,8 @@ export interface HeaderProps {
   setNavOpen?: React.Dispatch<React.SetStateAction<boolean>>;
   isDarkMode?: boolean;
   isHeaderGray?: boolean;
-  isSearchVisible?: boolean;
-  openSearchPopup?: React.Dispatch<React.SetStateAction<boolean>>;
+  // isSearchVisible?: boolean;
+  // openSearchPopup?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface NavigationProps {

@@ -7,10 +7,7 @@ import { NavigationProps } from 'types';
 const Navigation = ({ isNavOpen }: NavigationProps) => {
   const router = useRouter();
 
-  const links = [
-    { path: '/listing', text: 'VEHICLES TO RENT' },
-    { path: '/ballistic-testing', text: 'Ballistic Testing' },
-  ];
+  const links = [{ path: '/armored-rentals', text: 'Available Vehicles' }];
 
   return (
     <nav

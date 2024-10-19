@@ -210,23 +210,23 @@
     gap: 32px;
   }
 
-  &_search {
-    cursor: pointer;
-    width: 26px;
-    height: 26px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    transition: transform 0.2s ease-in-out;
+  // &_search {
+  //   cursor: pointer;
+  //   width: 26px;
+  //   height: 26px;
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  //   font-size: 20px;
+  //   transition: transform 0.2s ease-in-out;
 
-    svg {
-      width: 26px;
-      height: 26px;
-    }
+  //   svg {
+  //     width: 26px;
+  //     height: 26px;
+  //   }
 
-    &:hover {
-      transform: scale(1.1);
-    }
-  }
+  //   &:hover {
+  //     transform: scale(1.1);
+  //   }
+  // }
 }

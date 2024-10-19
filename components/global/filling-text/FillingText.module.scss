@@ -1,0 +1,69 @@
+.fillingText {
+  padding-top: rem(32);
+  padding-bottom: rem(32);
+  color: var(--color-white);
+  overflow: hidden;
+
+  &.padding {
+    @include breakpoint(medium) {
+      padding-bottom: rem(100);
+    }
+    @include breakpoint(huge) {
+      padding-bottom: rem(120);
+    }
+  }
+
+  &_dark {
+    color: var(--color-secondary);
+  }
+
+  &_text {
+    font-size: 15px;
+    font-size: clamp(0.9375rem, 0.6393rem + 1.2723vw, 1.25rem);
+    font-weight: var(--font-regular);
+
+    @include breakpoint(large) {
+      font-size: clamp(1.375rem, .8rem + .6vw, 2.5rem);
+    }
+
+    .fillingText_small & {
+      font-size: rem(15);
+      @include breakpoint(large) {
+        font-size: clamp(1.25rem, 0.75rem + 0.625vw, 1.5rem);
+      }
+    }
+
+    span {
+      position: relative;
+      opacity: 0.1;
+      z-index: 2;
+    }
+  }
+
+  &_subheading {
+    position: relative;
+    margin-bottom: rem(24);
+    color: var(--color-primary);
+    font-size: clamp(1.0625rem, 0.4065rem + 2.799vw, 1.75rem);
+    font-weight: var(--font-medium);
+    letter-spacing: -0.6px;
+    z-index: 2;
+
+    @include breakpoint(large) {
+      margin-bottom: rem(24);
+      font-size: rem(40);
+    }
+
+    strong,
+    b {
+      font-weight: var(--font-demi);
+    }
+  }
+
+  &_content {
+    @include breakpoint(large) {
+      max-width: 1560px;
+      margin: auto;
+    }
+  }
+}
