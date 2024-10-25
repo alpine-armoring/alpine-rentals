@@ -1,0 +1,66 @@
+.featuredVehicles{
+
+    &_container{
+        margin: 50px 0;
+    }
+
+    &_slider{
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+
+        &_container{
+            backface-visibility: hidden;
+            display: flex;
+            touch-action: pan-y;
+            height: 100%;
+            position: relative;
+        }
+
+        &_item{
+            flex: 0 0 80%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            // padding-right: 2px;
+            max-width: 700px;
+
+            &_content{
+                position: absolute;
+                background: white;
+                border-radius: 48px;
+                padding: 24px;
+                max-width: 426px;
+                background: url(/assets/glass.png);     
+                background-size: cover;           
+                box-shadow:
+      0 8px 16px 0 rgba(0, 0, 0, 0.2),
+      0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                transform: scale(.7);
+                transition: transform .3s ease-in-out;
+            }
+
+            &_title{
+                color: white;
+                font-size: rem(24);
+                font-weight: var(--font-demi);
+            }
+
+            &_button{
+                opacity: 0;
+                margin-top: rem(20);
+            }
+
+            &.active{                 
+                .featuredVehicles_slider_item_content{
+                    transform: scale(1);
+                }             
+                .featuredVehicles_slider_item_button{
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}

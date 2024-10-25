@@ -3,6 +3,7 @@ import { getPageData } from 'hooks/api';
 
 import { BannerFull } from '@este93/shared-components';
 import FillingText from 'components/global/filling-text/FillingText';
+import FeaturedVehicles from 'components/global/featured-vehicles/FeaturedVehicles';
 
 function Home(props) {
   const data = props.homepageData.data?.attributes;
@@ -12,7 +13,10 @@ function Home(props) {
     description: data?.topBannerDescription,
     video: data?.bannerVideo,
   };
+
   const quote = data?.quote;
+
+  const featuredVehiclesData = props.featuredVehicles?.data;
 
   // Animations
   useEffect(() => {
@@ -48,6 +52,8 @@ function Home(props) {
       <div className="background-dark">
         {quote ? <FillingText className="padding" data={quote} /> : null}
       </div>
+
+      <FeaturedVehicles data={featuredVehiclesData} />
     </>
   );
 }
@@ -60,8 +66,15 @@ export async function getStaticProps() {
 
   const seoData = homepageData.data?.attributes.seo || null;
 
+  const featuredVehicles = await getPageData({
+    route: 'inventories',
+    params: `filters[categories][slug][$eq]=armored-rental`,
+    sort: 'order',
+    pageSize: 4,
+  });
+
   return {
-    props: { homepageData, seoData },
+    props: { homepageData, seoData, featuredVehicles },
   };
 }
 

@@ -7,7 +7,6 @@ const FillingText = ({ data, dark = false, className = '', small = false }) => {
 
   const title = data.title;
   const text = data.text || data;
-  console.log(title);
 
   const revealSpans = () => {
     const spans = [...fillingTextRef.current.querySelectorAll('span')];
