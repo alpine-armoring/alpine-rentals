@@ -55,7 +55,7 @@
           left: 10px;
           right: 10px;
         }
-        
+
         @include breakpoint(medium) {
           padding: 24px;
           font-size: rem(24);
@@ -98,18 +98,18 @@
       }
     }
 
-    &_arrows{
+    &_arrows {
       @include breakpoint(medium) {
-       display: flex;
-       justify-content: center;
-       gap: 16px;
-       margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        margin-top: 30px;
 
-       button{
-        position: static;
-        height: 40px;
-        width: 40px;
-       }
+        button {
+          position: static;
+          height: 40px;
+          width: 40px;
+        }
       }
     }
   }
