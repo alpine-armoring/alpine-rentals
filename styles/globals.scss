@@ -653,3 +653,43 @@ $shapeColor: var(--color-background);
     max-width: 100% !important;
   }
 }
+
+.slider_arrow{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  height: 30px;
+  width: 30px;
+  border-radius: 20px;
+  background: var(--color-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1;
+
+  @include breakpoint(large) {
+    transition: background 0.2s ease;
+    &:hover {
+      background: var(--color-gray);
+    }
+  }
+
+  &_next {
+    left: auto;
+    right: 0;
+    transform: translateY(-50%) rotate(180deg);
+  }
+
+  &_disabled {
+    opacity: 0;
+  }
+
+  svg {
+    width: 12px;
+    path {
+      fill: var(--color-white);
+    }
+  }
+}

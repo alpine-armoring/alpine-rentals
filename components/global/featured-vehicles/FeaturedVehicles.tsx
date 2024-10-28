@@ -47,6 +47,8 @@ const FeaturedVehicles = (props) => {
 
   return (
     <div className={`${styles.featuredVehicles_container}`}>
+      <h2 className={`c-title`}>Featured vehicles for rental</h2>
+
       {props.data && props.data.length > 0 ? (
         <div className={`${styles.featuredVehicles_slider}`} ref={sliderRef}>
           <div className={`${styles.featuredVehicles_slider_container}`}>
@@ -62,15 +64,15 @@ const FeaturedVehicles = (props) => {
                     <Image
                       src={`${
                         item.attributes.transparentImage.data.attributes.formats
-                          .medium.url ||
+                          .large?.url ||
                         item.attributes.transparentImage.data.attributes.url
                       }`}
                       alt={
                         item.attributes.transparentImage.data.attributes
                           .alternativeText || 'Alpine Armoring'
                       }
-                      width={750}
-                      height={400}
+                      width={1300}
+                      height={600}
                       priority={index === 0}
                       // sizes="(max-width: 1600px) 50vw, 30vw"
                     />
@@ -101,11 +103,8 @@ const FeaturedVehicles = (props) => {
         </div>
       ) : null}
 
-      <div className={`${styles.lightbox_slider_arrows}`}>
-        <button
-          onClick={onPrevButtonClick}
-          className={`${styles.lightbox_slider_arrow}`}
-        >
+      <div className={`${styles.featuredVehicles_slider_arrows}`}>
+        <button onClick={onPrevButtonClick} className={`slider_arrow`}>
           <svg viewBox="0 0 532 532">
             <path
               fill="currentColor"
@@ -116,7 +115,7 @@ const FeaturedVehicles = (props) => {
 
         <button
           onClick={onNextButtonClick}
-          className={`${styles.lightbox_slider_arrow} ${styles.lightbox_slider_arrow_next}`}
+          className={`slider_arrow slider_arrow_next`}
         >
           <svg viewBox="0 0 532 532">
             <path

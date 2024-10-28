@@ -1,5 +1,6 @@
 .featuredVehicles {
   &_container {
+    position: relative;
     margin: 50px 0;
   }
 
@@ -18,47 +19,97 @@
     }
 
     &_item {
-      flex: 0 0 80%;
+      flex: 0 0 100%;
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      // padding-right: 2px;
-      max-width: 700px;
+      padding-bottom: 110px;
+
+      @include breakpoint(medium) {
+        margin: 0 20px;
+        flex: 0 0 80%;
+        padding-bottom: 0;
+      }
+
+      @include breakpoint(large) {
+        flex: 0 0 60%;
+        max-width: 900px;
+      }
+
+      @include breakpoint(huge) {
+        margin: 0 40px;
+      }
 
       &_content {
         position: absolute;
-        background: white;
-        border-radius: 48px;
-        padding: 24px;
-        max-width: 426px;
+        border-radius: 24px;
+        padding: 16px;
         background: url(/assets/glass.png);
         background-size: cover;
-        box-shadow:
-          0 8px 16px 0 rgba(0, 0, 0, 0.2),
-          0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        transform: scale(0.7);
-        transition: transform 0.3s ease-in-out;
+        max-width: 430px;
+        margin: auto;
+
+        @include breakpoint(small) {
+          bottom: 0;
+          left: 10px;
+          right: 10px;
+        }
+        
+        @include breakpoint(medium) {
+          padding: 24px;
+          font-size: rem(24);
+          border-radius: 48px;
+          box-shadow:
+            0 8px 16px 0 rgba(0, 0, 0, 0.2),
+            0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          transform: scale(0.7);
+          transition: transform 0.3s ease-in-out;
+        }
       }
 
       &_title {
         color: white;
-        font-size: rem(24);
-        font-weight: var(--font-demi);
+        font-size: rem(18);
+        font-weight: var(--font-medium);
+
+        @include breakpoint(medium) {
+          font-size: rem(24);
+        }
       }
 
       &_button {
-        opacity: 0;
-        margin-top: rem(20);
+        // opacity: 0;
+        margin-top: rem(10);
+        cursor: pointer;
+
+        @include breakpoint(medium) {
+          margin-top: rem(20);
+        }
       }
 
       &.active {
         .featuredVehicles_slider_item_content {
           transform: scale(1);
         }
-        .featuredVehicles_slider_item_button {
-          opacity: 1;
-        }
+        // .featuredVehicles_slider_item_button {
+        //   opacity: 1;
+        // }
+      }
+    }
+
+    &_arrows{
+      @include breakpoint(medium) {
+       display: flex;
+       justify-content: center;
+       gap: 16px;
+       margin-top: 30px;
+
+       button{
+        position: static;
+        height: 40px;
+        width: 40px;
+       }
       }
     }
   }
