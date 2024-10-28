@@ -4,6 +4,7 @@ import { getPageData } from 'hooks/api';
 import { BannerFull } from '@este93/shared-components';
 import FillingText from 'components/global/filling-text/FillingText';
 import FeaturedVehicles from 'components/global/featured-vehicles/FeaturedVehicles';
+import Benefits from 'components/global/benefits/Benefits';
 
 function Home(props) {
   const data = props.homepageData.data?.attributes;
@@ -12,6 +13,7 @@ function Home(props) {
     title: data?.topBannerTitle,
     description: data?.topBannerDescription,
     video: data?.bannerVideo,
+    white: true,
   };
 
   const quote = data?.quote;
@@ -49,11 +51,13 @@ function Home(props) {
     <>
       {topBanner ? <BannerFull props={topBanner} /> : null}
 
-      <div className="background-dark">
-        {quote ? <FillingText className="padding" data={quote} /> : null}
-      </div>
+      {/* <div className="background-dark"> */}
+      {quote ? <FillingText small dark data={quote} /> : null}
+      {/* </div> */}
 
       <FeaturedVehicles data={featuredVehiclesData} />
+
+      <Benefits />
     </>
   );
 }

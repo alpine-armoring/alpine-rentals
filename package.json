@@ -20,7 +20,7 @@
     "node": ">=18"
   },
   "dependencies": {
-    "@este93/shared-components": "^1.0.8",
+    "@este93/shared-components": "latest",
     "embla-carousel-fade": "^8.3.0",
     "embla-carousel-react": "^8.3.0",
     "eslint-config-prettier": "^9.1.0",

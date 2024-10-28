@@ -8,8 +8,6 @@ import useEmblaCarousel from 'embla-carousel-react';
 import Button from 'components/global/button/Button';
 
 const FeaturedVehicles = (props) => {
-  console.log(props);
-
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const options = {

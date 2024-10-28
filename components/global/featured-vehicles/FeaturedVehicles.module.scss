@@ -1,7 +1,7 @@
 .featuredVehicles {
   &_container {
     position: relative;
-    margin: 50px 0;
+    margin: 50px 0 82px 0;
   }
 
   &_slider {
@@ -103,12 +103,17 @@
         display: flex;
         justify-content: center;
         gap: 16px;
-        margin-top: 30px;
+        margin-top: 20px;
 
         button {
           position: static;
           height: 40px;
           width: 40px;
+          transform: none;
+
+          &:nth-child(2){
+            transform: rotate(180deg);
+          }
         }
       }
     }

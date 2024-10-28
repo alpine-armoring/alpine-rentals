@@ -1,15 +1,5 @@
 import { ReactNode } from 'react';
 
-export interface HPBannerProps {
-  props: {
-    title: string;
-    description: string;
-    video: any;
-  };
-  error?: Error;
-  // languageCookie?: string;
-}
-
 export interface BannerProps {
   props: any;
   shape?: string;
