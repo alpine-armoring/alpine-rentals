@@ -1,86 +1,84 @@
-.benefits{
-    font-size: 14px;
-    @include breakpoint(large) {
-        font-size: clamp(1.25rem, 0.75rem + 0.625vw, 1.5rem)
+.benefits {
+  font-size: 14px;
+  @include breakpoint(large) {
+    font-size: clamp(1.25rem, 0.75rem + 0.625vw, 1.5rem);
+  }
+
+  &_list {
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+    @include breakpoint(medium) {
+      display: flex;
+      gap: 8px;
     }
 
-    &_list{
-        margin-top: 50px;
-        margin-bottom: 50px;
-
-        @include breakpoint(medium) {
-          display: flex;
-          gap: 8px;
-        }
-
-        @include breakpoint(medium) {
-          display: flex;
-          gap: 16px;
-        }
-
-        @include breakpoint(huge) {
-          display: flex;
-          gap: 50px;
-        }
-        
+    @include breakpoint(medium) {
+      display: flex;
+      gap: 16px;
     }
 
-    &_item{
-
-        @include breakpoint(small) {
-            margin-bottom: 40px;
-            text-align: center;
-        }
-
-        &_heading{
-            @include breakpoint(medium) {                
-                min-height: 90px;
-            }
-
-            @include breakpoint(large) {
-                display: flex;
-                align-items: center;
-                gap: 8px;
-                min-height: 52px;
-            }
-        }
-
-        &_icon{
-            @include breakpoint(small) {
-                margin: auto;
-            }
-
-            @include breakpoint(medium) {
-                height: 40px;
-                object-fit: contain;    
-            }
-        }
-
-        &_title{
-            margin: 8px 0 0 0;
-            font-size: 20px;
-            font-weight: var(--font-medium);
-            
-            @include breakpoint(medium) {
-                font-size: clamp(1.0625rem, 0.8958rem + 0.3472vw, 1.3125rem);
-            }
-
-            @include breakpoint(large) {
-                margin: 0;
-                font-size: 21px;
-                letter-spacing: -0.6px;
-            }
-        }
-
-        &_text{
-            margin-top: 16px;
-            font-size: 14px;
-            // font-size: clamp(0.875rem, 0.8447rem + 0.1294vw, 1rem);
-            font-size: clamp(0.875rem, 0.7992rem + 0.3236vw, 1.1875rem);
-
-            @include breakpoint(large) {
-                margin-top: 8px;
-            }
-        }
+    @include breakpoint(huge) {
+      display: flex;
+      gap: 50px;
     }
+  }
+
+  &_item {
+    @include breakpoint(small) {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    &_heading {
+      @include breakpoint(medium) {
+        min-height: 90px;
+      }
+
+      @include breakpoint(large) {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 52px;
+      }
+    }
+
+    &_icon {
+      @include breakpoint(small) {
+        margin: auto;
+      }
+
+      @include breakpoint(medium) {
+        height: 40px;
+        object-fit: contain;
+      }
+    }
+
+    &_title {
+      margin: 8px 0 0 0;
+      font-size: 20px;
+      font-weight: var(--font-medium);
+
+      @include breakpoint(medium) {
+        font-size: clamp(1.0625rem, 0.8958rem + 0.3472vw, 1.3125rem);
+      }
+
+      @include breakpoint(large) {
+        margin: 0;
+        font-size: 21px;
+        letter-spacing: -0.6px;
+      }
+    }
+
+    &_text {
+      margin-top: 16px;
+      font-size: 14px;
+      // font-size: clamp(0.875rem, 0.8447rem + 0.1294vw, 1rem);
+      font-size: clamp(0.875rem, 0.7992rem + 0.3236vw, 1.1875rem);
+
+      @include breakpoint(large) {
+        margin-top: 8px;
+      }
+    }
+  }
 }
