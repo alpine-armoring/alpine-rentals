@@ -33,7 +33,7 @@
         padding-bottom: 23px;
       }
 
-      &_image{        
+      &_image {
         @include breakpoint(medium) {
           transform: scale(0.7);
           transition: transform 0.3s ease-in-out;
@@ -52,9 +52,9 @@
           right: 10px;
         }
 
-        @include breakpoint(medium) {   
+        @include breakpoint(medium) {
           position: relative;
-          margin-top: -7vW;
+          margin-top: -7vw;
           font-size: rem(20);
           border-radius: 48px;
           box-shadow:
@@ -64,12 +64,12 @@
           transition: transform 0.3s ease-in-out;
         }
 
-        @include breakpoint(large) {  
-          padding: 24px; 
+        @include breakpoint(large) {
+          padding: 24px;
           font-size: rem(24);
         }
 
-        &:before{
+        &:before {
           position: absolute;
           content: '';
           left: 0;
@@ -82,7 +82,7 @@
           z-index: -1;
           @include breakpoint(medium) {
             border-radius: 48px;
-            opacity: .8;
+            opacity: 0.8;
           }
         }
       }
@@ -107,11 +107,11 @@
         }
       }
 
-      &.active {      
+      &.active {
         @include breakpoint(medium) {
-          .featuredVehicles_slider_item{
+          .featuredVehicles_slider_item {
             &_content,
-            &_image{
+            &_image {
               transform: scale(1);
             }
           }
