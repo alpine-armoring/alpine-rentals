@@ -140,7 +140,7 @@ function InventoryVehicle(props) {
   };
 
   return (
-    <div className={`${styles.inventory} background-dark`}>
+    <div className={`${styles.inventory}`}>
       <div className={`${styles.inventory_main}`}>
         <div className={`${styles.inventory_heading}`}>
           <div className={`b-breadcrumbs`}>

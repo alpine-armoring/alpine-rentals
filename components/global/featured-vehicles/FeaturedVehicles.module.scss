@@ -27,28 +27,24 @@
       padding-bottom: 110px;
 
       @include breakpoint(medium) {
-        margin: 0 20px;
-        flex: 0 0 80%;
-        padding-bottom: 0;
-      }
-
-      @include breakpoint(large) {
         flex: 0 0 60%;
+        flex-flow: column;
         max-width: 900px;
+        padding-bottom: 23px;
       }
 
-      @include breakpoint(huge) {
-        margin: 0 40px;
+      &_image{        
+        @include breakpoint(medium) {
+          transform: scale(0.7);
+          transition: transform 0.3s ease-in-out;
+        }
       }
 
       &_content {
         position: absolute;
-        border-radius: 24px;
         padding: 16px;
-        background: url(/assets/glass.png);
-        background-size: cover;
         max-width: 430px;
-        margin: auto;
+        margin: 0 auto;
 
         @include breakpoint(small) {
           bottom: 0;
@@ -56,9 +52,10 @@
           right: 10px;
         }
 
-        @include breakpoint(medium) {
-          padding: 24px;
-          font-size: rem(24);
+        @include breakpoint(medium) {   
+          position: relative;
+          margin-top: -7vW;
+          font-size: rem(20);
           border-radius: 48px;
           box-shadow:
             0 8px 16px 0 rgba(0, 0, 0, 0.2),
@@ -66,12 +63,35 @@
           transform: scale(0.7);
           transition: transform 0.3s ease-in-out;
         }
+
+        @include breakpoint(large) {  
+          padding: 24px; 
+          font-size: rem(24);
+        }
+
+        &:before{
+          position: absolute;
+          content: '';
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          border-radius: 24px;
+          background: url(/assets/glass.png);
+          background-size: cover;
+          z-index: -1;
+          @include breakpoint(medium) {
+            border-radius: 48px;
+            opacity: .8;
+          }
+        }
       }
 
       &_title {
         color: white;
         font-size: rem(18);
         font-weight: var(--font-medium);
+        white-space: pre-wrap;
 
         @include breakpoint(medium) {
           font-size: rem(24);
@@ -79,7 +99,6 @@
       }
 
       &_button {
-        // opacity: 0;
         margin-top: rem(10);
         cursor: pointer;
 
@@ -88,13 +107,15 @@
         }
       }
 
-      &.active {
-        .featuredVehicles_slider_item_content {
-          transform: scale(1);
+      &.active {      
+        @include breakpoint(medium) {
+          .featuredVehicles_slider_item{
+            &_content,
+            &_image{
+              transform: scale(1);
+            }
+          }
         }
-        // .featuredVehicles_slider_item_button {
-        //   opacity: 1;
-        // }
       }
     }
 
@@ -103,7 +124,6 @@
         display: flex;
         justify-content: center;
         gap: 16px;
-        margin-top: 20px;
 
         button {
           position: static;

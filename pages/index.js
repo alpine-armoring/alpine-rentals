@@ -18,7 +18,7 @@ function Home(props) {
 
   const quote = data?.quote;
 
-  const featuredVehiclesData = props.featuredVehicles?.data;
+  const featuredVehiclesData = data.featuredRentalVehicles?.data;
 
   // Animations
   useEffect(() => {
@@ -70,15 +70,8 @@ export async function getStaticProps() {
 
   const seoData = homepageData.data?.attributes.seo || null;
 
-  const featuredVehicles = await getPageData({
-    route: 'inventories',
-    params: `filters[categories][slug][$eq]=armored-rental`,
-    sort: 'order',
-    pageSize: 4,
-  });
-
   return {
-    props: { homepageData, seoData, featuredVehicles },
+    props: { homepageData, seoData },
   };
 }
 

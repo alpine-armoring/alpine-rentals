@@ -51,34 +51,32 @@ const FeaturedVehicles = (props) => {
         <div className={`${styles.featuredVehicles_slider}`} ref={sliderRef}>
           <div className={`${styles.featuredVehicles_slider_container}`}>
             {props.data.map((item, index) => (
-              <div
+              <Link
                 key={item.id}
+                href={`/armored-rentals/${item.attributes.slug}`}
                 className={`${styles.featuredVehicles_slider_item} ${
                   selectedIndex === index ? styles.active : ''
                 }`}
               >
                 {item.attributes.transparentImage.data ? (
-                  <div className={`${styles.featuredVehicles_slider_image}`}>
-                    <Image
-                      src={`${
-                        item.attributes.transparentImage.data.attributes.formats
-                          .large?.url ||
-                        item.attributes.transparentImage.data.attributes.url
-                      }`}
-                      alt={
-                        item.attributes.transparentImage.data.attributes
-                          .alternativeText || 'Alpine Armoring'
-                      }
-                      width={1300}
-                      height={600}
-                      priority={index === 0}
-                      // sizes="(max-width: 1600px) 50vw, 30vw"
-                    />
-                  </div>
+                  <Image
+                    src={`${
+                      item.attributes.transparentImage.data.attributes.formats
+                        .large?.url ||
+                      item.attributes.transparentImage.data.attributes.url
+                    }`}
+                    alt={
+                      item.attributes.transparentImage.data.attributes
+                        .alternativeText || 'Alpine Armoring'
+                    }
+                    width={1300}
+                    height={600}
+                    priority={index === 0}
+                    className={`${styles.featuredVehicles_slider_item_image}`}
+                  />
                 ) : null}
 
-                <Link
-                  href={`/armored-rentals/${item.attributes.slug}`}
+                <div
                   className={`${styles.featuredVehicles_slider_item_content}`}
                 >
                   <h3
@@ -94,8 +92,8 @@ const FeaturedVehicles = (props) => {
                   >
                     View vehicle
                   </Button>
-                </Link>
-              </div>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
