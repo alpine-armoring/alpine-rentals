@@ -69,8 +69,8 @@ const FeaturedVehicles = (props) => {
                       item.attributes.transparentImage.data.attributes
                         .alternativeText || 'Alpine Armoring'
                     }
-                    width={1300}
-                    height={600}
+                    width={900}
+                    height={500}
                     priority={index === 0}
                     className={`${styles.featuredVehicles_slider_item_image}`}
                   />

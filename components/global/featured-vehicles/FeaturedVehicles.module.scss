@@ -24,7 +24,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding-bottom: 110px;
+      padding-bottom: 130px;
 
       @include breakpoint(medium) {
         flex: 0 0 60%;
@@ -42,7 +42,7 @@
 
       &_content {
         position: absolute;
-        padding: 16px;
+        padding: 30px 16px 16px 16px;
         max-width: 430px;
         margin: 0 auto;
 
@@ -55,6 +55,7 @@
         @include breakpoint(medium) {
           position: relative;
           margin-top: -7vw;
+          padding: 16px;
           font-size: rem(20);
           border-radius: 48px;
           box-shadow:
