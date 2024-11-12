@@ -64,7 +64,7 @@ function Home(props) {
 
 export async function getStaticProps() {
   const homepageData = await getPageData({
-    route: 'rentals-website',
+    route: 'rentals-homepage',
     populate: 'deep',
   });
 
