@@ -6,7 +6,7 @@ import InventoryItem from 'components/listing/listing-item/ListingItem';
 function Home(props) {
   return (
     <>
-      <div className={`${styles.listing} background-dark`}>
+      <div className={`${styles.listing}`}>
         <div
           className={`${styles.listing_wrap} ${styles.listing_wrap_inventory} container mt0`}
         >
