@@ -14,8 +14,7 @@ const InventoryItem = ({ props, index }: InventoryItemProps) => {
     <Link
       href={`/armored-rentals/${data.slug}`}
       className={`
-        ${styles.inventory_item} 
-        ${data.flag == 'sold' ? styles.inventory_item_sold : ''}
+        ${styles.inventory_item}
       `}
     >
       <div className={`${styles.inventory_item_image}`}>
@@ -39,21 +38,6 @@ const InventoryItem = ({ props, index }: InventoryItemProps) => {
         <div className={`${styles.inventory_item_button}`}>
           <span>VIEW DETAILS</span>
         </div>
-
-        {data.flag && data.label ? (
-          <>
-            {(() => {
-              const flagClass = `inventory_item_label_${data.flag}`;
-              return (
-                <div
-                  className={`${styles.inventory_item_label} ${styles[flagClass]}`}
-                >
-                  <span>{data.flag}</span>
-                </div>
-              );
-            })()}
-          </>
-        ) : null}
       </div>
 
       <div className={`${styles.inventory_item_content}`}>
@@ -69,12 +53,6 @@ const InventoryItem = ({ props, index }: InventoryItemProps) => {
         </h3>
 
         <ul className={`${styles.inventory_item_info}`}>
-          {data.VIN ? (
-            <li className={`${styles.inventory_item_info_item}`}>
-              <strong>VIN:</strong>
-              <span>{data.VIN}</span>
-            </li>
-          ) : null}
           {data.vehicleID ? (
             <li className={`${styles.inventory_item_info_item}`}>
               <strong>Vehicle ID:</strong>
@@ -85,6 +63,12 @@ const InventoryItem = ({ props, index }: InventoryItemProps) => {
             <li className={`${styles.inventory_item_info_item}`}>
               <strong>Engine:</strong>
               <span>{data.engine}</span>
+            </li>
+          ) : null}
+          {data.trans ? (
+            <li className={`${styles.inventory_item_info_item}`}>
+              <strong>Trans:</strong>
+              <span>{data.trans}</span>
             </li>
           ) : null}
         </ul>

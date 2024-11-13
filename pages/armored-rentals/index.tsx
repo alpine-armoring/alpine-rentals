@@ -1,12 +1,44 @@
-import React from 'react';
+import { useEffect } from 'react';
 import { getPageData } from 'hooks/api';
 import styles from '/components/listing/Listing.module.scss';
 import InventoryItem from 'components/listing/listing-item/ListingItem';
+import Banner from 'components/global/banner/Banner';
 
 function Home(props) {
+  const topBanner = props?.pageData?.banner;
+
+  // Animations
+  useEffect(() => {
+    const targets = document.querySelectorAll('.observe');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.toggle('in-view', entry.isIntersecting);
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.2,
+      }
+    );
+
+    targets.forEach((item) => observer.observe(item));
+
+    return () => {
+      targets.forEach((item) => observer.unobserve(item));
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <>
       <div className={`${styles.listing}`}>
+        {topBanner && <Banner props={topBanner} shape="white" />}
+
         <div
           className={`${styles.listing_wrap} ${styles.listing_wrap_inventory} container mt0`}
         >
@@ -32,6 +64,11 @@ function Home(props) {
 }
 
 export async function getServerSideProps(context) {
+  let pageData = await getPageData({
+    route: 'list-inventory',
+  });
+  pageData = pageData.data?.attributes || null;
+
   let query = `filters[categories][slug][$eq]=armored-rental`;
   const q = context.query.q;
   if (q) {
@@ -77,6 +114,7 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
+      pageData,
       vehicles: filteredVehicles,
       // filters,
       // query: context.query.type,

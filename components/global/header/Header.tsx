@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Button from 'components/global/button/Button';
-import Logo from 'components/icons/Logo';
 import Navigation from 'components/global/navigation/Navigation';
 import styles from './Header.module.scss';
 import { HeaderProps } from 'types';
@@ -73,16 +72,26 @@ const Header = ({
         >
           <Link href={'/'} aria-label="Alpine Armoring Logo">
             <Image
-              src="/assets/Alpine-Armoring-Armored-Vehicles.png"
+              src="/assets/LogoFlatWhite.png"
               alt="armored vehicles"
-              width={125}
-              height={42}
+              width={70}
+              height={92}
               quality={100}
               priority
               unoptimized
               className={`${styles.header_logo_gold} header_logo_gold`}
             />
-            <Logo className={`${styles.header_logo_black} header_logo_black`} />
+            <Image
+              src="/assets/Alpine-Armoring-Original-Logo-1.png"
+              alt="armored vehicles"
+              width={70}
+              height={92}
+              quality={100}
+              priority
+              unoptimized
+              className={`${styles.header_logo_black} header_logo_black`}
+            />
+            {/* <Logo className={`${styles.header_logo_black} header_logo_black`} /> */}
           </Link>
         </div>
 

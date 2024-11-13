@@ -90,7 +90,7 @@ const FeaturedVehicles = (props) => {
                     className={`${styles.featuredVehicles_slider_item_button} primary rounded`}
                     button
                   >
-                    View vehicle
+                    View Vehicle
                   </Button>
                 </div>
               </Link>

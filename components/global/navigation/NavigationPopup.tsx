@@ -23,7 +23,7 @@ const NavigationPopup = ({ isNavOpen, setNavOpen }: NavigationProps) => {
   >(null);
 
   const links = [
-    { path: '/armored-rentals', text: 'Available Vehicles' },
+    { path: '/armored-rentals', text: 'Vehicles Ready to Rent Now' },
     { path: '/contact', text: 'Contact' },
   ];
 

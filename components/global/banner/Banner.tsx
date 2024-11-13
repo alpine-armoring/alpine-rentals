@@ -142,8 +142,7 @@ const TopBanner = ({ props, shape, small }: BannerProps) => {
       <div className={`${styles.banner_inner}`}>
         {mediaElement}
 
-        {currentRoute.startsWith('/available-now') ||
-        currentRoute.startsWith('/vehicles-we-armor') ? (
+        {currentRoute.startsWith('/armored-rentals') ? (
           <div className={`${styles.banner_content}`}>
             <div className={`${styles.banner_text}`}>
               {bannerTitle ? (
@@ -163,9 +162,7 @@ const TopBanner = ({ props, shape, small }: BannerProps) => {
         />
       ) : null}
 
-      {bannerTitle &&
-      !currentRoute.startsWith('/available-now') &&
-      !currentRoute.startsWith('/vehicles-we-armor') ? (
+      {bannerTitle && !currentRoute.startsWith('/armored-rentals') ? (
         <h1
           className={`
             ${styles.banner_heading} 
