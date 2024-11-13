@@ -30,7 +30,9 @@
 
     &:hover:not(.inventory_item_sold) {
       background: var(--color-primary);
-      box-shadow: 0 7px 25px -5px #000, 0 8px 10px -6px #000;
+      box-shadow:
+        0 7px 25px -5px #000,
+        0 8px 10px -6px #000;
       .inventory_item {
         &_image:before {
           opacity: 0.5;
