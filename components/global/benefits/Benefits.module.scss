@@ -83,24 +83,24 @@
     }
   }
 
-  &_section2{
+  &_section2 {
     margin-top: 3rem;
     @include breakpoint(large) {
       margin-top: 7rem;
     }
   }
 
-  &_text{
-    a{
+  &_text {
+    a {
       color: var(--color-primary);
       text-decoration: underline;
     }
-    p{
+    p {
       margin-bottom: 20px;
     }
   }
 
-  &_button{
+  &_button {
     margin: 1rem 0;
     @include breakpoint(large) {
       margin: 2rem 0;

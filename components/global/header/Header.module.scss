@@ -87,7 +87,6 @@
   }
 
   &_logo {
-
     @include breakpoint('large') {
       position: absolute;
       left: 0;
