@@ -72,26 +72,25 @@ const Header = ({
         >
           <Link href={'/'} aria-label="Alpine Armoring Logo">
             <Image
-              src="/assets/LogoFlatWhite.png"
+              src="/assets/Alpine-Armoring-Logo.png"
               alt="armored vehicles"
-              width={70}
-              height={92}
+              width={125}
+              height={44}
               quality={100}
               priority
               unoptimized
               className={`${styles.header_logo_gold} header_logo_gold`}
             />
             <Image
-              src="/assets/Alpine-Armoring-Original-Logo-1.png"
+              src="/assets/Alpine-Armoring-Logo-Black.png"
               alt="armored vehicles"
-              width={70}
-              height={92}
+              width={125}
+              height={44}
               quality={100}
               priority
               unoptimized
               className={`${styles.header_logo_black} header_logo_black`}
             />
-            {/* <Logo className={`${styles.header_logo_black} header_logo_black`} /> */}
           </Link>
         </div>
 

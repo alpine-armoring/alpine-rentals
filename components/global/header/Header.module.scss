@@ -1,5 +1,5 @@
 .header {
-  padding: rem(7) 0;
+  padding: rem(14) 0;
   position: fixed;
   top: 0;
   left: 0;
@@ -87,7 +87,6 @@
   }
 
   &_logo {
-    width: 50px;
 
     @include breakpoint('large') {
       position: absolute;
@@ -96,7 +95,7 @@
       top: 50%;
       transform: translateY(-50%);
       margin: auto;
-      width: 45px;
+      width: 125px;
     }
 
     a {

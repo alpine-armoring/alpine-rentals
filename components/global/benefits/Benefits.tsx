@@ -1,82 +1,94 @@
 import styles from './Benefits.module.scss';
+import { useMarkdownToHtml } from 'hooks/useMarkdownToHtml';
 import Image from 'next/image';
+import Button from 'components/global/button/Button';
 
-const Benefits = () => {
+const Benefits = (props) => {
+  const convertMarkdown = useMarkdownToHtml();
+
   return (
     <div className={`${styles.benefits} container_small`}>
-      <h2 className="c-title">The Alpine Armoring Difference</h2>
-      <p>
-        Alpine Armoring strives to make renting armored vehicles easier for our
-        customers by providing a personalized and hassle-free experience, be it
-        a short-term rental or a long-term lease. Our experienced team is
-        committed to delivering a seamless experience, tailoring each rental to
-        the specific requirements of our clientele.
-      </p>
+      {props.data.section1Title ? (
+        <h2 className="c-title">{props.data.section1Title}</h2>
+      ) : null}
 
-      <div className={`${styles.benefits_list}`}>
-        <div className={`${styles.benefits_item}`}>
-          <div className={`${styles.benefits_item_heading}`}>
-            <Image
-              src="/assets/dollar.svg"
-              alt="armored vehicles"
-              width={40}
-              height={40}
-              className={`${styles.benefits_item_icon}`}
-            />
-            <h3 className={`${styles.benefits_item_title}`}>
-              Competitive Pricing
-            </h3>
-          </div>
-          <p className={`${styles.benefits_item_text}`}>
-            Our customers can be rest assured that they will be provided with
-            competitive pricing with special incentives for bulk rentals or
-            long-term leases.
-          </p>
+      {props.data?.section1Text ? (
+        <div
+          dangerouslySetInnerHTML={{
+            __html: convertMarkdown(props.data.section1Text),
+          }}
+        ></div>
+      ) : null}
+
+      {props.data?.section1List ? (
+        <div className={`${styles.benefits_list}`}>
+          {props.data?.section1List.map((item, index) => (
+            <div className={`${styles.benefits_item}`} key={index}>
+              <div className={`${styles.benefits_item_heading}`}>
+                {item.image.data ? (
+                  <Image
+                    src={item.image?.data[0].attributes?.url}
+                    alt="armored vehicles"
+                    width={40}
+                    height={40}
+                    className={`${styles.benefits_item_icon}`}
+                  />
+                ) : null}
+
+                {item.title ? (
+                  <h3 className={`${styles.benefits_item_title}`}>
+                    {item.title}
+                  </h3>
+                ) : null}
+              </div>
+
+              {item.description ? (
+                <div
+                  className={`${styles.benefits_item_text}`}
+                  dangerouslySetInnerHTML={{
+                    __html: convertMarkdown(item.description),
+                  }}
+                ></div>
+              ) : null}
+            </div>
+          ))}
         </div>
-        <div className={`${styles.benefits_item}`}>
-          <div className={`${styles.benefits_item_heading}`}>
-            <Image
-              src="/assets/US.svg"
-              alt="armored vehicles"
-              width={40}
-              height={40}
-              className={`${styles.benefits_item_icon}`}
-            />
-            <h3 className={`${styles.benefits_item_title}`}>
-              Shipping to anywhere in the US
-            </h3>
-          </div>
-          <p className={`${styles.benefits_item_text}`}>
-            For your convenience we provide an option to have the vehicle
-            delivered to the location of your choice anywhere in the US.
-          </p>
-        </div>
-        <div className={`${styles.benefits_item}`}>
-          <div className={`${styles.benefits_item_heading}`}>
-            <Image
-              src="/assets/fast.png"
-              alt="armored vehicles"
-              width={40}
-              height={40}
-              className={`${styles.benefits_item_icon}`}
-            />
-            <h3 className={`${styles.benefits_item_title}`}>
-              Guaranteed on Time Delivery
-            </h3>
-          </div>
-          <p className={`${styles.benefits_item_text}`}>
-            We guarantee that the rental vehicle will be delivered at the agreed
-            location on the date promised in a clean/ perfect condition.
-          </p>
-        </div>
+      ) : null}
+
+      {props.data?.section1Text2 ? (
+        <div
+          dangerouslySetInnerHTML={{
+            __html: convertMarkdown(props.data.section1Text2),
+          }}
+        ></div>
+      ) : null}
+
+      <div className={`${styles.benefits_button} center`}>
+        <Button className={`primary rounded`} href="contact">
+          Request a Quote
+        </Button>
       </div>
 
-      <p>
-        With our extensive experience assisting numerous embassies and
-        government officials, we understand the importance of discretion and
-        precision, making us the trusted choice for armored transportation
-        solutions.
-      </p>
+      {props.data.section2Title ? (
+        <h2 className={`${styles.benefits_section2} c-title`}>
+          {props.data.section2Title}
+        </h2>
+      ) : null}
+
+      {props.data?.section2Text ? (
+        <div
+          className={`${styles.benefits_text}`}
+          dangerouslySetInnerHTML={{
+            __html: convertMarkdown(props.data.section2Text),
+          }}
+        ></div>
+      ) : null}
+
+      <div className={`${styles.benefits_button} center`}>
+        <Button className={`primary rounded`} href="contact">
+          Contact Us!
+        </Button>
+      </div>
     </div>
   );
 };

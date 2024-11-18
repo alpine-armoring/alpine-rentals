@@ -27,15 +27,20 @@
       padding-bottom: 130px;
 
       @include breakpoint(medium) {
-        flex: 0 0 60%;
+        flex: 0 0 50%;
         flex-flow: column;
-        max-width: 900px;
+        justify-content: flex-start;
         padding-bottom: 23px;
+      }
+
+      @include breakpoint(large) {
+        flex: 0 0 35%;
+        max-width: 900px;
       }
 
       &_image {
         @include breakpoint(medium) {
-          transform: scale(0.7);
+          transform: scale(0.8);
           transition: transform 0.3s ease-in-out;
         }
       }

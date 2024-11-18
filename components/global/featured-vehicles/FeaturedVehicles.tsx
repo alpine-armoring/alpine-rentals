@@ -45,12 +45,14 @@ const FeaturedVehicles = (props) => {
 
   return (
     <div className={`${styles.featuredVehicles_container}`}>
-      <h2 className={`c-title`}>Featured vehicles for rental</h2>
+      {props.data.title ? (
+        <h2 className={`c-title`}>{props.data.title}</h2>
+      ) : null}
 
-      {props.data && props.data.length > 0 ? (
+      {props.data.items && props.data.items.length > 0 ? (
         <div className={`${styles.featuredVehicles_slider}`} ref={sliderRef}>
           <div className={`${styles.featuredVehicles_slider_container}`}>
-            {props.data.map((item, index) => (
+            {props.data.items.map((item, index) => (
               <Link
                 key={item.id}
                 href={`/armored-rentals/${item.attributes.slug}`}

@@ -43,23 +43,13 @@ function InventoryVehicle(props) {
 
   const vehicleDetailsMain = {
     Level: 'armor_level',
-    VIN: 'VIN',
     'Vehicle ID': 'vehicleID',
     'Engine & Power': 'engine',
     Trans: 'trans',
-    // Power: 'power',
-    Year: 'year',
-    Miles: 'miles',
     Drivetrain: 'driveTrain',
     'Color (Exterior)': 'color_ext',
     'Color (Interior)': 'color_int',
     Trim: 'trim',
-    Wheels: 'wheels',
-    Height: 'height',
-    Length: 'length',
-    Width: 'width',
-    Wheelbase: 'wheelbase',
-    'Weight (Armored)': 'weight',
   };
 
   const formData = {
