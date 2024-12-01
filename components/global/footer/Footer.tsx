@@ -81,11 +81,11 @@ const Footer = (isDarkMode) => {
                 </li>
                 <li>
                   <Link
-                    href="mailto:sales@alpineco.com"
+                    href="mailto:rental@armoredautos.com"
                     className={`${styles.footer_column_list_item}`}
                   >
                     <MailIcon color="#2d2d27" />
-                    Sales@AlpineCo.com
+                    Rental@ArmoredAutos.com
                   </Link>
                 </li>
                 <li className={`${styles.footer_column_list_item}`}>
@@ -191,20 +191,6 @@ const Footer = (isDarkMode) => {
 
           <p className={`${styles.footer_bottom_copy}`}>
             ©1997-2024. Alpine Armoring Inc. <span>All Rights Reserved</span>
-          </p>
-
-          <p
-            className={`${styles.footer_bottom_flag} ${
-              currentRoute === '/manufacturing' ||
-              currentRoute === '/ballistic-testing'
-                ? styles.footer_bottom_flag_dark
-                : styles.footer_bottom_flag_light
-            }`}
-          >
-            The Home of{' '}
-            <Link href="/" className={`${styles.footer_bottom_copy_middle}`}>
-              ArmoredVehicles.com
-            </Link>
           </p>
         </div>
       </div>

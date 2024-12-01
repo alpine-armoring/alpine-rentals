@@ -4,7 +4,7 @@
   padding: rem(8);
   margin: auto;
   margin-bottom: rem(24);
-  background: var(--color-secondary);
+  background: var(--color-primary);
   color: #fff;
   border-radius: 16px;
   flex-basis: 470px;
@@ -26,13 +26,16 @@
     align-self: stretch;
     transition:
       background 0.3s ease-in-out,
-      box-shadow 0.3s ease-in-out;
+      box-shadow 0.3s ease-in-out,
+      color 0.3s ease-in-out;
 
     &:hover:not(.inventory_item_sold) {
-      background: var(--color-primary);
+      background: var(--color-secondary);
       box-shadow:
         0 7px 25px -5px #000,
-        0 8px 10px -6px #000;
+        0 8px 10px -6px #000;        
+      color: var(--color-primary);
+
       .inventory_item {
         &_image:before {
           opacity: 0.5;
@@ -41,8 +44,12 @@
           opacity: 1;
         }
         &_level {
-          background: var(--color-grayLight);
-          color: var(--color-secondary);
+          background: var(--color-primary);
+          color: var(--color-white);
+
+          span{
+            color: var(--color-dark);
+          }
         }
         &_label {
           opacity: 0;
@@ -222,11 +229,11 @@
     margin-bottom: rem(30);
     padding: rem(10) rem(14);
     text-transform: uppercase;
-    background: var(--color-dark);
+    background: var(--color-grayLight);
+    color: var(--color-dark);
     font-weight: var(--font-medium);
     font-size: rem(13);
     letter-spacing: -0.5px;
-    color: var(--color-white);
     border-radius: 8px;
     transition:
       background 0.3s ease,
@@ -237,8 +244,10 @@
     }
 
     span {
-      color: var(--color-primary);
+      color: #06374e;
       font-weight: var(--font-demi);
+      transition:
+        color 0.3s ease;
     }
   }
 

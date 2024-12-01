@@ -133,14 +133,13 @@
     h1,
     h2 {
       white-space: pre-wrap;
-      font-weight: var(--font-medium);
       margin: 0;
       font-weight: var(--font-regular);
       font-size: 14px;
 
       strong,
       b {
-        color: var(--color-primary);
+        color: var(--color-dark);
         font-weight: var(--font-demi);
       }
 
@@ -160,7 +159,7 @@
 
     h2 {
       font-size: clamp(0.75rem, 0.659rem + 0.3883vw, 1.125rem);
-      color: var(--color-primary);
+      color: var(--color-dark);
       font-weight: var(--font-demi);
     }
   }

@@ -55,10 +55,6 @@ function Home(props) {
           )}
         </div>
       </div>
-
-      <div className={`observe bottomObserver`}></div>
-
-      <div className="shape-before shape-before-white"></div>
     </>
   );
 }
