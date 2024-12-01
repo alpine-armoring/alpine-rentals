@@ -33,7 +33,7 @@
   &:not(.header_navOpen):not(.header.up):not(.header.down):not(
       .header_transparent
     ):not(.header_gray) {
-    --color-white: var(--color-dark);
+    --color-white: var(--color-primary);
 
     .header_logo path,
     .header_logo rect,
