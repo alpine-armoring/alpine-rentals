@@ -33,7 +33,7 @@
       background: var(--color-secondary);
       box-shadow:
         0 7px 25px -5px #000,
-        0 8px 10px -6px #000;        
+        0 8px 10px -6px #000;
       color: var(--color-primary);
 
       .inventory_item {
@@ -47,7 +47,7 @@
           background: var(--color-primary);
           color: var(--color-white);
 
-          span{
+          span {
             color: var(--color-dark);
           }
         }
@@ -246,8 +246,7 @@
     span {
       color: #06374e;
       font-weight: var(--font-demi);
-      transition:
-        color 0.3s ease;
+      transition: color 0.3s ease;
     }
   }
 
