@@ -73,6 +73,12 @@ const Header = ({
         >
           <Link href={'/'} aria-label="Alpine Armoring Logo">
             <Logo />
+            {/* <Image 
+              src="/assets/LogoTest.svg"
+              alt=""
+              width="400"
+              height="90"            
+            /> */}
           </Link>
         </div>
 
