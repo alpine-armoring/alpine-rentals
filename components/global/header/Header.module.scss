@@ -97,6 +97,13 @@
   }
 
   &_logo {
+    svg{
+      @include breakpoint('small') {
+        width: 280px;
+        height: 40px;
+        max-width: 77vW;
+      }
+    }
     @include breakpoint('large') {
       position: absolute;
       left: 0;
