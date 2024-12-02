@@ -32,7 +32,7 @@
 
   &.header_gray,
   &.down,
-  &.up{
+  &.up {
     .header_logo path,
     .header_logo rect,
     .header_logo polygon {
@@ -97,11 +97,11 @@
   }
 
   &_logo {
-    svg{
+    svg {
       @include breakpoint('small') {
         width: 280px;
         height: 40px;
-        max-width: 77vW;
+        max-width: 77vw;
       }
     }
     @include breakpoint('large') {
