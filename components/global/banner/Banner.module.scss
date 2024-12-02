@@ -139,7 +139,7 @@
 
       strong,
       b {
-        color: var(--color-dark);
+        color: var(--color-rentals);
         font-weight: var(--font-demi);
       }
 
@@ -159,7 +159,7 @@
 
     h2 {
       font-size: clamp(0.75rem, 0.659rem + 0.3883vw, 1.125rem);
-      color: var(--color-dark);
+      color: var(--color-rentals);
       font-weight: var(--font-demi);
     }
   }

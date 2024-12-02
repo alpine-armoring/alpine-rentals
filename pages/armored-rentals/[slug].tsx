@@ -22,8 +22,8 @@ function InventoryVehicle(props) {
     props && props.data && props.data.data[0] && props.data.data[0].attributes;
   const topGallery = data?.rentalsGallery?.data;
   const mainText = data?.description;
-  const category = data?.categories?.data[0]?.attributes?.title;
-  const categorySlug = data?.categories?.data[0]?.attributes?.slug;
+  // const category = data?.categories?.data[0]?.attributes?.title;
+  // const categorySlug = data?.categories?.data[0]?.attributes?.slug;
 
   const videoWebm = data?.video?.data?.attributes;
   const videoMP4 = data?.videoMP4?.data?.attributes;
@@ -43,7 +43,7 @@ function InventoryVehicle(props) {
 
   const vehicleDetailsMain = {
     Level: 'armor_level',
-    'Vehicle ID': 'vehicleID',
+    'Vehicle ID': 'rentalsVehicleID',
     'Engine & Power': 'engine',
     Trans: 'trans',
     Drivetrain: 'driveTrain',
@@ -133,11 +133,11 @@ function InventoryVehicle(props) {
     <div className={`${styles.inventory}`}>
       <div className={`${styles.inventory_main}`}>
         <div className={`${styles.inventory_heading}`}>
-          <div className={`b-breadcrumbs`}>
-            <Link href="/available-now">Available now</Link>
+          {/* <div className={`b-breadcrumbs`}>
+            <Link href="/armored-rentals">Ready to Rent</Link>
             <span>&gt;</span>
             <Link href={`/available-now/type/${categorySlug}`}>{category}</Link>
-          </div>
+          </div> */}
 
           <div className={`${styles.inventory_heading_title}`}>
             {data?.title ? (
