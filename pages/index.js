@@ -18,8 +18,6 @@ function Home(props) {
 
   const quote = data?.quote;
 
-  console.log(data);
-
   const featuredVehiclesData = {
     title: data.featuredVehiclesTitle,
     items: data.featuredRentalVehicles?.data,
