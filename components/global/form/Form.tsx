@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 // import { sendEmail } from 'hooks/aws-ses';
 
 const Form = () => {
+  const [testField, setTestField] = useState('');
   const [fullname, setFullname] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -355,6 +356,13 @@ const Form = () => {
       return '';
     }
   };
+  const validateTestField = () => {
+    // if (!value) {
+    //   return 'TestField is required';
+    // } else {
+    //   return '';
+    // }
+  };
 
   const validateCountry = (value) => {
     if (!value) {
@@ -424,6 +432,7 @@ const Form = () => {
             headers,
             body: JSON.stringify({
               data: {
+                testField: testField,
                 name: fullname,
                 email: email,
                 mobileNumber: mobile,
@@ -484,6 +493,24 @@ const Form = () => {
 
   return (
     <div className={`${styles.form}`}>
+      <div className={`${styles.form_group}`}>
+        <input
+          type="text"
+          id="testField"
+          value={testField}
+          onChange={(e) =>
+            handleFieldChange(
+              'testField',
+              e.target.value,
+              validateTestField,
+              setTestField
+            )
+          }
+          placeholder="TestField*"
+          className={`${styles.form_input}`}
+        />
+      </div>
+
       <div
         className={`${styles.form_group} ${
           errors.fullname ? styles.error : ''
