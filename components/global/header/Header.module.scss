@@ -32,7 +32,8 @@
 
   &.header_gray,
   &.down,
-  &.up {
+  &.up,
+  &_navOpen {
     .header_logo path,
     .header_logo rect,
     .header_logo polygon {

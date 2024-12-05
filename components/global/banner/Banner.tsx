@@ -166,6 +166,7 @@ const TopBanner = ({ props, shape, small }: BannerProps) => {
         <h1
           className={`
             ${styles.banner_heading} 
+            c-title
             ${
               [
                 '/manufacturing',

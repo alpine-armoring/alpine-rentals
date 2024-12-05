@@ -5,7 +5,10 @@ import InventoryItem from 'components/listing/listing-item/ListingItem';
 import Banner from 'components/global/banner/Banner';
 
 function Home(props) {
-  const topBanner = props?.pageData?.banner;
+  const topBanner = { ...props?.pageData?.attributes?.inventoryBanner };
+  const topBannerSubtitle =
+    props?.pageData?.attributes?.inventoryBanner.subtitle;
+  topBanner.subtitle = null;
 
   // Animations
   useEffect(() => {
@@ -37,7 +40,13 @@ function Home(props) {
   return (
     <>
       <div className={`${styles.listing}`}>
-        {topBanner && <Banner props={topBanner} shape="white" />}
+        {topBanner.title && <Banner props={topBanner} shape="white" />}
+
+        {topBannerSubtitle ? (
+          <p className={`${styles.listing_heading} center container`}>
+            {topBannerSubtitle}
+          </p>
+        ) : null}
 
         <div
           className={`${styles.listing_wrap} ${styles.listing_wrap_inventory} container mt0`}
@@ -59,61 +68,34 @@ function Home(props) {
   );
 }
 
-export async function getServerSideProps(context) {
-  let pageData = await getPageData({
-    route: 'list-inventory',
-  });
-  pageData = pageData.data?.attributes || null;
-
-  let query = `filters[categories][slug][$eq]=armored-rental`;
-  const q = context.query.q;
-  if (q) {
-    query += (query ? '&' : '') + `filters[slug][$notNull]=true`;
-  }
+export async function getServerSideProps() {
+  const query = `filters[categories][slug][$eq]=armored-rental`;
 
   const vehicles = await getPageData({
     route: 'inventories',
     params: query,
     sort: 'order',
-    //   populate: 'featuredImage',
-    //   fields:
-    //     'fields[0]=VIN&fields[1]=armor_level&fields[2]=vehicleID&fields[3]=engine&fields[4]=title&fields[5]=slug&fields[6]=flag&fields[7]=label&fields[8]=ownPage&fields[9]=hide',
+    populate: 'rentalsFeaturedImage',
+    fields:
+      'fields[0]=rentalsVehicleID&fields[1]=armor_level&fields[2]=engine&fields[3]=engine&fields[4]=title&fields[5]=slug&fields[6]=trans',
     pageSize: 100,
   });
 
-  const filteredVehicles = {
-    ...vehicles,
-    data: vehicles.data?.filter((vehicle) => {
-      if (vehicle.attributes.hide === true) return false;
-      if (!q) return true;
-
-      const searchTerms = q.toLowerCase().replace(/[-\s]/g, '');
-      const slug = vehicle.attributes.slug.toLowerCase().replace(/[-\s]/g, '');
-
-      return slug.includes(searchTerms);
-    }),
-  };
-
   // Fetching Types for the Filters
-  const type = await getPageData({
+  let pageData = await getPageData({
     route: 'categories',
-    custom: `populate[inventory_vehicles][fields][0]=''&populate[inventoryBanner][populate][media][fields][0]=url&populate[inventoryBanner][populate][media][fields][1]=mime&populate[inventoryBanner][populate][media][fields][2]=alternativeText&populate[inventoryBanner][populate][media][fields][3]=width&populate[inventoryBanner][populate][media][fields][4]=height&populate[inventoryBanner][populate][media][fields][5]=formats&populate[inventoryBanner][populate][mediaMP4][fields][0]=url&populate[inventoryBanner][populate][mediaMP4][fields][1]=mime&populate[seo][populate][metaImage][fields][0]=url&populate[seo][populate][metaSocial][fields][0]=url&sort=order:asc&fields[0]=title&fields[1]=slug&populate[inventoryBanner][populate][imageMobile][fields][0]=url&populate[inventoryBanner][populate][imageMobile][fields][1]=mime&populate[inventoryBanner][populate][imageMobile][fields][2]=alternativeText&populate[inventoryBanner][populate][imageMobile][fields][3]=width&populate[inventoryBanner][populate][imageMobile][fields][4]=height&populate[inventoryBanner][populate][imageMobile][fields][5]=formats`,
+    params: `filters[slug][$eq]=armored-rental&populate[inventoryBanner][populate][media]=*&populate[inventoryBanner][populate][mediaMP4]=*&populate[inventoryBanner][populate][imageMobile]=*`,
+    populate: 'inventoryBanner, seo',
   }).then((response) => response.data);
 
-  const filters = type ? { type } : {};
+  pageData = pageData ? pageData[0] : null;
 
-  let seoData = filters.type?.find(
-    (item) => item.attributes.slug === context.query.type
-  );
-
-  seoData = seoData?.attributes?.seo ?? null;
+  const seoData = pageData?.attributes?.seo ?? null;
 
   return {
     props: {
       pageData,
-      vehicles: filteredVehicles,
-      // filters,
-      // query: context.query.type,
+      vehicles,
       seoData,
     },
   };

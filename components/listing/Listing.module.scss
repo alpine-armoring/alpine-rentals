@@ -1,4 +1,23 @@
 .listing {
+
+  &_heading {
+    margin-top: -25px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+    font-size: 14px;
+    font-weight: var(--font-medium);
+
+    @include breakpoint(large) {
+      margin-top: -60px;
+      margin-bottom: 40px;
+      font-size: 20px;
+    }
+    @include breakpoint(huge) {
+      font-size: 24px;
+    }
+  }
+
   &_wrap {
     position: relative;
     padding: 0 rem(10) rem(0) rem(10);

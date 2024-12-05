@@ -53,7 +53,7 @@ const InventoryItem = ({ props, index }: InventoryItemProps) => {
         </h3>
 
         <ul className={`${styles.inventory_item_info}`}>
-          {data.vehicleID ? (
+          {data.rentalsVehicleID ? (
             <li className={`${styles.inventory_item_info_item}`}>
               <strong>Vehicle ID:</strong>
               <span>{data.rentalsVehicleID}</span>
