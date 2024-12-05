@@ -190,6 +190,11 @@
         }
       }
     }
+
+    &_description{
+      margin-top: 20px;
+      font-size: 14px;
+    }
   }
 
   &_info {
@@ -264,10 +269,14 @@
         min-width: 287px;
       }
       @include breakpoint(large) {
-        margin-top: rem(24) !important;
-        position: sticky;
-        bottom: 10px;
-        margin: auto;
+        position: relative;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin-top: rem(40) !important;
+        // position: sticky;
+        // bottom: 10px;
+        // margin: auto;
       }
 
       &_static {
@@ -298,11 +307,11 @@
       text-transform: uppercase;
     }
 
-    @include breakpoint(huge) {
-      margin: 0 auto;
-      position: relative;
-      right: rem(84);
-    }
+    // @include breakpoint(huge) {
+    //   margin: 0 auto;
+    //   position: relative;
+    //   right: rem(84);
+    // }
   }
 
   &_pdfs {
