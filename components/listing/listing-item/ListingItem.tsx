@@ -18,14 +18,14 @@ const InventoryItem = ({ props, index }: InventoryItemProps) => {
       `}
     >
       <div className={`${styles.inventory_item_image}`}>
-        {data.featuredImage.data ? (
+        {data?.rentalsFeaturedImage?.data ? (
           <Image
             src={`${
-              data.featuredImage.data.attributes.formats.medium.url ||
-              data.featuredImage.data.attributes.url
+              data.rentalsFeaturedImage.data.attributes.formats.medium.url ||
+              data.rentalsFeaturedImage.data.attributes.url
             }`}
             alt={
-              data.featuredImage.data.attributes.alternativeText ||
+              data.rentalsFeaturedImage.data.attributes.alternativeText ||
               'Alpine Armoring'
             }
             width={563}

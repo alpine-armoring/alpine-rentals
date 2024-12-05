@@ -19,17 +19,17 @@ function Home(props) {
   const quote = data?.quote;
 
   const featuredVehiclesData = {
-    title: data.featuredVehiclesTitle,
-    items: data.featuredRentalVehicles?.data,
+    title: data?.featuredVehiclesTitle,
+    items: data?.featuredRentalVehicles?.data,
   };
 
   const benefitsData = {
-    section1Title: data.section1Title,
-    section1Text: data.section1Text,
-    section1List: data.section1List,
-    section1Text2: data.section1text2,
-    section2Title: data.section2title,
-    section2Text: data.section2text,
+    section1Title: data?.section1Title,
+    section1Text: data?.section1Text,
+    section1List: data?.section1List,
+    section1Text2: data?.section1text2,
+    section2Title: data?.section2title,
+    section2Text: data?.section2text,
   };
 
   // Animations
