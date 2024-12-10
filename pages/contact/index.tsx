@@ -4,12 +4,9 @@ import { useEffect } from 'react';
 import Banner from 'components/global/banner/Banner';
 import Form from 'components/global/form/Form';
 import Accordion from 'components/global/accordion/Accordion';
-import { useMarkdownToHtml } from 'hooks/useMarkdownToHtml';
 
 function Contact(props) {
-  const faqs = props?.pageData?.fa_qs;
-
-  const convertMarkdown = useMarkdownToHtml();
+  const faqs = props?.pageData?.rentals_faqs;
 
   // Animations
   useEffect(() => {
@@ -53,33 +50,60 @@ function Contact(props) {
             <div className={`${styles.contact_main_right_boxes}`}>
               <div className={`${styles.contact_main_right_column}`}>
                 <h3 className={`${styles.contact_main_right_title}`}>
-                  Sales Inquiries
+                  Our rental support team is available on:
                 </h3>
-                {props.pageData?.salesInfo ? (
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: convertMarkdown(props.pageData.salesInfo),
-                    }}
-                  ></div>
-                ) : null}
-              </div>
-              <div className={`${styles.contact_main_right_column}`}>
-                <h3 className={`${styles.contact_main_right_title}`}>
-                  Parts, Service &<br /> Warranty
-                </h3>
-                {props.pageData?.partsInfo ? (
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: convertMarkdown(props.pageData.partsInfo),
-                    }}
-                  ></div>
-                ) : null}
+                <p>
+                  <strong>Monday - Friday</strong> <br /> 8:30 AM - 5:00 PM EST.
+                </p>
+                <p>
+                  <strong>Toll Free:</strong>
+                  <a
+                    href="tel:+18009927667"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {' '}
+                    1-800-99ARMOR (1-800-992-7667)
+                  </a>
+                </p>
+                <p>
+                  <strong>Tel:</strong>
+                  <a
+                    href="tel:+7034710002"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {' '}
+                    703-471-0002
+                  </a>
+                </p>
+                <p>
+                  <strong>Fax:</strong>
+                  <a
+                    href="tel:+7034710202"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {' '}
+                    703-471-0202
+                  </a>
+                </p>
+                <p>
+                  <strong>Email:</strong>{' '}
+                  <a
+                    href="mailto:sales@armoredautos.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Sales@ArmoredAutos.com
+                  </a>
+                </p>
               </div>
             </div>
           </div>
         </div>
 
-        {faqs?.data ? (
+        {faqs?.data.length > 0 ? (
           <Accordion
             items={faqs.data}
             title="Frequently asked questions"

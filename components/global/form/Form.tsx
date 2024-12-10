@@ -7,7 +7,6 @@ import { useRouter } from 'next/router';
 // import { sendEmail } from 'hooks/aws-ses';
 
 const Form = () => {
-  const [testField, setTestField] = useState('');
   const [fullname, setFullname] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -19,6 +18,11 @@ const Form = () => {
   const [state, setState] = useState('');
   const [preferredContact, setPreferredContact] = useState('');
   const [message, setMessage] = useState('');
+
+  const [fromDate, setFromDate] = useState('');
+  const [toDate, setToDate] = useState('');
+  const [vehicleType, setVehicleType] = useState('');
+  const [vehicleModel, setVehicleModel] = useState('');
 
   const router = useRouter();
 
@@ -35,14 +39,12 @@ const Form = () => {
   }, [router.query.source]);
 
   const [isCompanyDropdownActive, setIsCompanyDropdownActive] = useState(false);
-  const [isInquiryDropdownActive, setIsInquiryDropdownActive] = useState(false);
-  const [
-    isPreferredContactDropdownActive,
-    setIsPreferredContactDropdownActive,
-  ] = useState(false);
-  const [isHearDropdownActive, setIsHearDropdownActive] = useState(false);
   const [isCountryDropdownActive, setIsCountryDropdownActive] = useState(false);
   const [isStateDropdownActive, setIsStateDropdownActive] = useState(false);
+  const [isVehicleTypeDropdownActive, setIsVehicleTypeDropdownActive] =
+    useState(false);
+  const [isVehicleModelDropdownActive, setIsVehicleModelDropdownActive] =
+    useState(false);
 
   const countryOptions = [
     'United States',
@@ -356,13 +358,6 @@ const Form = () => {
       return '';
     }
   };
-  const validateTestField = () => {
-    // if (!value) {
-    //   return 'TestField is required';
-    // } else {
-    //   return '';
-    // }
-  };
 
   const validateCountry = (value) => {
     if (!value) {
@@ -378,6 +373,19 @@ const Form = () => {
     } else {
       return '';
     }
+  };
+
+  const validateDates = () => {
+    if (!fromDate) {
+      return 'From Date is required';
+    }
+    if (!toDate) {
+      return 'To Date is required';
+    }
+    if (new Date(fromDate) > new Date(toDate)) {
+      return 'From Date must be before or equal to To Date';
+    }
+    return '';
   };
 
   const handleFieldChange = (field, value, validator, setter) => {
@@ -411,6 +419,7 @@ const Form = () => {
       mobile: validateMobile(mobile),
       country: validateCountry(country),
       state: validateState(state), // Validate state if the country is United States
+      dates: validateDates(),
     };
 
     setErrors(newErrors);
@@ -432,7 +441,6 @@ const Form = () => {
             headers,
             body: JSON.stringify({
               data: {
-                testField: testField,
                 name: fullname,
                 email: email,
                 mobileNumber: mobile,
@@ -446,6 +454,10 @@ const Form = () => {
                 message: sanitizedMessage,
                 route: router.asPath,
                 date: Date.now(),
+                fromDate: fromDate,
+                toDate: toDate,
+                vehicleType: vehicleType,
+                vehicleModel: vehicleModel,
               },
             }),
           }
@@ -472,6 +484,10 @@ const Form = () => {
         setState('');
         setPreferredContact('');
         setMessage('');
+        setFromDate('');
+        setToDate('');
+        setVehicleType('');
+        setVehicleModel('');
 
         // Show success message to user
       } catch (error) {
@@ -493,24 +509,6 @@ const Form = () => {
 
   return (
     <div className={`${styles.form}`}>
-      <div className={`${styles.form_group}`}>
-        <input
-          type="text"
-          id="testField"
-          value={testField}
-          onChange={(e) =>
-            handleFieldChange(
-              'testField',
-              e.target.value,
-              validateTestField,
-              setTestField
-            )
-          }
-          placeholder="TestField*"
-          className={`${styles.form_input}`}
-        />
-      </div>
-
       <div
         className={`${styles.form_group} ${
           errors.fullname ? styles.error : ''
@@ -598,12 +596,11 @@ const Form = () => {
         <Dropdown
           label="Customer Type"
           options={[
-            'US Government Agency',
-            'Foreign Government Agency',
-            'Private Sector/Corporate',
-            'Individual',
-            'NGO',
-            'Other',
+            'Embassy/Consulate',
+            'Private',
+            'Broker',
+            'Limo Company',
+            'Security Firm',
           ]}
           selectedOption={company}
           setSelectedOption={setCompany}
@@ -614,78 +611,31 @@ const Form = () => {
       </div>
 
       <div
-        className={`${styles.form_group} ${errors.inquiry ? styles.error : ''}`}
+        className={`${styles.form_group} ${errors.company ? styles.error : ''}`}
       >
-        <Dropdown
-          label="Your Inquiry"
-          options={[
-            'SUVs & Sedans',
-            'SWAT & APC Trucks',
-            'Riot/Water Cannon Crowd Control',
-            'CIT Vans & Trucks',
-            'Rental Vehicles',
-            'Parts & Accessories',
-            'Warranty Related',
-            'To Become a Dealer',
-            'Employment Opportunity',
-            'Other',
-          ]}
-          selectedOption={inquiry}
-          setSelectedOption={setInquiry}
-          isActive={isInquiryDropdownActive}
-          setIsActive={setIsInquiryDropdownActive}
+        <input
+          type="number"
+          id="mileage"
+          value={phone}
+          onChange={(e) =>
+            handleFieldChange(
+              'mileage',
+              e.target.value,
+              validatePhone,
+              setPhone
+            )
+          }
+          placeholder="Expected Mileage"
+          className={`${styles.form_input}`}
         />
-        <small className={`${styles.form_input_error}`}>{errors.inquiry}</small>
-      </div>
-
-      <div
-        className={`${styles.form_group} ${
-          errors.preferredContact ? styles.error : ''
-        }`}
-      >
-        <Dropdown
-          label="I Prefer To Be Contacted Via:"
-          options={['Mobile', 'Landline', 'Email', 'Text', 'Whatsapp']}
-          selectedOption={preferredContact}
-          setSelectedOption={setPreferredContact}
-          isActive={isPreferredContactDropdownActive}
-          setIsActive={setIsPreferredContactDropdownActive}
-        />
-        <small className={`${styles.form_input_error}`}>
-          {errors.preferredContact}
-        </small>
-      </div>
-
-      <div
-        className={`${styles.form_group} ${errors.hear ? styles.error : ''}`}
-      >
-        <Dropdown
-          label="How Did You Hear About Us?"
-          options={[
-            'Instagram',
-            'Facebook',
-            'TikTok',
-            'YouTube',
-            'Search Engine (Google, Bing, etc.)',
-            'Repeat Customer',
-            'Email or Newsletter',
-            'Third-Party Review',
-            'Referral',
-            'Other',
-          ]}
-          selectedOption={hear}
-          setSelectedOption={setHear}
-          isActive={isHearDropdownActive}
-          setIsActive={setIsHearDropdownActive}
-        />
-        <small className={`${styles.form_input_error}`}>{errors.hear}</small>
+        <small className={`${styles.form_input_error}`}>{errors.mileage}</small>
       </div>
 
       <div
         className={`${styles.form_group} ${errors.country ? styles.error : ''}`}
       >
         <Dropdown
-          label="Country*"
+          label="Rental Location City*"
           options={countryOptions}
           selectedOption={country}
           setSelectedOption={(value) => {
@@ -704,7 +654,7 @@ const Form = () => {
         }`}
       >
         <Dropdown
-          label="State*"
+          label="Rental Location State*"
           options={stateOptions}
           selectedOption={state}
           setSelectedOption={setState}
@@ -712,6 +662,112 @@ const Form = () => {
           setIsActive={setIsStateDropdownActive}
         />
         <small className={styles.form_input_error}>{errors.state}</small>
+      </div>
+
+      <div
+        className={`${styles.form_group} ${errors.company ? styles.error : ''}`}
+      >
+        <input
+          type="number"
+          id="mileage"
+          value={phone}
+          onChange={(e) =>
+            handleFieldChange(
+              'mileage',
+              e.target.value,
+              validatePhone,
+              setPhone
+            )
+          }
+          placeholder="Insurance"
+          className={`${styles.form_input}`}
+        />
+        <small className={`${styles.form_input_error}`}>{errors.mileage}</small>
+      </div>
+
+      <fieldset className={`${styles.form_group} ${styles.form_group_radio}`}>
+        <legend>Driver Needed (Y/N)</legend>
+
+        <div className={`${styles.form_group_radio_wrap}`}>
+          <input
+            type="radio"
+            id="driverYes"
+            name="driverNeeded"
+            value="driverYes"
+          />
+          <label htmlFor="driverYes">Yes</label>
+
+          <input
+            type="radio"
+            id="driverNo"
+            name="driverNeeded"
+            value="driverNo"
+          />
+          <label htmlFor="driverNo">No</label>
+        </div>
+      </fieldset>
+
+      <fieldset
+        className={`${styles.form_group_date} ${styles.form_group_full} ${styles.form_group}`}
+      >
+        <div className={`${styles.form_date_wrapper}`}>
+          <div className={`${styles.form_group_date_from}`}>
+            <label htmlFor="fromDate">From Date*</label>
+            <input
+              type="date"
+              id="fromDate"
+              value={fromDate}
+              onChange={(e) => setFromDate(e.target.value)}
+              required
+              className={`${styles.form_input}`}
+            />
+          </div>
+          <div className={`${styles.form_group_date_to}`}>
+            <label htmlFor="toDate">To Date*</label>
+            <input
+              type="date"
+              id="toDate"
+              value={toDate}
+              onChange={(e) => setToDate(e.target.value)}
+              required
+              className={`${styles.form_input}`}
+            />
+          </div>
+        </div>
+
+        <small className={`${styles.form_input_error}`}>{errors.dates}</small>
+      </fieldset>
+
+      <div
+        className={`${styles.form_group} ${errors.vehicleType ? styles.error : ''}`}
+      >
+        <Dropdown
+          label="Vehicle Type"
+          options={['SUVs', 'Sedans']}
+          selectedOption={vehicleType}
+          setSelectedOption={setVehicleType}
+          isActive={isVehicleTypeDropdownActive}
+          setIsActive={setIsVehicleTypeDropdownActive}
+        />
+        <small className={`${styles.form_input_error}`}>
+          {errors.vehicleType}
+        </small>
+      </div>
+
+      <div
+        className={`${styles.form_group} ${errors.vehicleModel ? styles.error : ''}`}
+      >
+        <Dropdown
+          label="Vehicle Specific Make & Model"
+          options={['SUVs', 'Sedans']}
+          selectedOption={vehicleModel}
+          setSelectedOption={setVehicleModel}
+          isActive={isVehicleModelDropdownActive}
+          setIsActive={setIsVehicleModelDropdownActive}
+        />
+        <small className={`${styles.form_input_error}`}>
+          {errors.vehicleModel}
+        </small>
       </div>
 
       <div
