@@ -15,7 +15,7 @@
       }
     }
 
-    &_radio{
+    &_radio {
       margin-bottom: 15px;
       padding-left: 16px;
       font-size: rem(14);
@@ -26,40 +26,40 @@
         }
       }
 
-      legend{
+      legend {
         font-weight: var(--font-regular);
         color: var(--color-secondary);
-        margin-bottom: 8px;    
+        margin-bottom: 8px;
       }
 
-      &_wrap{
+      &_wrap {
         display: flex;
         align-items: center;
 
-        label{
+        label {
           margin-right: 16px;
           cursor: pointer;
         }
       }
     }
 
-    &_date{
+    &_date {
       .form_date_wrapper {
         display: flex;
         gap: 1rem;
-        
+
         > div {
           flex: 1;
         }
       }
-    
+
       label {
         display: block;
         margin-bottom: 0.5rem;
         font-size: 0.9rem;
       }
-    
-      input[type="date"] {
+
+      input[type='date'] {
         width: 100%;
         padding: 0.5rem;
         border: 1px solid #ccc;
@@ -68,7 +68,7 @@
     }
   }
 
-  input[type=radio]{
+  input[type='radio'] {
     background-color: initial;
     cursor: pointer;
     appearance: auto;
