@@ -5,9 +5,8 @@ import InventoryItem from 'components/listing/listing-item/ListingItem';
 import Banner from 'components/global/banner/Banner';
 
 function Home(props) {
-  const topBanner = { ...props?.pageData?.attributes?.inventoryBanner };
-  const topBannerSubtitle =
-    props?.pageData?.attributes?.inventoryBanner.subtitle;
+  const topBanner = { ...props?.pageData?.attributes?.banner };
+  const topBannerSubtitle = props?.pageData?.attributes?.banner.subtitle;
   topBanner.subtitle = null;
 
   // Animations
@@ -81,14 +80,12 @@ export async function getServerSideProps() {
     pageSize: 100,
   });
 
-  // Fetching Types for the Filters
   let pageData = await getPageData({
-    route: 'categories',
-    params: `filters[slug][$eq]=armored-rental&populate[inventoryBanner][populate][media]=*&populate[inventoryBanner][populate][mediaMP4]=*&populate[inventoryBanner][populate][imageMobile]=*`,
-    populate: 'inventoryBanner, seo',
+    route: 'rentals-listing',
+    populate: 'deep',
   }).then((response) => response.data);
 
-  pageData = pageData ? pageData[0] : null;
+  pageData = pageData ? pageData : null;
 
   const seoData = pageData?.attributes?.seo ?? null;
 
