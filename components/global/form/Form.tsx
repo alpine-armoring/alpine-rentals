@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styles from './Form.module.scss';
 import Button from 'components/global/button/Button';
 import Dropdown from 'components/global/form/Dropdown';
 import { useRouter } from 'next/router';
-
-// import { sendEmail } from 'hooks/aws-ses';
 
 const Form = () => {
   const [fullname, setFullname] = useState('');
@@ -12,13 +10,11 @@ const Form = () => {
   const [phone, setPhone] = useState('');
   const [mobile, setMobile] = useState('');
   const [company, setCompany] = useState('');
-  const [inquiry, setInquiry] = useState('');
-  const [hear, setHear] = useState('');
-  const [country, setCountry] = useState('');
   const [state, setState] = useState('');
-  const [preferredContact, setPreferredContact] = useState('');
   const [message, setMessage] = useState('');
 
+  const [mileage, setMileage] = useState('');
+  const [driverNeeded, setDriverNeeded] = useState('');
   const [fromDate, setFromDate] = useState('');
   const [toDate, setToDate] = useState('');
   const [vehicleType, setVehicleType] = useState('');
@@ -26,220 +22,12 @@ const Form = () => {
 
   const router = useRouter();
 
-  useEffect(() => {
-    if (router.asPath.includes('rental-vehicles')) {
-      setInquiry('Rental Vehicles');
-    }
-  }, [router.asPath]);
-
-  useEffect(() => {
-    if (router.query.source === 'become-a-dealer') {
-      setInquiry('Become a Dealer');
-    }
-  }, [router.query.source]);
-
   const [isCompanyDropdownActive, setIsCompanyDropdownActive] = useState(false);
-  const [isCountryDropdownActive, setIsCountryDropdownActive] = useState(false);
   const [isStateDropdownActive, setIsStateDropdownActive] = useState(false);
   const [isVehicleTypeDropdownActive, setIsVehicleTypeDropdownActive] =
     useState(false);
   const [isVehicleModelDropdownActive, setIsVehicleModelDropdownActive] =
     useState(false);
-
-  const countryOptions = [
-    'United States',
-    'Afghanistan',
-    'Albania',
-    'Algeria',
-    'Andorra',
-    'Angola',
-    'Antigua and Barbuda',
-    'Argentina',
-    'Armenia',
-    'Australia',
-    'Austria',
-    'Azerbaijan',
-    'Bahamas',
-    'Bahrain',
-    'Bangladesh',
-    'Barbados',
-    'Belarus',
-    'Belgium',
-    'Belize',
-    'Benin',
-    'Bhutan',
-    'Bolivia',
-    'Bosnia and Herzegovina',
-    'Botswana',
-    'Brazil',
-    'Brunei',
-    'Bulgaria',
-    'Burkina Faso',
-    'Burundi',
-    'Cabo Verde',
-    'Cambodia',
-    'Cameroon',
-    'Canada',
-    'Central African Republic',
-    'Chad',
-    'Chile',
-    'China',
-    'Colombia',
-    'Comoros',
-    'Congo, Democratic Republic of',
-    'Congo, Republic of',
-    'Costa Rica',
-    "Côte d'Ivoire",
-    'Croatia',
-    'Cuba',
-    'Cyprus',
-    'Czech Republic',
-    'Denmark',
-    'Djibouti',
-    'Dominica',
-    'Dominican Republic',
-    'Ecuador',
-    'Egypt',
-    'El Salvador',
-    'Equatorial Guinea',
-    'Eritrea',
-    'Estonia',
-    'Eswatini',
-    'Ethiopia',
-    'Fiji',
-    'Finland',
-    'France',
-    'Gabon',
-    'Gambia',
-    'Georgia',
-    'Germany',
-    'Ghana',
-    'Greece',
-    'Grenada',
-    'Guatemala',
-    'Guinea',
-    'Guinea-Bissau',
-    'Guyana',
-    'Haiti',
-    'Honduras',
-    'Hungary',
-    'Iceland',
-    'India',
-    'Indonesia',
-    'Iran',
-    'Iraq',
-    'Ireland',
-    'Israel',
-    'Italy',
-    'Jamaica',
-    'Japan',
-    'Jordan',
-    'Kazakhstan',
-    'Kenya',
-    'Kiribati',
-    'Kosovo',
-    'Kuwait',
-    'Kyrgyzstan',
-    'Laos',
-    'Latvia',
-    'Lebanon',
-    'Lesotho',
-    'Liberia',
-    'Libya',
-    'Liechtenstein',
-    'Lithuania',
-    'Luxembourg',
-    'Madagascar',
-    'Malawi',
-    'Malaysia',
-    'Maldives',
-    'Mali',
-    'Malta',
-    'Marshall Islands',
-    'Mauritania',
-    'Mauritius',
-    'Mexico',
-    'Micronesia',
-    'Moldova',
-    'Monaco',
-    'Mongolia',
-    'Montenegro',
-    'Morocco',
-    'Mozambique',
-    'Myanmar',
-    'Namibia',
-    'Nauru',
-    'Nepal',
-    'Netherlands',
-    'New Zealand',
-    'Nicaragua',
-    'Niger',
-    'Nigeria',
-    'North Macedonia',
-    'Norway',
-    'Oman',
-    'Pakistan',
-    'Palau',
-    'Panama',
-    'Papua New Guinea',
-    'Paraguay',
-    'Peru',
-    'Philippines',
-    'Poland',
-    'Portugal',
-    'Qatar',
-    'Romania',
-    'Russia',
-    'Rwanda',
-    'Saint Kitts and Nevis',
-    'Saint Lucia',
-    'Saint Vincent and the Grenadines',
-    'Samoa',
-    'San Marino',
-    'Sao Tome and Principe',
-    'Saudi Arabia',
-    'Senegal',
-    'Serbia',
-    'Seychelles',
-    'Sierra Leone',
-    'Singapore',
-    'Slovakia',
-    'Slovenia',
-    'Solomon Islands',
-    'Somalia',
-    'South Africa',
-    'Spain',
-    'Sri Lanka',
-    'Sudan',
-    'Suriname',
-    'Sweden',
-    'Switzerland',
-    'Syria',
-    'Taiwan',
-    'Tajikistan',
-    'Tanzania',
-    'Thailand',
-    'Timor-Leste',
-    'Togo',
-    'Tonga',
-    'Trinidad and Tobago',
-    'Tunisia',
-    'Turkey',
-    'Turkmenistan',
-    'Tuvalu',
-    'Uganda',
-    'Ukraine',
-    'United Arab Emirates',
-    'United Kingdom',
-    'Uruguay',
-    'Uzbekistan',
-    'Vanuatu',
-    'Venezuela',
-    'Vietnam',
-    'Yemen',
-    'Zambia',
-    'Zimbabwe',
-  ];
 
   const stateOptions = [
     'Alabama',
@@ -359,16 +147,8 @@ const Form = () => {
     }
   };
 
-  const validateCountry = (value) => {
-    if (!value) {
-      return 'Country is required';
-    } else {
-      return '';
-    }
-  };
-
   const validateState = (value) => {
-    if (country === 'United States' && !value) {
+    if (!value) {
       return 'State is required';
     } else {
       return '';
@@ -390,20 +170,9 @@ const Form = () => {
 
   const handleFieldChange = (field, value, validator, setter) => {
     setter(value);
-    const errorMessage = validator(value);
+    const errorMessage = validator ? validator(value) : '';
     setErrors({ ...errors, [field]: errorMessage });
   };
-
-  // const parseJSON = (resp) => (resp.json ? resp.json() : resp);
-
-  // const checkStatus = (resp) => {
-  //   if (resp.status >= 200 && resp.status < 300) {
-  //     return resp;
-  //   }
-  //   return parseJSON(resp).then((resp) => {
-  //     throw resp;
-  //   });
-  // };
 
   const headers = {
     'Content-Type': 'application/json',
@@ -417,8 +186,7 @@ const Form = () => {
       email: validateEmail(email),
       phone: validatePhone(phone),
       mobile: validateMobile(mobile),
-      country: validateCountry(country),
-      state: validateState(state), // Validate state if the country is United States
+      state: validateState(state),
       dates: validateDates(),
     };
 
@@ -446,14 +214,12 @@ const Form = () => {
                 mobileNumber: mobile,
                 phoneNumber: phone,
                 company: company,
-                inquiry: inquiry,
-                preferredContact: preferredContact,
-                hear: hear,
-                country: country,
-                state: country === 'United States' ? state : '',
+                state: state,
                 message: sanitizedMessage,
-                route: router.asPath,
+                route: window.location.origin + router.asPath,
                 date: Date.now(),
+                mileage: mileage,
+                driverNeeded: driverNeeded,
                 fromDate: fromDate,
                 toDate: toDate,
                 vehicleType: vehicleType,
@@ -478,16 +244,14 @@ const Form = () => {
         setPhone('');
         setMobile('');
         setCompany('');
-        setInquiry('');
-        setHear('');
-        setCountry('');
         setState('');
-        setPreferredContact('');
         setMessage('');
         setFromDate('');
         setToDate('');
         setVehicleType('');
         setVehicleModel('');
+        setMileage('');
+        setDriverNeeded('');
 
         // Show success message to user
       } catch (error) {
@@ -611,78 +375,33 @@ const Form = () => {
       </div>
 
       <div
-        className={`${styles.form_group} ${errors.company ? styles.error : ''}`}
+        className={`${styles.form_group} ${errors.mileage ? styles.error : ''}`}
       >
         <input
           type="number"
           id="mileage"
-          value={phone}
+          value={mileage}
           onChange={(e) =>
-            handleFieldChange(
-              'mileage',
-              e.target.value,
-              validatePhone,
-              setPhone
-            )
+            handleFieldChange('mileage', e.target.value, null, setMileage)
           }
-          placeholder="Expected Mileage"
+          placeholder="Mileage usage"
           className={`${styles.form_input}`}
         />
         <small className={`${styles.form_input_error}`}>{errors.mileage}</small>
       </div>
 
       <div
-        className={`${styles.form_group} ${errors.country ? styles.error : ''}`}
-      >
-        <Dropdown
-          label="Rental Location City*"
-          options={countryOptions}
-          selectedOption={country}
-          setSelectedOption={(value) => {
-            setCountry(value);
-            setState(''); // Reset state if country changes
-          }}
-          isActive={isCountryDropdownActive}
-          setIsActive={setIsCountryDropdownActive}
-        />
-        <small className={`${styles.form_input_error}`}>{errors.country}</small>
-      </div>
-
-      <div
-        className={`${styles.form_group} ${errors.state ? styles.error : ''} ${
-          country !== 'United States' ? styles.disabled : ''
-        }`}
+        className={`${styles.form_group} ${errors.state ? styles.error : ''}`}
       >
         <Dropdown
           label="Rental Location State*"
           options={stateOptions}
           selectedOption={state}
           setSelectedOption={setState}
-          isActive={country === 'United States' ? isStateDropdownActive : false}
+          isActive={isStateDropdownActive}
           setIsActive={setIsStateDropdownActive}
         />
         <small className={styles.form_input_error}>{errors.state}</small>
-      </div>
-
-      <div
-        className={`${styles.form_group} ${errors.company ? styles.error : ''}`}
-      >
-        <input
-          type="number"
-          id="mileage"
-          value={phone}
-          onChange={(e) =>
-            handleFieldChange(
-              'mileage',
-              e.target.value,
-              validatePhone,
-              setPhone
-            )
-          }
-          placeholder="Insurance"
-          className={`${styles.form_input}`}
-        />
-        <small className={`${styles.form_input_error}`}>{errors.mileage}</small>
       </div>
 
       <fieldset className={`${styles.form_group} ${styles.form_group_radio}`}>
@@ -693,7 +412,16 @@ const Form = () => {
             type="radio"
             id="driverYes"
             name="driverNeeded"
-            value="driverYes"
+            value="Yes"
+            checked={driverNeeded === 'Yes'}
+            onChange={(e) =>
+              handleFieldChange(
+                'driverNeeded',
+                e.target.value,
+                null,
+                setDriverNeeded
+              )
+            }
           />
           <label htmlFor="driverYes">Yes</label>
 
@@ -701,41 +429,19 @@ const Form = () => {
             type="radio"
             id="driverNo"
             name="driverNeeded"
-            value="driverNo"
+            value="No"
+            checked={driverNeeded === 'No'}
+            onChange={(e) =>
+              handleFieldChange(
+                'driverNeeded',
+                e.target.value,
+                null,
+                setDriverNeeded
+              )
+            }
           />
           <label htmlFor="driverNo">No</label>
         </div>
-      </fieldset>
-
-      <fieldset
-        className={`${styles.form_group_date} ${styles.form_group_full} ${styles.form_group}`}
-      >
-        <div className={`${styles.form_date_wrapper}`}>
-          <div className={`${styles.form_group_date_from}`}>
-            <label htmlFor="fromDate">From Date*</label>
-            <input
-              type="date"
-              id="fromDate"
-              value={fromDate}
-              onChange={(e) => setFromDate(e.target.value)}
-              required
-              className={`${styles.form_input}`}
-            />
-          </div>
-          <div className={`${styles.form_group_date_to}`}>
-            <label htmlFor="toDate">To Date*</label>
-            <input
-              type="date"
-              id="toDate"
-              value={toDate}
-              onChange={(e) => setToDate(e.target.value)}
-              required
-              className={`${styles.form_input}`}
-            />
-          </div>
-        </div>
-
-        <small className={`${styles.form_input_error}`}>{errors.dates}</small>
       </fieldset>
 
       <div
@@ -743,7 +449,13 @@ const Form = () => {
       >
         <Dropdown
           label="Vehicle Type"
-          options={['SUVs', 'Sedans']}
+          options={[
+            'SUVs',
+            'Sedans',
+            'Pickup Trucks',
+            'Law Enforcement',
+            'Specialty Vehicles',
+          ]}
           selectedOption={vehicleType}
           setSelectedOption={setVehicleType}
           isActive={isVehicleTypeDropdownActive}
@@ -759,7 +471,7 @@ const Form = () => {
       >
         <Dropdown
           label="Vehicle Specific Make & Model"
-          options={['SUVs', 'Sedans']}
+          options={['Audi', 'Bentley']}
           selectedOption={vehicleModel}
           setSelectedOption={setVehicleModel}
           isActive={isVehicleModelDropdownActive}
@@ -769,6 +481,38 @@ const Form = () => {
           {errors.vehicleModel}
         </small>
       </div>
+
+      <fieldset
+        className={`${styles.form_group_date} ${styles.form_group_full} ${styles.form_group} ${errors.dates ? styles.error : ''}`}
+      >
+        <p className={`${styles.form_group_date_title}`}>Projected dates</p>
+        <div className={`${styles.form_date_wrapper}`}>
+          <div className={`${styles.form_group_date_wrap}`}>
+            <label htmlFor="fromDate">From:</label>
+            <input
+              type="date"
+              id="fromDate"
+              value={fromDate}
+              onChange={(e) => setFromDate(e.target.value)}
+              required
+              className={`${styles.form_input}`}
+            />
+          </div>
+          <div className={`${styles.form_group_date_wrap}`}>
+            <label htmlFor="toDate">To:</label>
+            <input
+              type="date"
+              id="toDate"
+              value={toDate}
+              onChange={(e) => setToDate(e.target.value)}
+              required
+              className={`${styles.form_input}`}
+            />
+          </div>
+        </div>
+
+        <small className={`${styles.form_input_error}`}>{errors.dates}</small>
+      </fieldset>
 
       <div
         className={`${styles.form_group} ${styles.form_group_full} ${

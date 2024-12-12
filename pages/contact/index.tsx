@@ -91,11 +91,11 @@ function Contact(props) {
                 <p>
                   <strong>Email:</strong>{' '}
                   <a
-                    href="mailto:sales@armoredautos.com"
+                    href="mailto:rental@armoredautos.com"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Sales@ArmoredAutos.com
+                    Rental@ArmoredAutos.com
                   </a>
                 </p>
               </div>

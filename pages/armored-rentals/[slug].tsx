@@ -43,7 +43,7 @@ function InventoryVehicle(props) {
 
   const formData = {
     title: data?.title,
-    vehicleID: data?.vehicleID,
+    vehicleID: data?.rentalsVehicleID,
     featuredImage: data?.featuredImage,
   };
 
