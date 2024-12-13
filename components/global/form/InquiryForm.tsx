@@ -27,7 +27,7 @@ const InquiryForm = (props) => {
               {/* Render Filters conditionally based on path and filter type */}
               {!props.plain
                 ? !currentPath.includes('rental-vehicles')
-                  ? ' this ready-to-ship'
+                  ? ' this ready-to-rental'
                   : ' Rental of this'
                 : ' the'}
               <p>

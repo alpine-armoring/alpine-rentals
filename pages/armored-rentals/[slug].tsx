@@ -44,7 +44,7 @@ function InventoryVehicle(props) {
   const formData = {
     title: data?.title,
     vehicleID: data?.rentalsVehicleID,
-    featuredImage: data?.featuredImage,
+    featuredImage: data?.rentalsFeaturedImage,
   };
 
   const scroll = () => {

@@ -4,9 +4,11 @@ import { useEffect } from 'react';
 import Banner from 'components/global/banner/Banner';
 import Form from 'components/global/form/Form';
 import Accordion from 'components/global/accordion/Accordion';
+import { useMarkdownToHtml } from 'hooks/useMarkdownToHtml';
 
 function Contact(props) {
-  const faqs = props?.pageData?.rentals_faqs;
+  const convertMarkdown = useMarkdownToHtml();
+  const faqs = props?.pageData?.fa_qs;
 
   // Animations
   useEffect(() => {
@@ -52,52 +54,13 @@ function Contact(props) {
                 <h3 className={`${styles.contact_main_right_title}`}>
                   Our rental support team is available on:
                 </h3>
-                <p>
-                  <strong>Monday - Friday</strong> <br /> 8:30 AM - 5:00 PM EST.
-                </p>
-                <p>
-                  <strong>Toll Free:</strong>
-                  <a
-                    href="tel:+18009927667"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {' '}
-                    1-800-99ARMOR (1-800-992-7667)
-                  </a>
-                </p>
-                <p>
-                  <strong>Tel:</strong>
-                  <a
-                    href="tel:+7034710002"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {' '}
-                    703-471-0002
-                  </a>
-                </p>
-                <p>
-                  <strong>Fax:</strong>
-                  <a
-                    href="tel:+7034710202"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {' '}
-                    703-471-0202
-                  </a>
-                </p>
-                <p>
-                  <strong>Email:</strong>{' '}
-                  <a
-                    href="mailto:rental@armoredautos.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Rental@ArmoredAutos.com
-                  </a>
-                </p>
+                {props.pageData?.salesInfo ? (
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: convertMarkdown(props.pageData.salesInfo),
+                    }}
+                  ></div>
+                ) : null}
               </div>
             </div>
           </div>
@@ -117,8 +80,8 @@ function Contact(props) {
 
 export async function getStaticProps() {
   let pageData = await getPageData({
-    route: 'contact-page',
-    populate: 'deep',
+    route: 'rentals-contact-page',
+    populate: 'banner.media, banner.imageMobile, banner.mediaMP4, fa_qs, seo',
   });
   pageData = pageData.data?.attributes || null;
 
