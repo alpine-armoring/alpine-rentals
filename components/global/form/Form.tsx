@@ -4,7 +4,13 @@ import Button from 'components/global/button/Button';
 import Dropdown from 'components/global/form/Dropdown';
 import { useRouter } from 'next/router';
 
-const Form = () => {
+interface FormProps {
+  vehicles?: {
+    data?: any[];
+  };
+}
+
+const Form: React.FC<FormProps> = ({ vehicles }) => {
   const [fullname, setFullname] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -466,21 +472,23 @@ const Form = () => {
         </small>
       </div>
 
-      <div
-        className={`${styles.form_group} ${errors.vehicleModel ? styles.error : ''}`}
-      >
-        <Dropdown
-          label="Vehicle Specific Make & Model"
-          options={['Audi', 'Bentley']}
-          selectedOption={vehicleModel}
-          setSelectedOption={setVehicleModel}
-          isActive={isVehicleModelDropdownActive}
-          setIsActive={setIsVehicleModelDropdownActive}
-        />
-        <small className={`${styles.form_input_error}`}>
-          {errors.vehicleModel}
-        </small>
-      </div>
+      {vehicles.data ? (
+        <div
+          className={`${styles.form_group} ${errors.vehicleModel ? styles.error : ''}`}
+        >
+          <Dropdown
+            label="Vehicle Specific Make & Model"
+            options={vehicles.data.map((vehicle) => vehicle.attributes.title)}
+            selectedOption={vehicleModel}
+            setSelectedOption={setVehicleModel}
+            isActive={isVehicleModelDropdownActive}
+            setIsActive={setIsVehicleModelDropdownActive}
+          />
+          <small className={`${styles.form_input_error}`}>
+            {errors.vehicleModel}
+          </small>
+        </div>
+      ) : null}
 
       <fieldset
         className={`${styles.form_group_date} ${styles.form_group_full} ${styles.form_group} ${errors.dates ? styles.error : ''}`}

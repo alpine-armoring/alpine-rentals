@@ -9,6 +9,7 @@ import { useMarkdownToHtml } from 'hooks/useMarkdownToHtml';
 function Contact(props) {
   const convertMarkdown = useMarkdownToHtml();
   const faqs = props?.pageData?.fa_qs;
+  const vehicles = props?.vehicles;
 
   // Animations
   useEffect(() => {
@@ -45,7 +46,7 @@ function Contact(props) {
         ) : null}
         <div className={`${styles.contact_main} container_small`}>
           <div className={`${styles.contact_main_left}`}>
-            <Form />
+            <Form vehicles={vehicles} />
           </div>
 
           <div className={`${styles.contact_main_right}`}>
@@ -87,8 +88,17 @@ export async function getStaticProps() {
 
   const seoData = pageData?.seo ?? null;
 
+  const vehicles = await getPageData({
+    route: 'inventories',
+    params: 'filters[categories][slug][$eq]=armored-rental',
+    sort: 'order',
+    populate: '/',
+    fields: 'fields[0]=title',
+    pageSize: 100,
+  });
+
   return {
-    props: { pageData, seoData },
+    props: { pageData, vehicles, seoData },
   };
 }
 
