@@ -139,11 +139,7 @@ function InventoryVehicle(props) {
           {data?.flag !== 'sold' ? (
             <div className={`${styles.inventory_heading_description}`}>
               <InfoIcon />
-              <p>
-                {data?.shortDescription
-                  ? data?.shortDescription
-                  : `This ${data?.title} is now available for RENTAL`}
-              </p>
+              <p>This {data?.title} is now available for rental</p>
             </div>
           ) : null}
         </div>
