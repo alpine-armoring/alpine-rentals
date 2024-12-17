@@ -6,6 +6,18 @@ import { useRouter } from 'next/router';
 const InquiryForm = (props) => {
   const router = useRouter();
   const currentPath = router.asPath;
+
+  const vehicle = {
+    data: [
+      {
+        attributes: {
+          title: props.title,
+          prefilled: true,
+        },
+      },
+    ],
+  };
+
   return (
     <div
       className={`${styles.inquiry_form_wrap} inquiryFormContainer observe`}
@@ -75,7 +87,7 @@ const InquiryForm = (props) => {
             </div>
           </div>
 
-          <Form />
+          <Form vehicles={vehicle} />
         </div>
 
         <div className={`shapeCurved_rightBottom shapeCurved`}></div>

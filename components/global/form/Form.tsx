@@ -24,7 +24,11 @@ const Form: React.FC<FormProps> = ({ vehicles }) => {
   const [fromDate, setFromDate] = useState('');
   const [toDate, setToDate] = useState('');
   const [vehicleType, setVehicleType] = useState('');
-  const [vehicleModel, setVehicleModel] = useState('');
+  const [vehicleModel, setVehicleModel] = useState(
+    vehicles?.data?.[0]?.attributes?.prefilled
+      ? vehicles?.data?.[0]?.attributes?.title
+      : ''
+  );
 
   const router = useRouter();
 
@@ -466,7 +470,7 @@ const Form: React.FC<FormProps> = ({ vehicles }) => {
         </small>
       </div>
 
-      {vehicles.data ? (
+      {vehicles?.data ? (
         <div
           className={`${styles.form_group} ${errors.vehicleModel ? styles.error : ''}`}
         >
