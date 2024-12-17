@@ -455,13 +455,7 @@ const Form: React.FC<FormProps> = ({ vehicles }) => {
       >
         <Dropdown
           label="Vehicle Type"
-          options={[
-            'SUVs',
-            'Sedans',
-            'Pickup Trucks',
-            'Law Enforcement',
-            'Specialty Vehicles',
-          ]}
+          options={['SUVs', 'Sedans']}
           selectedOption={vehicleType}
           setSelectedOption={setVehicleType}
           isActive={isVehicleTypeDropdownActive}
