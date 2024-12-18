@@ -127,11 +127,11 @@
 
     &_arrows {
       @include breakpoint(small) {
-        button{
+        button {
           background: white;
           border: 1px solid var(--color-dark);
 
-          path{
+          path {
             fill: var(--color-dark);
           }
         }
