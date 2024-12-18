@@ -8,7 +8,6 @@
   color: #fff;
   border-radius: 16px;
   flex-basis: 470px;
-  max-width: 570px;
   opacity: 0;
   animation: fade-in-opacity 1.5s linear forwards;
 
@@ -60,7 +59,6 @@
 
   @include breakpoint(huge) {
     flex-basis: calc(100% / 3 - 16px);
-    max-width: unset;
   }
 
   &_rental {

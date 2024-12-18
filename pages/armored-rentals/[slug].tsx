@@ -38,7 +38,6 @@ function InventoryVehicle(props) {
     Drivetrain: 'driveTrain',
     'Color (Exterior)': 'color_ext',
     'Color (Interior)': 'color_int',
-    Trim: 'trim',
   };
 
   const formData = {
@@ -122,16 +121,12 @@ function InventoryVehicle(props) {
     <div className={`${styles.inventory}`}>
       <div className={`${styles.inventory_main}`}>
         <div className={`${styles.inventory_heading}`}>
-          {/* <div className={`b-breadcrumbs`}>
-            <Link href="/armored-rentals">Ready to Rent</Link>
-            <span>&gt;</span>
-            <Link href={`/available-now/type/${categorySlug}`}>{category}</Link>
-          </div> */}
-
           <div className={`${styles.inventory_heading_title}`}>
             {data?.title ? (
               <h1
-                dangerouslySetInnerHTML={{ __html: `Rental ${data.title}` }}
+                dangerouslySetInnerHTML={{
+                  __html: `Rental ${data.title.replace('Luxury', '').trim()}`,
+                }}
               ></h1>
             ) : null}
           </div>
@@ -139,7 +134,10 @@ function InventoryVehicle(props) {
           {data?.flag !== 'sold' ? (
             <div className={`${styles.inventory_heading_description}`}>
               <InfoIcon />
-              <p>This {data?.title} is now available for rental</p>
+              <p>
+                This {data?.title.replace('Luxury', '').trim()} is now available
+                for rental
+              </p>
             </div>
           ) : null}
         </div>

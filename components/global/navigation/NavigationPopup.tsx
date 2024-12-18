@@ -1,10 +1,8 @@
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { NavigationProps } from 'types';
 import styles from './NavigationPopup.module.scss';
 
-import ArrowIcon from 'components/icons/Arrow';
 import FacebookIcon from 'components/icons/Facebook';
 import TiktokIcon from 'components/icons/Tiktok';
 import XIcon from 'components/icons/X';
@@ -18,9 +16,6 @@ import ThreadsIcon from 'components/icons/Threads';
 
 const NavigationPopup = ({ isNavOpen, setNavOpen }: NavigationProps) => {
   const router = useRouter();
-  const [activeSubmenu, setActiveSubmenu] = useState<
-    { text: string; path: string }[] | null
-  >(null);
 
   const links = [
     { path: '/armored-rentals', text: 'Ready to Rent' },
@@ -28,21 +23,6 @@ const NavigationPopup = ({ isNavOpen, setNavOpen }: NavigationProps) => {
     { path: '/faqs', text: 'FAQ' },
     { path: '/contact', text: 'Contact' },
   ];
-
-  const closeNavAndSubmenu = () => {
-    setNavOpen(false);
-    setActiveSubmenu(null);
-  };
-
-  useEffect(() => {
-    if (!isNavOpen) {
-      setActiveSubmenu(null);
-    }
-  }, [isNavOpen]);
-
-  const handleBackClick = () => {
-    setActiveSubmenu(null);
-  };
 
   return (
     <nav
@@ -53,71 +33,36 @@ const NavigationPopup = ({ isNavOpen, setNavOpen }: NavigationProps) => {
     >
       <div className={`${styles.navigationPopup_inner} container`}>
         <div className={`${styles.navigationPopup_nav}`}>
-          {!activeSubmenu && (
-            <>
-              <ul
-                className={`${styles.navigationPopup_list_left} ${styles.navigationPopup_list}`}
+          <ul
+            className={`${styles.navigationPopup_list_left} ${styles.navigationPopup_list}`}
+          >
+            {links.map((link, index) => (
+              <li
+                key={index}
+                className={`
+                  ${styles.navigationPopup_item} 
+                  ${
+                    router.asPath === link.path
+                      ? `${styles.navigationPopup_item_active}`
+                      : ''
+                  }`}
+                onClick={() => setNavOpen(false)}
               >
-                {links.map((link, index) => (
-                  <li
-                    key={index}
-                    className={`
-                      ${styles.navigationPopup_item} 
-                      ${
-                        router.asPath === link.path
-                          ? `${styles.navigationPopup_item_active}`
-                          : ''
-                      }`}
-                    onClick={() => setNavOpen(false)}
-                  >
-                    {link.path ? (
-                      <Link
-                        className={`${styles.navigationPopup_link}`}
-                        href={link.path}
-                      >
-                        {link.text}
-                      </Link>
-                    ) : (
-                      <span className={`${styles.navigationPopup_link}`}>
-                        {link.text}
-                      </span>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </>
-          )}
-
-          {activeSubmenu && (
-            <ul className={`${styles.navigationPopup_submenu}`}>
-              <div
-                className={`${styles.navigationPopup_submenu_back}`}
-                onClick={handleBackClick}
-              >
-                <ArrowIcon />
-              </div>
-              {activeSubmenu.map((item, index) => (
-                <li
-                  key={index}
-                  className={`
-                    ${styles.navigationPopup_item} 
-                    ${
-                      router.asPath === item.path
-                        ? `${styles.navigationPopup_item_active}`
-                        : ''
-                    }`}
-                >
+                {link.path ? (
                   <Link
-                    href={item.path}
                     className={`${styles.navigationPopup_link}`}
-                    onClick={closeNavAndSubmenu}
+                    href={link.path}
                   >
-                    {item.text}
+                    {link.text}
                   </Link>
-                </li>
-              ))}
-            </ul>
-          )}
+                ) : (
+                  <span className={`${styles.navigationPopup_link}`}>
+                    {link.text}
+                  </span>
+                )}
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className={`${styles.navigationPopup_info}`}>
@@ -130,11 +75,11 @@ const NavigationPopup = ({ isNavOpen, setNavOpen }: NavigationProps) => {
               1.703.471.0002
             </Link>
             <Link
-              href="mailto:sales@alpineco.com"
+              href="mailto:Rental@ArmoredAutos.com"
               className={`${styles.navigationPopup_contact_item}`}
             >
               <MailIcon />
-              Sales@AlpineCo.com
+              Rental@ArmoredAutos.com
             </Link>
 
             <div className={`${styles.navigationPopup_contact_item}`}>
