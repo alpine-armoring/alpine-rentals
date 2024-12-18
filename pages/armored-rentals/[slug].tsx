@@ -258,9 +258,14 @@ function InventoryVehicle(props) {
               })}
             </ul>
 
-            <p className={`${styles.inventory_details_description}`}>
-              Renting armored [SUV]
-            </p>
+            {data?.rentalsShortDescription ? (
+              <div
+                className={`${styles.inventory_details_description}`}
+                dangerouslySetInnerHTML={{
+                  __html: convertMarkdown(data?.rentalsShortDescription),
+                }}
+              ></div>
+            ) : null}
 
             <div className={`${styles.inventory_cta_wrap}`}>
               <Button
