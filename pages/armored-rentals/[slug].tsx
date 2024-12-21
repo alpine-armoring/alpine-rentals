@@ -41,7 +41,7 @@ function InventoryVehicle(props) {
   };
 
   const formData = {
-    title: data?.title,
+    title: data?.title.replaceAll(/luxury/gi, ''),
     vehicleID: data?.rentalsVehicleID,
     featuredImage: data?.rentalsFeaturedImage,
   };
@@ -125,7 +125,7 @@ function InventoryVehicle(props) {
             {data?.title ? (
               <h1
                 dangerouslySetInnerHTML={{
-                  __html: `Rental ${data.title.replace('Luxury', '').trim()}`,
+                  __html: `Rental ${data.title.replaceAll(/luxury/gi, '')}`,
                 }}
               ></h1>
             ) : null}
@@ -135,7 +135,7 @@ function InventoryVehicle(props) {
             <div className={`${styles.inventory_heading_description}`}>
               <InfoIcon />
               <p>
-                This {data?.title.replace('Luxury', '').trim()} is now available
+                This {data?.title.replaceAll(/luxury/gi, '')} is now available
                 for rental
               </p>
             </div>

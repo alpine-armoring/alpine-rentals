@@ -34,7 +34,7 @@ const InquiryForm = (props) => {
               <p>
                 <strong
                   dangerouslySetInnerHTML={{
-                    __html: props?.title?.replace('Luxury', '').trim(),
+                    __html: `${props?.title}`,
                   }}
                 ></strong>
               </p>

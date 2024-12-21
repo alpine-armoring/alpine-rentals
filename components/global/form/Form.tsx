@@ -476,7 +476,9 @@ const Form: React.FC<FormProps> = ({ vehicles }) => {
         >
           <Dropdown
             label="Vehicle Specific Make & Model"
-            options={vehicles.data.map((vehicle) => vehicle.attributes.title)}
+            options={vehicles.data.map((vehicle) =>
+              vehicle.attributes?.title?.replaceAll(/luxury/gi, '')
+            )}
             selectedOption={vehicleModel}
             setSelectedOption={setVehicleModel}
             isActive={isVehicleModelDropdownActive}

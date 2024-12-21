@@ -1,2 +1,6 @@
 User-agent: *
+
+Disallow: /link
+Disallow: /allaboutcookies.org
+
 Sitemap: https://armoredautos.com/sitemap.xml

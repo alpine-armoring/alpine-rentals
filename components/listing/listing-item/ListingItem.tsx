@@ -44,7 +44,7 @@ const InventoryItem = ({ props, index }: InventoryItemProps) => {
         <h2
           className={`${styles.inventory_item_title}`}
           dangerouslySetInnerHTML={{
-            __html: data.title,
+            __html: `${data.title.replaceAll(/luxury/gi, '')}`,
           }}
         ></h2>
 

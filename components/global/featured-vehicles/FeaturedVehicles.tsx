@@ -84,7 +84,7 @@ const FeaturedVehicles = (props) => {
                   <h3
                     className={`${styles.featuredVehicles_slider_item_title}`}
                     dangerouslySetInnerHTML={{
-                      __html: item.attributes.title,
+                      __html: `${item.attributes.title.replaceAll(/luxury/gi, '')}`,
                     }}
                   ></h3>
 
