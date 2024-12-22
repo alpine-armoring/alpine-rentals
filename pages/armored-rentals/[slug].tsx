@@ -365,7 +365,7 @@ export async function getStaticProps({ params }) {
   const seoData = data?.data?.[0]?.attributes?.seo ?? null;
   if (seoData) {
     seoData.thumbnail =
-      data?.data?.[0]?.attributes?.rentalsFeaturedImage?.data.attributes ??
+      data?.data?.[0]?.attributes?.rentalsFeaturedImage?.data?.attributes ??
       null;
   }
 
