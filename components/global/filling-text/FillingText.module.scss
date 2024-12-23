@@ -1,5 +1,5 @@
 .fillingText {
-  padding-top: rem(32);
+  padding-top: rem(50);
   padding-bottom: rem(32);
   color: var(--color-white);
   overflow: hidden;
@@ -18,7 +18,7 @@
     }
 
     .fillingText_small & {
-      font-size: rem(15);
+      font-size: clamp(0.875rem, 0.8447rem + 0.1294vw, 1rem);
       @include breakpoint(large) {
         font-size: clamp(1.25rem, 0.75rem + 0.625vw, 1.5rem);
       }
@@ -31,29 +31,9 @@
     }
   }
 
-  &_subheading {
-    position: relative;
-    margin-bottom: rem(24);
-    color: var(--color-primary);
-    font-size: clamp(1.0625rem, 0.4065rem + 2.799vw, 1.75rem);
-    font-weight: var(--font-medium);
-    letter-spacing: -0.6px;
-    z-index: 2;
-
-    @include breakpoint(large) {
-      margin-bottom: rem(24);
-      font-size: rem(40);
-    }
-
-    strong,
-    b {
-      font-weight: var(--font-demi);
-    }
-  }
-
   &_content {
     @include breakpoint(large) {
-      max-width: 1560px;
+      max-width: 1566px;
       margin: auto;
     }
   }

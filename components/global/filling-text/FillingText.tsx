@@ -67,9 +67,7 @@ const FillingText = ({ data, dark = false, className = '', small = false }) => {
     >
       <div className={`${styles.fillingText_content}`}>
         {title ? (
-          <h2
-            className={`${styles.fillingText_subheading} observe block-reveal`}
-          >
+          <h2 className={`block-reveal-title observe block-reveal`}>
             <span dangerouslySetInnerHTML={{ __html: title }}></span>
           </h2>
         ) : null}

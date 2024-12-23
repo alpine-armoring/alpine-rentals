@@ -63,9 +63,7 @@ function Home(props) {
     <>
       {topBanner ? <BannerFull props={topBanner} /> : null}
 
-      {/* <div className="background-dark"> */}
       {quote ? <FillingText small dark data={quote} /> : null}
-      {/* </div> */}
 
       <FeaturedVehicles data={featuredVehiclesData} />
 

@@ -46,7 +46,9 @@ const FeaturedVehicles = (props) => {
   return (
     <div className={`${styles.featuredVehicles_container}`}>
       {props.data.title ? (
-        <h2 className={`c-title`}>{props.data.title}</h2>
+        <h2 className={`block-reveal-title observe block-reveal`}>
+          <span dangerouslySetInnerHTML={{ __html: props.data.title }}></span>
+        </h2>
       ) : null}
 
       {props.data.items && props.data.items.length > 0 ? (

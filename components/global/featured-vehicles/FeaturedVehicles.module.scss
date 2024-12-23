@@ -7,8 +7,6 @@
   &_slider {
     position: relative;
     overflow: hidden;
-    // display: flex;
-    // justify-content: center;
 
     &_container {
       backface-visibility: hidden;
@@ -18,7 +16,7 @@
       position: relative;
 
       @include breakpoint(medium) {
-        align-items: center;
+        align-items: baseline;
         padding-bottom: 20px;
       }
     }
@@ -30,6 +28,10 @@
       flex-flow: column;
       align-items: center;
       justify-content: center;
+
+      @include breakpoint(small) {
+        padding: 0 8px;
+      }
 
       @include breakpoint(medium) {
         flex: 0 0 50%;
@@ -45,6 +47,7 @@
       &_image {
         @include breakpoint(medium) {
           transform: scale(0.8);
+          transform-origin: bottom;
           transition: transform 0.3s ease-in-out;
         }
       }

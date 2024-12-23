@@ -94,7 +94,7 @@ const Header = ({
             <div className={`${styles.header_burger_inner}`}></div>
           </div>
 
-          <div className={`desktop-only`}>
+          <div className={`desktop-only flex`}>
             <Button
               href="/contact"
               className={`${styles.header_contact} rounded shiny transparent uppercase`}
