@@ -18,7 +18,7 @@ const Footer = (isDarkMode) => {
   const router = useRouter(); // Initialize useRouter
   const currentRoute = router.pathname; // Get the current route
   const links = [
-    { path: '/', text: 'Home' },
+    { path: '/armored-rentals', text: 'Bulletproof Rental Cars Stock' },
     { path: '/faqs', text: 'FAQ' },
     { path: '/rental-policy', text: 'Rental Policy' },
     { path: '/ballistic-chart', text: 'Ballistic Chart' },
