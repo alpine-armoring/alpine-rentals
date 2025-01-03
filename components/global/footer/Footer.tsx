@@ -11,12 +11,8 @@ import MapIcon from 'components/icons/Map';
 import PhoneIcon from 'components/icons/Phone';
 import MailIcon from 'components/icons/Mail';
 import Link from 'next/link';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
 
 const Footer = (isDarkMode) => {
-  const router = useRouter(); // Initialize useRouter
-  const currentRoute = router.pathname; // Get the current route
   const links = [
     { path: '/armored-rentals', text: 'Bulletproof Rental Cars Stock' },
     { path: '/faqs', text: 'FAQ' },
@@ -42,17 +38,6 @@ const Footer = (isDarkMode) => {
                 "no one protects you better" ®
               </h3>
             </div>
-            {(currentRoute === '/about-us' ||
-              currentRoute.includes('/countries-we-service')) && (
-              <div className={styles.footer_image}>
-                <Image
-                  src="/assets/armored-vehicles.png"
-                  alt="armored vehicles"
-                  fill
-                  objectPosition="right"
-                />
-              </div>
-            )}
           </div>
         </div>
 

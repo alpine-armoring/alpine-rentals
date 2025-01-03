@@ -496,7 +496,7 @@ const Form: React.FC<FormProps> = ({ vehicles }) => {
         <p className={`${styles.form_group_date_title}`}>Projected dates</p>
         <div className={`${styles.form_date_wrapper}`}>
           <div className={`${styles.form_group_date_wrap}`}>
-            <label htmlFor="fromDate">From:</label>
+            <label htmlFor="fromDate">From*</label>
             <input
               type="date"
               id="fromDate"
@@ -507,7 +507,7 @@ const Form: React.FC<FormProps> = ({ vehicles }) => {
             />
           </div>
           <div className={`${styles.form_group_date_wrap}`}>
-            <label htmlFor="toDate">To:</label>
+            <label htmlFor="toDate">To*</label>
             <input
               type="date"
               id="toDate"
