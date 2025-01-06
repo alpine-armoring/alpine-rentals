@@ -98,12 +98,6 @@ body {
   display: inline-block;
 }
 
-.background-dark {
-  color: var(--color-white);
-  background: #101010 url(/assets/noise4.png);
-  background-size: 30px;
-}
-
 .shape-before,
 .shape-after {
   --background: #101010 url('/assets/noise4.png');

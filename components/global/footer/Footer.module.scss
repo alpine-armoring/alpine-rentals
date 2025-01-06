@@ -13,12 +13,6 @@
     padding-bottom: rem(40);
   }
 
-  &_dark {
-    background: #101010 url(/assets/noise4.png);
-    background-size: 30px !important;
-    color: var(--color-white);
-  }
-
   &_top {
     padding-bottom: rem(32);
     margin-bottom: rem(32);
@@ -100,12 +94,6 @@
         svg {
           margin-right: 16px;
         }
-
-        .footer_dark & {
-          svg path {
-            fill: var(--color-gray3);
-          }
-        }
       }
     }
   }
@@ -164,37 +152,6 @@
     &_item {
       svg {
         width: 30px;
-      }
-    }
-
-    .footer_dark & {
-      &_item {
-        &:not(.footer_socials_item_tiktok):not(.footer_socials_item_x) {
-          svg path {
-            fill: var(--color-gray3);
-          }
-        }
-        &_tiktok {
-          svg {
-            rect {
-              fill: var(--color-gray3);
-            }
-            path {
-              fill: var(--color-dark);
-            }
-          }
-        }
-        &_x {
-          svg path {
-            &:first-child {
-              fill: var(--color-gray3);
-              stroke: var(--color-gray3);
-            }
-            &:last-child {
-              fill: var(--color-dark);
-            }
-          }
-        }
       }
     }
 
@@ -323,30 +280,6 @@
       &_middle {
         color: var(--color-primary);
         font-weight: 600;
-      }
-    }
-
-    &_flag {
-      padding: 10px;
-      display: inline-block;
-      background-size: cover !important;
-      background-repeat: no-repeat !important;
-      background-position: center !important;
-
-      @include breakpoint(large) {
-        position: absolute;
-        left: 0;
-        right: 0;
-        margin: auto;
-        width: 330px;
-        bottom: 44px;
-      }
-
-      &_dark {
-        background-image: url('/assets/footer-american-flag-black.png');
-      }
-      &_light {
-        background-image: url('/assets/footer-american-flag.png');
       }
     }
   }

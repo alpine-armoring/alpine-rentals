@@ -79,6 +79,13 @@ const Layout = ({ children }) => {
               }
             `}</style>
         )}
+        {isHomepage && (
+          <style>{`
+              body {
+                padding-top: 0 !important;
+              }
+            `}</style>
+        )}
       </Head>
 
       {/* Google Tag Manager */}

@@ -12,7 +12,7 @@ import PhoneIcon from 'components/icons/Phone';
 import MailIcon from 'components/icons/Mail';
 import Link from 'next/link';
 
-const Footer = (isDarkMode) => {
+const Footer = () => {
   const links = [
     { path: '/armored-rentals', text: 'Bulletproof Rental Cars Stock' },
     { path: '/faqs', text: 'FAQ' },
@@ -24,8 +24,7 @@ const Footer = (isDarkMode) => {
   return (
     <footer
       className={`
-        ${styles.footer} 
-        ${isDarkMode.isDarkMode ? styles.footer_dark : ''}        
+        ${styles.footer}        
       `}
     >
       <div className={`${styles.footer_inner} container`}>

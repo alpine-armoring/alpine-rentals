@@ -15,43 +15,7 @@ import VideoScale, {
 import { useMarkdownToHtml } from 'hooks/useMarkdownToHtml';
 
 function InventoryVehicle(props) {
-  const data =
-    props && props.data && props.data.data[0] && props.data.data[0].attributes;
-  const topGallery = data?.rentalsGallery?.data;
-  const mainText = data?.rentalsDescription;
-  const videoWebm = data?.video?.data?.attributes;
-  const videoMP4 = data?.videoMP4?.data?.attributes;
-
   const convertMarkdown = useMarkdownToHtml();
-
-  const sliderTopOptions = {
-    dragFree: false,
-    loop: true,
-    thumbs: true,
-  };
-
-  const vehicleDetailsMain = {
-    Level: 'armor_level',
-    'Vehicle ID': 'rentalsVehicleID',
-    'Engine & Power': 'engine',
-    Trans: 'trans',
-    Drivetrain: 'driveTrain',
-    'Color (Exterior)': 'color_ext',
-    'Color (Interior)': 'color_int',
-  };
-
-  const formData = {
-    title: data?.title.replaceAll(/luxury/gi, ''),
-    vehicleID: data?.rentalsVehicleID,
-    featuredImage: data?.rentalsFeaturedImage,
-  };
-
-  const scroll = () => {
-    const element = document.getElementById('request-a-quote');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   useEffect(() => {
     const setupObserver = () => {
@@ -115,6 +79,46 @@ function InventoryVehicle(props) {
     title: selectedTitle,
     contentType: contentType,
     videoSrc: videoSrc,
+  };
+
+  if (!props.data?.data?.[0]) {
+    return <div>Loading...</div>;
+  }
+
+  const data =
+    props && props.data && props.data.data[0] && props.data.data[0].attributes;
+  const topGallery = data?.rentalsGallery?.data;
+  const mainText = data?.rentalsDescription;
+  const videoWebm = data?.video?.data?.attributes;
+  const videoMP4 = data?.videoMP4?.data?.attributes;
+
+  const sliderTopOptions = {
+    dragFree: false,
+    loop: true,
+    thumbs: true,
+  };
+
+  const vehicleDetailsMain = {
+    Level: 'armor_level',
+    'Vehicle ID': 'rentalsVehicleID',
+    'Engine & Power': 'engine',
+    Trans: 'trans',
+    Drivetrain: 'driveTrain',
+    'Color (Exterior)': 'color_ext',
+    'Color (Interior)': 'color_int',
+  };
+
+  const formData = {
+    title: data?.title.replaceAll(/luxury/gi, ''),
+    vehicleID: data?.rentalsVehicleID,
+    featuredImage: data?.rentalsFeaturedImage,
+  };
+
+  const scroll = () => {
+    const element = document.getElementById('request-a-quote');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
@@ -345,13 +349,13 @@ export async function getStaticPaths() {
 
     return {
       paths,
-      fallback: true,
+      fallback: 'blocking',
     };
   } catch (error) {
     // console.error('Error fetching slugs:', error);
     return {
       paths: [],
-      fallback: false,
+      fallback: 'blocking',
     };
   }
 }

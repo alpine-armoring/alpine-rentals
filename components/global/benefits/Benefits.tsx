@@ -9,11 +9,13 @@ const Benefits = (props) => {
   return (
     <div className={`${styles.benefits} container_small`}>
       {props.data.section1Title ? (
-        <h2 className={`block-reveal-title observe block-reveal`}>
-          <span
-            dangerouslySetInnerHTML={{ __html: props.data.section1Title }}
-          ></span>
-        </h2>
+        <div className={`block-reveal-title-wrap`}>
+          <h2 className={`block-reveal-title observe block-reveal`}>
+            <span
+              dangerouslySetInnerHTML={{ __html: props.data.section1Title }}
+            ></span>
+          </h2>
+        </div>
       ) : null}
 
       {props.data?.section1Text ? (
@@ -74,13 +76,15 @@ const Benefits = (props) => {
       </div>
 
       {props.data.section2Title ? (
-        <h2
-          className={`${styles.benefits_section2} block-reveal-title observe block-reveal`}
-        >
-          <span
-            dangerouslySetInnerHTML={{ __html: props.data.section2Title }}
-          ></span>
-        </h2>
+        <div className={`block-reveal-title-wrap`}>
+          <h2
+            className={`${styles.benefits_section2} block-reveal-title observe block-reveal`}
+          >
+            <span
+              dangerouslySetInnerHTML={{ __html: props.data.section2Title }}
+            ></span>
+          </h2>
+        </div>
       ) : null}
 
       {props.data?.section2Text ? (
