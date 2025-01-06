@@ -89,6 +89,9 @@ export async function getStaticProps() {
   faqs = faqs?.data || null;
 
   const seoData = pageData?.seo ?? null;
+  if (seoData) {
+    seoData.metaTitle = `Rentals ${seoData.metaTitle}`;
+  }
 
   return {
     props: { pageData, faqs, seoData },

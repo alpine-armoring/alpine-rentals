@@ -28,6 +28,9 @@ export async function getStaticProps() {
   pageData = pageData.data?.attributes || null;
 
   const seoData = pageData?.seo || null;
+  if (seoData) {
+    seoData.metaTitle = `Rentals ${seoData.metaTitle}`;
+  }
 
   return {
     props: { pageData, seoData },

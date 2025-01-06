@@ -364,9 +364,18 @@ export async function getStaticProps({ params }) {
 
   const seoData = data?.data?.[0]?.attributes?.seo ?? null;
   if (seoData) {
+    seoData.metaTitle = `Rental ${seoData.metaTitle}`;
+
     seoData.thumbnail =
       data?.data?.[0]?.attributes?.rentalsFeaturedImage?.data?.attributes ??
       null;
+
+    if (seoData.metaDescription) {
+      seoData.metaDescription = seoData.metaDescription.replace(
+        /\b(armored)\b/,
+        'rental armored'
+      );
+    }
   }
 
   if (!data || !data.data || data.data.length === 0) {

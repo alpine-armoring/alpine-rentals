@@ -60,6 +60,9 @@ export async function getStaticProps() {
   pageData = pageData.data?.attributes || null;
 
   const seoData = pageData?.seo || null;
+  if (seoData) {
+    seoData.metaTitle = `Alpine Armoring Rentals Ballistic Chart`;
+  }
 
   return {
     props: { pageData, seoData },
