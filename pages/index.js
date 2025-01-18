@@ -16,12 +16,12 @@ function Home(props) {
       '@type': 'LocalBusiness',
       image:
         'https://www.alpineco.com/_next/image?url=https%3A%2F%2Fd102sycao8uwt8.cloudfront.net%2Fmedium_About_us_hompage_thumbnail_1_ea1c33f592.JPG&w=640&q=75',
-      url: 'https://www.alpineco.com',
-      sameAs: ['https://www.armoredvehicles.com'],
+      url: 'https://www.armoredautos.com/',
+      sameAs: ['https://www.alpineco.com/'],
       logo: 'https://www.alpineco.com/assets/Alpine-Armoring-Armored-Vehicles.png',
-      name: 'Alpine Armoring',
+      name: 'Alpine Armoring Rentals',
       description:
-        'An internationally recognized leader of high-quality, custom-manufactured armored vehicles, headquartered in Virginia, USA',
+        'The largest collection of high-end, luxury armored sedans and SUVs available for rental in the US.',
       email: 'rental@armoredautos.com',
       telephone: '+1 703 471 0002',
       address: {
