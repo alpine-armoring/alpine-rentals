@@ -95,13 +95,6 @@
   }
 
   &_logo {
-    svg {
-      @include breakpoint('small') {
-        width: 280px;
-        height: 40px;
-        max-width: 77vw;
-      }
-    }
     @include breakpoint('large') {
       position: absolute;
       left: 0;
@@ -110,6 +103,13 @@
       transform: translateY(-50%);
       margin: auto;
       width: 450px;
+    }
+    svg {
+      @include breakpoint('untilLarge') {
+        width: 280px;
+        height: 40px;
+        max-width: 77vw;
+      }
     }
 
     a {
