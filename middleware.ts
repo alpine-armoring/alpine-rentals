@@ -24,6 +24,60 @@ const redirects = new Map([
   ],
   ['/link', '/'],
   ['/allaboutcookies.org', '/'],
+  [
+    '/pdf/Chevrolet-Suburban-6562/Chevrolet-Suburban-high-country-oem-specs.pdf',
+    '/armored-rentals',
+  ],
+  ['/pdf/stanag.pdf', '/ballistic-chart'],
+  ['/pdf/MB-S550-5805/mercedes-benz-S550-oem-specs.pdf', '/armored-rentals'],
+  ['/vehicle-pages/Mercedes-Benz-S550-3947.html', '/armored-rentals'],
+  ['/pdf/UL-752.pdf', '/ballistic-chart'],
+  [
+    '/pdf/GMC-Yukon-Denali-9835/GMC-Yukon-Denali-9835-general-armoring-brochure.pdf',
+    '/armored-rentals',
+  ],
+  [
+    '/pdf/MB-S550-3947/mercedes-benz-S550-general-armoring-brochure.pdf',
+    '/armored-rentals',
+  ],
+  ['/images/inventory/MB-S550-3947/gallery/thumbs/thumb', '/armored-rentals'],
+  [
+    '/images/inventory/Cadillac-Escalade-4193/gallery/small/image',
+    '/armored-rentals',
+  ],
+  [
+    '/images/inventory/Cadillac-Escalade-4193/gallery/large/image',
+    '/armored-rentals',
+  ],
+  [
+    '/images/inventory/Chevrolet-Suburban-LTZ-4774/gallery/thumbs/thumb',
+    '/armored-rentals',
+  ],
+  [
+    '/pdf/Cadillac-Escalade-6127/Cadillac-Escalade-oem-specs.pdf',
+    '/armored-rentals',
+  ],
+  [
+    '/pdf/Cadillac-Escalade-6127/Cadillac-Escalade-general-armoring-brochure.pdf',
+    '/armored-rentals',
+  ],
+  [
+    '/images/inventory/Chevrolet-Suburban-LTZ-4774/gallery/small/image',
+    '/armored-rentals',
+  ],
+  [
+    '/images/inventory/GMC-Yukon-Denali-9835/gallery/thumbs/thumb',
+    '/armored-rentals',
+  ],
+  ['/images/inventory/MB-S550-5805/gallery/thumbs/thumb', '/armored-rentals'],
+  ['/images/inventory/MB-S550-5805/gallery/large/image', '/armored-rentals'],
+  ['/images/inventory/MB-S550-7204/gallery/large/image', '/armored-rentals'],
+  [
+    '/images/inventory/Chevrolet-Suburban-LTZ-4774/gallery/large/image',
+    '/armored-rentals',
+  ],
+  ['/images/inventory/MB-S550-3947/gallery/small/image', '/armored-rentals'],
+  ['/images/inventory/MB-S550-3947/gallery/large/image', '/armored-rentals'],
 ]);
 
 export function middleware(request: NextRequest) {
