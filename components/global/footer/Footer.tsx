@@ -49,6 +49,7 @@ const Footer = () => {
                   <Link
                     href="tel:+17034710002"
                     className={`${styles.footer_column_list_item}`}
+                    rel="nofollow noreferrer noopener"
                   >
                     <PhoneIcon color="#2d2d27" />
                     1.703.471.0002
@@ -58,6 +59,7 @@ const Footer = () => {
                   <Link
                     href="tel:+18009927667"
                     className={`${styles.footer_column_list_item}`}
+                    rel="nofollow noreferrer noopener"
                   >
                     <PhoneIcon color="#2d2d27" />
                     1.800.99ARMOR
@@ -67,6 +69,7 @@ const Footer = () => {
                   <Link
                     href="mailto:rental@armoredautos.com"
                     className={`${styles.footer_column_list_item}`}
+                    rel="nofollow noreferrer noopener"
                   >
                     <MailIcon color="#2d2d27" />
                     Rental@ArmoredAutos.com
@@ -86,6 +89,7 @@ const Footer = () => {
                   <Link
                     href="https://www.youtube.com/c/AlpineArmoring"
                     target="_blank"
+                    rel="nofollow noreferrer noopener"
                   >
                     <YoutubeIcon />
                   </Link>
@@ -94,6 +98,7 @@ const Footer = () => {
                   <Link
                     href="https://www.instagram.com/alpinearmoring/"
                     target="_blank"
+                    rel="nofollow noreferrer noopener"
                   >
                     <InstagramIcon />
                   </Link>
@@ -101,7 +106,11 @@ const Footer = () => {
                 <li
                   className={`${styles.footer_socials_item} ${styles.footer_socials_item_x}`}
                 >
-                  <Link href="https://x.com/AlpineArmoring" target="_blank">
+                  <Link
+                    href="https://x.com/AlpineArmoring"
+                    target="_blank"
+                    rel="nofollow noreferrer noopener"
+                  >
                     <XIcon />
                   </Link>
                 </li>
@@ -109,6 +118,7 @@ const Footer = () => {
                   <Link
                     href="https://www.facebook.com/AlpineArmoring/"
                     target="_blank"
+                    rel="nofollow noreferrer noopener"
                   >
                     <FacebookIcon />
                   </Link>
@@ -119,6 +129,7 @@ const Footer = () => {
                   <Link
                     href="https://www.tiktok.com/@alpinearmoring"
                     target="_blank"
+                    rel="nofollow noreferrer noopener"
                   >
                     <TiktokIcon />
                   </Link>
@@ -127,6 +138,7 @@ const Footer = () => {
                   <Link
                     href="https://www.linkedin.com/company/alpinearmoring/"
                     target="_blank"
+                    rel="nofollow noreferrer noopener"
                   >
                     <LinkedinIcon />
                   </Link>
@@ -137,6 +149,7 @@ const Footer = () => {
                   <Link
                     href="https://www.threads.net/@alpinearmoring/"
                     target="_blank"
+                    rel="nofollow noreferrer noopener"
                   >
                     <ThreadsIcon />
                   </Link>

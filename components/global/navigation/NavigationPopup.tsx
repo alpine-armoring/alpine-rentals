@@ -70,6 +70,7 @@ const NavigationPopup = ({ isNavOpen, setNavOpen }: NavigationProps) => {
             <Link
               href="tel:+17034710002"
               className={`${styles.navigationPopup_contact_item}`}
+              rel="nofollow noreferrer noopener"
             >
               <PhoneIcon />
               1.703.471.0002
@@ -77,6 +78,7 @@ const NavigationPopup = ({ isNavOpen, setNavOpen }: NavigationProps) => {
             <Link
               href="mailto:Rental@ArmoredAutos.com"
               className={`${styles.navigationPopup_contact_item}`}
+              rel="nofollow noreferrer noopener"
             >
               <MailIcon />
               Rental@ArmoredAutos.com
@@ -93,6 +95,7 @@ const NavigationPopup = ({ isNavOpen, setNavOpen }: NavigationProps) => {
               <Link
                 href="https://www.youtube.com/c/AlpineArmoring"
                 target="_blank"
+                rel="nofollow noreferrer noopener"
               >
                 <YoutubeIcon color="white" />
               </Link>
@@ -101,6 +104,7 @@ const NavigationPopup = ({ isNavOpen, setNavOpen }: NavigationProps) => {
               <Link
                 href="https://www.instagram.com/alpinearmoring/"
                 target="_blank"
+                rel="nofollow noreferrer noopener"
               >
                 <InstagramIcon color="white" />
               </Link>
@@ -108,7 +112,11 @@ const NavigationPopup = ({ isNavOpen, setNavOpen }: NavigationProps) => {
             <li
               className={`${styles.navigationPopup_socials_item} ${styles.navigationPopup_socials_item_x}`}
             >
-              <Link href="https://x.com/AlpineArmoring" target="_blank">
+              <Link
+                href="https://x.com/AlpineArmoring"
+                target="_blank"
+                rel="nofollow noreferrer noopener"
+              >
                 <XIcon color="white" />
               </Link>
             </li>
@@ -116,6 +124,7 @@ const NavigationPopup = ({ isNavOpen, setNavOpen }: NavigationProps) => {
               <Link
                 href="https://www.facebook.com/AlpineArmoring/"
                 target="_blank"
+                rel="nofollow noreferrer noopener"
               >
                 <FacebookIcon color="white" />
               </Link>
@@ -126,6 +135,7 @@ const NavigationPopup = ({ isNavOpen, setNavOpen }: NavigationProps) => {
               <Link
                 href="https://www.tiktok.com/@alpinearmoring"
                 target="_blank"
+                rel="nofollow noreferrer noopener"
               >
                 <TiktokIcon color="white" />
               </Link>
@@ -134,6 +144,7 @@ const NavigationPopup = ({ isNavOpen, setNavOpen }: NavigationProps) => {
               <Link
                 href="https://www.linkedin.com/company/alpinearmoring/"
                 target="_blank"
+                rel="nofollow noreferrer noopener"
               >
                 <LinkedinIcon color="white" />
               </Link>
@@ -144,6 +155,7 @@ const NavigationPopup = ({ isNavOpen, setNavOpen }: NavigationProps) => {
               <Link
                 href="https://www.threads.net/@alpinearmoring/"
                 target="_blank"
+                rel="nofollow noreferrer noopener"
               >
                 <ThreadsIcon color="white" />
               </Link>
