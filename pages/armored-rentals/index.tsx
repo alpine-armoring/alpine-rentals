@@ -1,4 +1,6 @@
 import { useEffect } from 'react';
+import Head from 'next/head';
+import Link from 'next/link';
 import { getPageData } from 'hooks/api';
 import styles from '/components/listing/Listing.module.scss';
 import InventoryItem from 'components/listing/listing-item/ListingItem';
@@ -36,9 +38,45 @@ function Home(props) {
     };
   }, []);
 
+  const getBreadcrumbStructuredData = () => {
+    const structuredData = {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://www.armoredautos.com/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Available now',
+          item: `https://www.armoredautos.com/armored-rentals`,
+        },
+      ],
+    };
+    return JSON.stringify(structuredData);
+  };
+
   return (
     <>
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: getBreadcrumbStructuredData() }}
+          key="breadcrumb-jsonld"
+        />
+      </Head>
+
       <div className={`${styles.listing}`}>
+        <div className={`b-breadcrumbs b-breadcrumbs-list container`}>
+          <Link href="/">Home</Link>
+          <span>&gt;</span>
+          Ready to rent
+        </div>
+
         {topBanner.title && <Banner props={topBanner} shape="white" />}
 
         {topBannerSubtitle ? (
