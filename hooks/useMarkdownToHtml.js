@@ -18,7 +18,7 @@ const replaceLinks = (text) =>
   });
 
 const replaceItalic = (text) =>
-  wrapTextOutsideTags(text, /(_)(\w+)(_)/g, '$1<em>$2</em>$3');
+  wrapTextOutsideTags(text, /_([^_]+)_/g, '<em>$1</em>');
 
 const replaceUnderline = (text) =>
   wrapTextOutsideTags(text, /(\+)(\w+)(\+)/g, '$1<u>$2</u>$3');

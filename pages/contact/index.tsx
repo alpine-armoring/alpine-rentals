@@ -1,6 +1,7 @@
 import styles from './Contact.module.scss';
 import { getPageData } from 'hooks/api';
 import { useEffect } from 'react';
+import Head from 'next/head';
 import Banner from 'components/global/banner/Banner';
 import Form from 'components/global/form/Form';
 import Accordion from 'components/global/accordion/Accordion';
@@ -38,8 +39,38 @@ function Contact(props) {
     };
   }, []);
 
+  // FAQ structured data
+  const getFAQStructuredData = () => {
+    if (!faqs) return null;
+
+    const structuredData = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqs.data.map((faq) => ({
+        '@type': 'Question',
+        name: faq.attributes.title,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.attributes.text,
+        },
+      })),
+    };
+
+    return JSON.stringify(structuredData);
+  };
+
   return (
     <>
+      <Head>
+        {faqs && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: getFAQStructuredData() }}
+            key="faq-jsonld"
+          />
+        )}
+      </Head>
+
       <div className={`${styles.contact}`}>
         {props.pageData?.banner ? (
           <Banner props={props.pageData.banner} shape="white" />
