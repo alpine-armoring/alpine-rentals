@@ -4,7 +4,7 @@ import PlayIcon from 'components/icons/Play';
 import PauseIcon from 'components/icons/Pause';
 import { HPBannerProps } from 'types';
 
-const HpBanner = ({ props }: HPBannerProps) => {
+const HPBanner = ({ props }: HPBannerProps) => {
   const [isPlaying, setIsPlaying] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -157,4 +157,4 @@ const HpBanner = ({ props }: HPBannerProps) => {
   );
 };
 
-export default HpBanner;
+export default HPBanner;

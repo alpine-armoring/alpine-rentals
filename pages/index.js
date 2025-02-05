@@ -3,7 +3,7 @@ import { getPageData } from 'hooks/api';
 import Head from 'next/head';
 
 // import { BannerFull } from '@este93/shared-components';
-import HPBanner from 'components/hp-banner/HpBanner';
+import HPBanner from 'components/hp-banner/HPBanner';
 import FillingText from 'components/global/filling-text/FillingText';
 import FeaturedVehicles from 'components/global/featured-vehicles/FeaturedVehicles';
 import Benefits from 'components/global/benefits/Benefits';
