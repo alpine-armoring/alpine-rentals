@@ -52,7 +52,7 @@ function Home(props) {
         {
           '@type': 'ListItem',
           position: 2,
-          name: 'Available now',
+          name: 'Armored Vehicles Ready to rent',
           item: `https://www.armoredautos.com/armored-rentals`,
         },
       ],
@@ -74,7 +74,7 @@ function Home(props) {
         <div className={`b-breadcrumbs b-breadcrumbs-list container`}>
           <Link href="/">Home</Link>
           <span>&gt;</span>
-          Ready to rent
+          Armored Vehicles Ready to rent
         </div>
 
         {topBanner.title && <Banner props={topBanner} shape="white" />}
