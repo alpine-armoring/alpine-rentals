@@ -2,7 +2,8 @@ import { useEffect } from 'react';
 import { getPageData } from 'hooks/api';
 import Head from 'next/head';
 
-import { BannerFull } from '@este93/shared-components';
+// import { BannerFull } from '@este93/shared-components';
+import HPBanner from 'components/hp-banner/HpBanner';
 import FillingText from 'components/global/filling-text/FillingText';
 import FeaturedVehicles from 'components/global/featured-vehicles/FeaturedVehicles';
 import Benefits from 'components/global/benefits/Benefits';
@@ -97,7 +98,7 @@ function Home(props) {
         />
       </Head>
 
-      {topBanner ? <BannerFull props={topBanner} /> : null}
+      {topBanner ? <HPBanner props={topBanner} /> : null}
 
       {quote ? <FillingText small dark data={quote} /> : null}
 
