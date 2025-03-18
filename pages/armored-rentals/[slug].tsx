@@ -466,88 +466,49 @@ function InventoryVehicle(props) {
   );
 }
 
-// export async function getServerSideProps(context) {
-//   const data = await getPageData({
-//     route: 'inventories',
-//     params: `filters[slug][$eq]=${context.params.slug}`,
-//   });
-
-//   const seoData = data?.data?.[0]?.attributes?.seo ?? null;
-
-//   if (!data || !data.data || data.data.length === 0) {
-//     return {
-//       notFound: true,
-//     };
-//   }
-
-//   return {
-//     props: { data, seoData },
-//   };
-// }
-
-export async function getStaticPaths() {
+export async function getServerSideProps({ params }) {
   try {
-    const slugsResponse = await getPageData({
+    // Add the category filter to ensure we only get vehicles from the armored-rental category
+    const categoryFilter = `filters[categories][slug][$eq]=armored-rental`;
+    const slugFilter = `&filters[slug][$eq]=${params.slug}`;
+
+    const data = await getPageData({
       route: 'inventories',
-      fields: 'fields[0]=slug',
-      populate: '/',
+      params: `${categoryFilter}${slugFilter}`,
     });
 
-    if (!Array.isArray(slugsResponse.data)) {
-      throw new Error('Invalid data format');
+    // If no matching vehicle was found in the armored-rental category
+    if (!data || !data.data || data.data.length === 0) {
+      return {
+        notFound: true,
+      };
     }
 
-    const paths = slugsResponse.data.reduce((acc, item) => {
-      if (item.attributes && item.attributes.slug) {
-        acc.push({ params: { slug: item.attributes.slug } });
+    const seoData = data?.data?.[0]?.attributes?.seo ?? null;
+    if (seoData) {
+      seoData.metaTitle = `Rental ${seoData.metaTitle}`;
+
+      seoData.thumbnail =
+        data?.data?.[0]?.attributes?.rentalsFeaturedImage?.data?.attributes ??
+        null;
+
+      if (seoData.metaDescription) {
+        seoData.metaDescription = seoData.metaDescription.replace(
+          /\b(armored)\b/,
+          'rental armored'
+        );
       }
-      return acc;
-    }, []);
+    }
 
     return {
-      paths,
-      fallback: 'blocking',
+      props: { data, seoData },
     };
   } catch (error) {
-    // console.error('Error fetching slugs:', error);
-    return {
-      paths: [],
-      fallback: 'blocking',
-    };
-  }
-}
-
-export async function getStaticProps({ params }) {
-  const data = await getPageData({
-    route: 'inventories',
-    params: `filters[slug][$eq]=${params.slug}`,
-  });
-
-  const seoData = data?.data?.[0]?.attributes?.seo ?? null;
-  if (seoData) {
-    seoData.metaTitle = `Rental ${seoData.metaTitle}`;
-
-    seoData.thumbnail =
-      data?.data?.[0]?.attributes?.rentalsFeaturedImage?.data?.attributes ??
-      null;
-
-    if (seoData.metaDescription) {
-      seoData.metaDescription = seoData.metaDescription.replace(
-        /\b(armored)\b/,
-        'rental armored'
-      );
-    }
-  }
-
-  if (!data || !data.data || data.data.length === 0) {
+    console.error('Error fetching rental vehicle data:', error);
     return {
       notFound: true,
     };
   }
-
-  return {
-    props: { data, seoData },
-  };
 }
 
 export default InventoryVehicle;
