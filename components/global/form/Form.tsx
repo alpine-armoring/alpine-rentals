@@ -234,6 +234,7 @@ const Form: React.FC<FormProps> = ({ vehicles }) => {
                 toDate: toDate,
                 vehicleType: vehicleType,
                 vehicleModel: vehicleModel,
+                domain: 'rentals',
               },
             }),
           }
