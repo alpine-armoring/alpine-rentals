@@ -18,6 +18,11 @@ const redirects = new Map([
   ['/vehicle-pages/armoredSedans.html', '/armored-rentals'],
   ['/vehicle-pages/contact-brokers.html', '/contact'],
   ['/vehicle-pages/contact-private.html', '/contact'],
+  ['/contact-embassy.html', '/contact'],
+  ['/privacy.html', '/privacy-policy'],
+  ['/contact-private-mobile.html', '/contact'],
+  ['/contact-embassy.html', '/contact'],
+  ['/contact-private-mobile.html', '/contact'],
   [
     '/armored-rentals/armored-mercedes-benz-s580-executive-1287',
     '/armored-rentals',
@@ -123,9 +128,6 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/images/:path*',
-    '/vehicle-pages/:path*',
-    '/pdf/:path*',
-    '/:path*',
+    '/((?!_next/static|_next/image|favicon.ico|api|sitemap|robots|manifest|sw.js).*)',
   ],
 };
