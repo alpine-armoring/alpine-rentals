@@ -3,6 +3,7 @@ import { getPageData } from 'hooks/api';
 import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 const InfoIcon = dynamic(() => import('components/icons/Info'));
+import CustomMarkdown from 'components/CustomMarkdown';
 import Link from 'next/link';
 import Head from 'next/head';
 import Button from 'components/global/button/Button';
@@ -13,11 +14,8 @@ import InquiryForm from 'components/global/form/InquiryForm';
 import VideoScale, {
   animateVideo,
 } from 'components/global/video-scale/VideoScale';
-import { useMarkdownToHtml } from 'hooks/useMarkdownToHtml';
 
 function InventoryVehicle(props) {
-  const convertMarkdown = useMarkdownToHtml();
-
   useEffect(() => {
     const setupObserver = () => {
       const targets = document.querySelectorAll('.observe');
@@ -419,12 +417,11 @@ function InventoryVehicle(props) {
               </ul>
 
               {data?.rentalsShortDescription ? (
-                <div
-                  className={`${styles.inventory_details_description}`}
-                  dangerouslySetInnerHTML={{
-                    __html: convertMarkdown(data?.rentalsShortDescription),
-                  }}
-                ></div>
+                <div className={`${styles.inventory_details_description}`}>
+                  <CustomMarkdown>
+                    {data?.rentalsShortDescription}
+                  </CustomMarkdown>
+                </div>
               ) : null}
 
               <div className={`${styles.inventory_cta_wrap}`}>
@@ -442,10 +439,9 @@ function InventoryVehicle(props) {
         </div>
 
         {mainText ? (
-          <div
-            className={`${styles.inventory_description} container_small`}
-            dangerouslySetInnerHTML={{ __html: convertMarkdown(mainText) }}
-          ></div>
+          <div className={`${styles.inventory_description} container_small`}>
+            <CustomMarkdown>{mainText}</CustomMarkdown>
+          </div>
         ) : null}
 
         {videoWebm || videoMP4 ? (

@@ -5,10 +5,9 @@ import Head from 'next/head';
 import Banner from 'components/global/banner/Banner';
 import Form from 'components/global/form/Form';
 import Accordion from 'components/global/accordion/Accordion';
-import { useMarkdownToHtml } from 'hooks/useMarkdownToHtml';
+import CustomMarkdown from 'components/CustomMarkdown';
 
 function Contact(props) {
-  const convertMarkdown = useMarkdownToHtml();
   const faqs = props?.pageData?.fa_qs;
   const vehicles = props?.vehicles;
 
@@ -87,11 +86,7 @@ function Contact(props) {
                   Our rental support team is available on:
                 </h3>
                 {props.pageData?.salesInfo ? (
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: convertMarkdown(props.pageData.salesInfo),
-                    }}
-                  ></div>
+                  <CustomMarkdown>{props.pageData.salesInfo}</CustomMarkdown>
                 ) : null}
               </div>
             </div>

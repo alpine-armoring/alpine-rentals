@@ -1,11 +1,9 @@
 import styles from './Benefits.module.scss';
-import { useMarkdownToHtml } from 'hooks/useMarkdownToHtml';
+import CustomMarkdown from 'components/CustomMarkdown';
 import Image from 'next/image';
 import Button from 'components/global/button/Button';
 
 const Benefits = (props) => {
-  const convertMarkdown = useMarkdownToHtml();
-
   return (
     <div className={`${styles.benefits} container_small`}>
       {props.data.section1Title ? (
@@ -19,11 +17,7 @@ const Benefits = (props) => {
       ) : null}
 
       {props.data?.section1Text ? (
-        <div
-          dangerouslySetInnerHTML={{
-            __html: convertMarkdown(props.data.section1Text),
-          }}
-        ></div>
+        <CustomMarkdown>{props.data.section1Text}</CustomMarkdown>
       ) : null}
 
       {props.data?.section1List ? (
@@ -49,12 +43,9 @@ const Benefits = (props) => {
               </div>
 
               {item.description ? (
-                <div
-                  className={`${styles.benefits_item_text}`}
-                  dangerouslySetInnerHTML={{
-                    __html: convertMarkdown(item.description),
-                  }}
-                ></div>
+                <div className={`${styles.benefits_item_text}`}>
+                  <CustomMarkdown>{item.description}</CustomMarkdown>
+                </div>
               ) : null}
             </div>
           ))}
@@ -62,11 +53,7 @@ const Benefits = (props) => {
       ) : null}
 
       {props.data?.section1Text2 ? (
-        <div
-          dangerouslySetInnerHTML={{
-            __html: convertMarkdown(props.data.section1Text2),
-          }}
-        ></div>
+        <CustomMarkdown>{props.data.section1Text2}</CustomMarkdown>
       ) : null}
 
       <div className={`${styles.benefits_button} center`}>
@@ -88,12 +75,9 @@ const Benefits = (props) => {
       ) : null}
 
       {props.data?.section2Text ? (
-        <div
-          className={`${styles.benefits_text}`}
-          dangerouslySetInnerHTML={{
-            __html: convertMarkdown(props.data.section2Text),
-          }}
-        ></div>
+        <div className={`${styles.benefits_text}`}>
+          <CustomMarkdown>{props.data.section2Text}</CustomMarkdown>
+        </div>
       ) : null}
 
       <div className={`${styles.benefits_button} center`}>

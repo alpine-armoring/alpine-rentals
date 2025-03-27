@@ -17,6 +17,7 @@
     margin-bottom: rem(8);
     background: var(--color-grayLight);
     border-radius: 8px;
+    color: var(--color-dark);
 
     &_heading {
       display: flex;
@@ -24,7 +25,7 @@
       align-items: center;
       padding: rem(16);
       font-size: rem(15);
-      font-size: clamp(0.9375rem, 0.9072rem + 0.1294vw, 1.0625rem);
+      font-size: clamp(0.875rem, 0.8447rem + 0.1294vw, 1rem);
       font-weight: var(--font-regular);
       cursor: pointer;
 
@@ -38,6 +39,7 @@
 
       &_title {
         flex: 1;
+        line-height: 1.3;
       }
     }
 
@@ -46,8 +48,9 @@
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.3s ease-in-out;
-      font-size: rem(14);
-      font-size: clamp(0.875rem, 0.8447rem + 0.1294vw, 1rem);
+      font-size: rem(13);
+      font-size: clamp(0.8125rem, 0.7822rem + 0.1294vw, 0.9375rem);
+
       @include breakpoint(large) {
         padding: 0 rem(32);
       }
@@ -60,6 +63,7 @@
         a {
           color: var(--color-primary);
           font-weight: var(--font-medium);
+          text-decoration: underline;
         }
       }
     }
