@@ -54,6 +54,10 @@ const Layout = ({ children }) => {
   const isHeaderGray = pathsHeaderTransparent.some(
     (path) => router.pathname.startsWith(path) || isHomepage
   );
+  const pathsPadding0 = ['/locations-we-rent'];
+  const isPadding0 = pathsPadding0.some((path) =>
+    router.pathname.startsWith(path)
+  );
 
   const [isNavOpen, setNavOpen] = useState(false);
 
@@ -80,6 +84,13 @@ const Layout = ({ children }) => {
             `}</style>
         )}
         {isHomepage && (
+          <style>{`
+              body {
+                padding-top: 0 !important;
+              }
+            `}</style>
+        )}
+        {(isPadding0 || isHomepage) && (
           <style>{`
               body {
                 padding-top: 0 !important;
