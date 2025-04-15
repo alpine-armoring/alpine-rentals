@@ -73,7 +73,7 @@ export async function getServerSideProps(context) {
 
   if (seoData) {
     seoData.thumbnail =
-      data?.data?.[0]?.attributes?.thumbnail?.data.attributes ?? null;
+      data?.data?.[0]?.attributes?.thumbnail?.data?.attributes ?? null;
   }
 
   if (!data || !data.data || data.data.length === 0) {
