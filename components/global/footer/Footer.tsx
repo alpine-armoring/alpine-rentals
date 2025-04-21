@@ -17,6 +17,7 @@ const Footer = () => {
     { path: '/armored-rentals', text: 'Bulletproof Rental Cars Stock' },
     { path: '/faqs', text: 'FAQ' },
     { path: '/rental-policy', text: 'Rental Policy' },
+    { path: '/locations-we-rent', text: 'Locations We Rent' },
     { path: '/ballistic-chart', text: 'Ballistic Chart' },
     { path: '/contact', text: 'Contact Us' },
   ];
