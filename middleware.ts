@@ -23,10 +23,6 @@ const redirects = new Map([
   ['/contact-private-mobile.html', '/contact'],
   ['/contact-embassy.html', '/contact'],
   ['/contact-private-mobile.html', '/contact'],
-  [
-    '/armored-rentals/armored-mercedes-benz-s580-executive-1287',
-    '/armored-rentals',
-  ],
   ['/link', '/'],
   ['/allaboutcookies.org', '/'],
   [
