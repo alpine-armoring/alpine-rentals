@@ -99,24 +99,33 @@ const Layout = ({ children }) => {
         )}
       </Head>
 
-      {/* Google Analytics */}
+     {/* Google Tag Manager */}
       <Script
-        src="https://www.googletagmanager.com/gtag/js?id=G-MXGGKXK12K"
-        strategy="afterInteractive"
-      />
-      <Script
-        id="google-analytics"
+        id="gtm"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-MXGGKXK12K');
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-WZGDP627');
           `,
         }}
       />
 
+      {/* Google Tag Manager (noscript) */}
+      <noscript>
+        <iframe
+          src="https://www.googletagmanager.com/ns.html?id=GTM-WZGDP627"
+          height="0"
+          width="0"
+          style={{ display: 'none', visibility: 'hidden' }}
+          title="Google Tag Manager"
+          aria-hidden="true"
+        />
+      </noscript>
+      
       <div className={termina.className}>
         <Header
           setNavOpen={setNavOpen}
