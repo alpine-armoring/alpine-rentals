@@ -4,6 +4,7 @@ import Router from 'next/router';
 import Layout from 'components/Layout';
 import Seo from 'components/Seo';
 import Loader from 'components/global/loader/Loader';
+import GoogleAdsTracking from 'components/GoogleAdsTracking';
 
 export default function App({ Component, pageProps }) {
   const seoData = pageProps.seoData;
@@ -46,6 +47,7 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <Seo props={seoData} />
+      <GoogleAdsTracking />
       <Layout>
         {isLoading ? <Loader /> : null}
         <Component {...pageProps} />

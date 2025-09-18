@@ -3,6 +3,7 @@ import styles from './Form.module.scss';
 import Button from 'components/global/button/Button';
 import Dropdown from 'components/global/form/Dropdown';
 import { useRouter } from 'next/router';
+import useGoogleAdsTracking from 'hooks/useGoogleAdsTracking';
 
 interface FormProps {
   vehicles?: {
@@ -31,6 +32,8 @@ const Form: React.FC<FormProps> = ({ vehicles }) => {
   );
 
   const router = useRouter();
+
+  const { getTrackingData } = useGoogleAdsTracking();
 
   const [isCompanyDropdownActive, setIsCompanyDropdownActive] = useState(false);
   const [isStateDropdownActive, setIsStateDropdownActive] = useState(false);
@@ -178,6 +181,14 @@ const Form: React.FC<FormProps> = ({ vehicles }) => {
     return '';
   };
 
+  const validateMessage = (value) => {
+    if (!value) {
+      return 'Message is required';
+    } else {
+      return '';
+    }
+  };
+
   const handleFieldChange = (field, value, validator, setter) => {
     setter(value);
     const errorMessage = validator ? validator(value) : '';
@@ -198,6 +209,7 @@ const Form: React.FC<FormProps> = ({ vehicles }) => {
       mobile: validateMobile(mobile),
       state: validateState(state),
       dates: validateDates(),
+      message: validateMessage(message),
     };
 
     setErrors(newErrors);
@@ -206,6 +218,8 @@ const Form: React.FC<FormProps> = ({ vehicles }) => {
 
     if (!hasError) {
       const sanitizedMessage = sanitizeInput(message);
+
+      const trackingData = getTrackingData();
 
       const submitBtn = document.querySelector('.submitButton');
       submitBtn.classList.add('submiting');
@@ -235,6 +249,7 @@ const Form: React.FC<FormProps> = ({ vehicles }) => {
                 vehicleType: vehicleType,
                 vehicleModel: vehicleModel,
                 domain: 'rentals',
+                trackingData: trackingData,
               },
             }),
           }
