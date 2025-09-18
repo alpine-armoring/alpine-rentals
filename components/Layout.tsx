@@ -99,7 +99,7 @@ const Layout = ({ children }) => {
         )}
       </Head>
 
-     {/* Google Tag Manager */}
+      {/* Google Tag Manager */}
       <Script
         id="gtm"
         strategy="afterInteractive"
@@ -125,7 +125,7 @@ const Layout = ({ children }) => {
           aria-hidden="true"
         />
       </noscript>
-      
+
       <div className={termina.className}>
         <Header
           setNavOpen={setNavOpen}
