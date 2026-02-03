@@ -11,6 +11,7 @@ import MapIcon from 'components/icons/Map';
 import PhoneIcon from 'components/icons/Phone';
 import MailIcon from 'components/icons/Mail';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Footer = () => {
   const links = [
@@ -186,6 +187,30 @@ const Footer = () => {
           <p className={`${styles.footer_bottom_copy}`}>
             ©1997-2024. Alpine Armoring Inc. <span>All Rights Reserved</span>
           </p>
+
+          <div className={`${styles.footer_flag}`}>
+            <p className={`${styles.footer_flag_title}`}>
+              Belonging to the group of companies at
+            </p>
+            <Image
+              src="/assets/footer-american-flag.gif"
+              alt="armored vehicles"
+              fill
+              unoptimized
+            />
+            <Link
+              href="https://armoredvehicles.com"
+              target="_blank"
+              className={`${styles.footer_flag_wrap}`}
+            >
+              <Image
+                src="/assets/armoredVehicles.svg"
+                alt="armoredVehicles.com logo"
+                width={350}
+                height={24}
+              />
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
