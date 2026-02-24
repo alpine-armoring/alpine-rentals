@@ -105,7 +105,7 @@ function Home(props) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const query = `filters[categories][slug][$eq]=armored-rental`;
 
   const vehicles = await getPageData({
@@ -133,6 +133,7 @@ export async function getServerSideProps() {
       vehicles,
       seoData,
     },
+    revalidate: 604800,
   };
 }
 

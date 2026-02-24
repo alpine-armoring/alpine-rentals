@@ -60,8 +60,8 @@ function ArticleSingle(props) {
   );
 }
 
-export async function getServerSideProps(context) {
-  const { slug } = context.query;
+export async function getStaticProps(context) {
+  const { slug } = context.params;
 
   const data = await getPageData({
     route: 'locations-rentals',
@@ -79,11 +79,20 @@ export async function getServerSideProps(context) {
   if (!data || !data.data || data.data.length === 0) {
     return {
       notFound: true,
+      revalidate: 604800,
     };
   }
 
   return {
     props: { data, seoData },
+    revalidate: 604800,
+  };
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: 'blocking',
   };
 }
 

@@ -45,6 +45,7 @@ const nextConfig = {
       },
     ],
   },
+  staticPageGenerationTimeout: 180,
   experimental: {
     largePageDataBytes: 800 * 1000,
   },

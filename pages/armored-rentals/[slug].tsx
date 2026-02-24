@@ -462,7 +462,7 @@ function InventoryVehicle(props) {
   );
 }
 
-export async function getServerSideProps({ params }) {
+export async function getStaticProps({ params }) {
   try {
     // Add the category filter to ensure we only get vehicles from the armored-rental category
     const categoryFilter = `filters[categories][slug][$eq]=armored-rental`;
@@ -477,6 +477,7 @@ export async function getServerSideProps({ params }) {
     if (!data || !data.data || data.data.length === 0) {
       return {
         notFound: true,
+        revalidate: 604800,
       };
     }
 
@@ -498,13 +499,22 @@ export async function getServerSideProps({ params }) {
 
     return {
       props: { data, seoData },
+      revalidate: 604800,
     };
   } catch (error) {
     console.error('Error fetching rental vehicle data:', error);
     return {
       notFound: true,
+      revalidate: 604800,
     };
   }
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: 'blocking',
+  };
 }
 
 export default InventoryVehicle;
