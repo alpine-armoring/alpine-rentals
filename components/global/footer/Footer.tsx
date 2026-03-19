@@ -23,6 +23,8 @@ const Footer = () => {
     { path: '/contact', text: 'Contact Us' },
   ];
 
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer
       className={`
@@ -185,7 +187,8 @@ const Footer = () => {
           </ul>
 
           <p className={`${styles.footer_bottom_copy}`}>
-            ©1997-2024. Alpine Armoring Inc. <span>All Rights Reserved</span>
+            ©1997-{currentYear}. Alpine Armoring Inc.{' '}
+            <span>All Rights Reserved</span>
           </p>
 
           <div className={`${styles.footer_flag}`}>
