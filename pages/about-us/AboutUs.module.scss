@@ -1,0 +1,341 @@
+.aboutUs {
+  overflow-x: clip;
+}
+
+.aboutUs_hero {
+  padding: rem(32) 0;
+  background: var(--color-primary);
+  color: var(--color-white);
+
+  @include breakpoint(large) {
+    padding: rem(96) 0 rem(80);
+  }
+
+  &_row {
+    @include breakpoint(large) {
+      display: flex;
+      align-items: center;
+      gap: rem(64);
+    }
+  }
+
+  &_text {
+    @include breakpoint(large) {
+      flex: 1 1 50%;
+      min-width: 0;
+    }
+  }
+
+  &_eyebrow {
+    display: block;
+    margin-bottom: rem(16);
+    color: var(--color-rentals);
+    font-size: rem(11);
+    font-weight: var(--font-demi);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+
+    @include breakpoint(large) {
+      font-size: rem(13);
+    }
+  }
+
+  h1 {
+    margin: 0 0 rem(20);
+    color: var(--color-white);
+    font-weight: var(--font-regular);
+    font-size: clamp(2.25rem, 1.85rem + 2vw, 3.5rem);
+    line-height: 1.08;
+  }
+
+  &_lead {
+    margin: 0 0 rem(32);
+    max-width: 60ch;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: rem(14);
+    line-height: 1.55;
+
+    @include breakpoint(large) {
+      font-size: rem(16);
+    }
+  }
+
+  &_image {
+    margin-top: rem(32);
+
+    @include breakpoint(large) {
+      flex: 1 1 50%;
+      min-width: 0;
+      margin-top: 0;
+    }
+  }
+
+  &_cta {
+    :global(.c-button.white) {
+      font-weight: var(--font-medium);
+
+      &:hover {
+        background: var(--color-rentals);
+        border-color: transparent;
+        color: var(--color-primary);
+      }
+    }
+  }
+}
+
+// ------------------------------------------------------- Image placeholders
+.imageSlot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 4 / 3;
+  border-radius: 16px;
+  overflow: hidden;
+  padding: rem(16);
+  text-align: center;
+  background: linear-gradient(
+    135deg,
+    rgba(6, 55, 78, 0.06),
+    rgba(6, 55, 78, 0.14)
+  );
+  border: 1px solid rgba(6, 55, 78, 0.12);
+
+  span {
+    max-width: 240px;
+    color: var(--color-primary);
+    font-size: rem(12);
+    font-weight: var(--font-medium);
+    letter-spacing: 0.03em;
+    opacity: 0.65;
+  }
+
+  &_onDark {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0.18)
+    );
+    border-color: rgba(255, 255, 255, 0.28);
+
+    span {
+      color: var(--color-white);
+      opacity: 0.8;
+    }
+  }
+}
+
+// ------------------------------------------------------------ Credentials
+.aboutUs_credentials {
+  padding: rem(48) 0;
+  background: var(--color-primary);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  text-align: center;
+
+  @include breakpoint(large) {
+    padding: rem(72) 0 rem(88);
+  }
+
+  &_row {
+    max-width: 1900px;
+    margin: 0 auto;
+    padding: 0 rem(16);
+
+    @include breakpoint(medium) {
+      padding: 0 rem(32);
+    }
+  }
+
+  &_eyebrow {
+    display: block;
+    margin-bottom: rem(12);
+    color: var(--color-rentals);
+    font-size: rem(13);
+    font-weight: var(--font-demi);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+
+    @include breakpoint(large) {
+      font-size: rem(14);
+    }
+  }
+
+  &_title {
+    margin: 0 0 rem(40);
+    color: var(--color-white);
+    font-weight: var(--font-regular);
+    font-size: clamp(1.75rem, 1.5rem + 1.1vw, 2.5rem);
+
+    @include breakpoint(large) {
+      margin-bottom: rem(56);
+    }
+  }
+}
+
+.aboutUs_facts {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 14px;
+  text-align: left;
+
+  @include breakpoint(medium) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include breakpoint(large) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  &_item {
+    display: flex;
+    flex-direction: column;
+    gap: rem(10);
+    padding: rem(24) rem(20);
+    background: var(--color-primary);
+
+    @include breakpoint(large) {
+      padding: rem(28) rem(24);
+    }
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+  }
+
+  &_label {
+    color: var(--color-rentals);
+    font-size: rem(11.5);
+    font-weight: var(--font-demi);
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  &_value {
+    color: rgba(255, 255, 255, 0.94);
+    font-size: rem(15);
+    font-weight: var(--font-medium);
+    line-height: 1.45;
+
+    @include breakpoint(large) {
+      font-size: rem(16);
+    }
+  }
+}
+
+// ----------------------------------------------------- Alternating features
+.aboutUs_feature {
+  padding: rem(48) 0;
+
+  @include breakpoint(large) {
+    padding: rem(96) 0;
+  }
+
+  &_bgWhite {
+    background: var(--color-white);
+  }
+
+  &_bgTint {
+    background: var(--color-background);
+  }
+
+  &_row {
+    display: flex;
+    flex-direction: column;
+    gap: rem(32);
+
+    @include breakpoint(large) {
+      flex-direction: row;
+      align-items: center;
+      gap: rem(72);
+    }
+  }
+
+  &_reverse &_row {
+    @include breakpoint(large) {
+      flex-direction: row-reverse;
+    }
+  }
+
+  &_text {
+    order: 2;
+
+    @include breakpoint(large) {
+      order: 0;
+      flex: 1 1 55%;
+      min-width: 0;
+    }
+
+    :global(.static) {
+      max-width: 70ch;
+
+      p:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &_image {
+    order: 1;
+
+    @include breakpoint(large) {
+      order: 0;
+      flex: 1 1 45%;
+      min-width: 0;
+    }
+  }
+
+  &_eyebrow {
+    display: block;
+    margin-bottom: rem(12);
+    color: var(--color-rentals2);
+    font-size: rem(12);
+    font-weight: var(--font-demi);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  &_title {
+    margin: 0 0 rem(20);
+    color: var(--color-primary);
+    font-weight: var(--font-regular);
+    font-size: clamp(1.5rem, 1.32rem + 0.9vw, 2.25rem);
+    line-height: 1.15;
+  }
+}
+
+// ------------------------------------------------------------------ Closing
+.aboutUs_closing {
+  padding: rem(56) 0 rem(64);
+  background: var(--color-white);
+
+  @include breakpoint(large) {
+    padding: rem(80) 0 rem(96);
+  }
+
+}
+
+.aboutUs_cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: rem(16);
+}
+
+.aboutUs_flag {
+  max-width: 44ch;
+  margin: rem(32) auto 0;
+  text-align: left;
+
+  @include breakpoint(large) {
+    text-align: center;
+  }
+
+  p {
+    margin-bottom: 0 !important;
+    color: var(--color-gray);
+    font-size: rem(13) !important;
+  }
+}
