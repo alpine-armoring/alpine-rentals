@@ -19,6 +19,7 @@ const NavigationPopup = ({ isNavOpen, setNavOpen }: NavigationProps) => {
 
   const links = [
     { path: '/armored-rentals', text: 'Ready to Rent' },
+    { path: '/about-us', text: 'About Us' },
     { path: '/ballistic-chart', text: 'Ballistic Chart' },
     { path: '/faqs', text: 'FAQ' },
     { path: '/contact', text: 'Contact' },

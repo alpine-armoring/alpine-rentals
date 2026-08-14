@@ -16,6 +16,7 @@ import Image from 'next/image';
 const Footer = () => {
   const links = [
     { path: '/armored-rentals', text: 'Bulletproof Rental Cars Stock' },
+    { path: '/about-us', text: 'About Us' },
     { path: '/faqs', text: 'FAQ' },
     { path: '/rental-policy', text: 'Rental Policy' },
     { path: '/locations-we-rent', text: 'Locations We Rent' },

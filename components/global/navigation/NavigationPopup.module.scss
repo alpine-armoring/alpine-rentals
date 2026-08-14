@@ -23,7 +23,7 @@
     opacity: 0.95;
 
     .navigationPopup_list_left .navigationPopup_item {
-      @for $i from 1 through 4 {
+      @for $i from 1 through 15 {
         &:nth-of-type(#{$i}) {
           transition-delay: $i * 0.03s;
         }
