@@ -1,6 +1,8 @@
-import { ReactNode, useEffect } from 'react';
+import { ReactNode } from 'react';
+import Head from 'next/head';
 import Link from 'next/link';
 import Button from 'components/global/button/Button';
+import useAnimationObserver from 'hooks/useAnimationObserver';
 import styles from './AboutUs.module.scss';
 
 const keyFacts = [
@@ -44,14 +46,16 @@ const keyFacts = [
 const features = [
   {
     eyebrow: 'Clientele',
-    title: 'Who Our Rental Clients Are',
+    title: 'Who Rents From Us',
     body: (
       <p>
         Our rental clients include private individuals, high-net-worth
-        individuals (HNWI), security outfits, executives, celebrities, and
-        dignitaries. Many of our rentals are designated for the United Nations
-        General Assembly, presidential requirements, the U.S. Secret Service,
-        various government agencies, and NGOs.
+        individuals (HNWI), executives, celebrities from entertainment and
+        professional sports, and dignitaries, alongside security outfits,
+        embassies, consulates, limousine operators, and brokers. Many of our
+        rentals are designated for the United Nations General Assembly,
+        presidential requirements, the U.S. Secret Service, various government
+        agencies, and NGOs.
       </p>
     ),
     imageAlt:
@@ -95,21 +99,6 @@ const features = [
     reverse: true,
   },
   {
-    eyebrow: 'Rental Base',
-    title: 'Who Rents From Us',
-    body: (
-      <p>
-        Private individuals, government agencies, embassies, consulates,
-        security firms, limousine operators, brokers, and celebrities from
-        entertainment and professional sports make up our rental base.
-      </p>
-    ),
-    imageAlt:
-      'Armored sedan parked curbside outside an embassy or government building',
-    imagePlaceholder: 'Placeholder — armored sedan curbside outside an embassy',
-    todoSrc: '/assets/about/rental-base.jpg',
-  },
-  {
     eyebrow: 'Logistics',
     title: 'How the Vehicle Reaches You',
     body: (
@@ -148,8 +137,6 @@ const features = [
     imageAlt: 'Enclosed transport carrier delivering an armored rental vehicle',
     imagePlaceholder: 'Placeholder — enclosed transport carrier on delivery',
     todoSrc: '/assets/about/logistics.jpg',
-    bgTint: true,
-    reverse: true,
   },
 ];
 
@@ -204,36 +191,95 @@ function FeatureSection({
   );
 }
 
+const ORGANIZATION_STRUCTURED_DATA = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': 'https://www.armoredautos.com/#organization',
+  name: 'Alpine Armoring Rentals',
+  alternateName: 'ArmoredAutos.com',
+  url: 'https://www.armoredautos.com/',
+  logo: 'https://www.alpineco.com/assets/Alpine-Armoring-Armored-Vehicles.png',
+  image:
+    'https://assets.alpineco.com/medium_About_us_hompage_thumbnail_1_ea1c33f592.JPG',
+  description:
+    'Armored vehicle rental division of Alpine Armoring Inc., founded in 1993 in Chantilly, Virginia. Renting new, luxury A9-level armored SUVs and sedans, with delivery available to any city in the 48 contiguous United States.',
+  foundingDate: '1993',
+  telephone: '+1-703-471-0002',
+  email: 'rental@armoredautos.com',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '4170 Lafayette Center Drive #100',
+    addressLocality: 'Chantilly',
+    addressRegion: 'Virginia',
+    postalCode: '20151',
+    addressCountry: 'US',
+  },
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    opens: '08:30',
+    closes: '17:00',
+  },
+  areaServed: {
+    '@type': 'Country',
+    name: 'United States',
+  },
+  parentOrganization: {
+    '@type': 'Organization',
+    name: 'Alpine Armoring Inc.',
+    url: 'https://www.alpineco.com',
+  },
+  memberOf: {
+    '@type': 'Organization',
+    name: 'ArmoredVehicles.com',
+    url: 'https://www.armoredvehicles.com',
+  },
+  award: [
+    'VR7 certified (Germany)',
+    'Beschussamt München certified (Germany)',
+    'U.S. Army Aberdeen Proving Ground certified',
+  ],
+  sameAs: ['https://www.alpineco.com/'],
+});
+
+const BREADCRUMB_STRUCTURED_DATA = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: 'https://www.armoredautos.com/',
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'About Us',
+      item: 'https://www.armoredautos.com/about-us',
+    },
+  ],
+});
+
 function AboutUs() {
   // Animations
-  useEffect(() => {
-    const targets = document.querySelectorAll('.observe');
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('in-view');
-          }
-        });
-      },
-      {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.2,
-      }
-    );
-
-    targets.forEach((item) => observer.observe(item));
-
-    return () => {
-      targets.forEach((item) => observer.unobserve(item));
-      observer.disconnect();
-    };
-  }, []);
+  useAnimationObserver();
 
   return (
     <div className={styles.aboutUs}>
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: ORGANIZATION_STRUCTURED_DATA }}
+          key="organization-jsonld"
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: BREADCRUMB_STRUCTURED_DATA }}
+          key="breadcrumb-jsonld"
+        />
+      </Head>
+
       {/* ---------------------------------------------------------- Hero */}
       <div className={styles.aboutUs_hero}>
         <div className={`${styles.aboutUs_hero_row} container_small`}>
@@ -285,15 +331,24 @@ function AboutUs() {
       </div>
 
       {/* ---------------------------------------------------- Credentials */}
-      <div className={`${styles.aboutUs_credentials} observe fade-in-up`}>
+      <div className={styles.aboutUs_credentials}>
         <div className={styles.aboutUs_credentials_row}>
-          <span className={styles.aboutUs_credentials_eyebrow}>
+          <span
+            className={`${styles.aboutUs_credentials_eyebrow} observe fade-in-up`}
+          >
             Credentials
           </span>
-          <h2 className={styles.aboutUs_credentials_title}>Key Facts</h2>
+          <h2
+            className={`${styles.aboutUs_credentials_title} observe fade-in-up`}
+          >
+            Key Facts
+          </h2>
           <div className={styles.aboutUs_facts}>
             {keyFacts.map((fact) => (
-              <div className={styles.aboutUs_facts_item} key={fact.label}>
+              <div
+                className={`${styles.aboutUs_facts_item} observe fade-in-up`}
+                key={fact.label}
+              >
                 <span className={styles.aboutUs_facts_label}>{fact.label}</span>
                 <span className={styles.aboutUs_facts_value}>{fact.value}</span>
               </div>
