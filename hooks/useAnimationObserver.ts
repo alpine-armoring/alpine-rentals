@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { initScrollAnimations } from 'utils/scrollAnimations';
 
 /**
  * Hook to handle animations triggered by IntersectionObserver
@@ -25,65 +26,25 @@ const useAnimationObserver = ({
   useEffect(() => {
     // For default language, use the original behavior without delays
     if (isDefaultLanguage) {
-      const targets = document.querySelectorAll(selector);
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.toggle(className, entry.isIntersecting);
-            }
-          });
-        },
-        {
-          root: null,
-          rootMargin: '0px',
-          threshold: threshold,
-        }
-      );
-
-      targets.forEach((item) => observer.observe(item));
-
-      return () => {
-        targets.forEach((item) => observer.unobserve(item));
-        observer.disconnect();
-      };
+      return initScrollAnimations({ selector, threshold, className });
     }
     // For non-default languages, use the delay and reset approach
     else {
+      let cleanup: (() => void) | undefined;
+
       // Short delay to ensure the DOM is updated with new content
       const animationTimeout = setTimeout(() => {
-        const targets = document.querySelectorAll(selector);
-
         // Reset any existing in-view classes first to ensure animations replay
-        targets.forEach((item) => {
+        document.querySelectorAll(selector).forEach((item) => {
           item.classList.remove(className);
         });
 
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.toggle(className, entry.isIntersecting);
-              }
-            });
-          },
-          {
-            root: null,
-            rootMargin: '0px',
-            threshold: threshold,
-          }
-        );
-
-        targets.forEach((item) => observer.observe(item));
-
-        return () => {
-          targets.forEach((item) => observer.unobserve(item));
-          observer.disconnect();
-        };
+        cleanup = initScrollAnimations({ selector, threshold, className });
       }, delayMs);
 
       return () => {
         clearTimeout(animationTimeout);
+        cleanup?.();
       };
     }
     // Include router.locale, isDefaultLanguage, and all the configuration options as dependencies

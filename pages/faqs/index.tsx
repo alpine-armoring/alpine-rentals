@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
 import { getPageData } from 'hooks/api';
+import useAnimationObserver from 'hooks/useAnimationObserver';
 import Head from 'next/head';
 import Banner from 'components/global/banner/Banner';
 import Accordion from 'components/global/accordion/Accordion';
@@ -29,31 +29,7 @@ function FAQs(props) {
   };
 
   // Animations
-  useEffect(() => {
-    const targets = document.querySelectorAll('.observe');
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.toggle('in-view', entry.isIntersecting);
-          }
-        });
-      },
-      {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.2,
-      }
-    );
-
-    targets.forEach((item) => observer.observe(item));
-
-    return () => {
-      targets.forEach((item) => observer.unobserve(item));
-      observer.disconnect();
-    };
-  }, []);
+  useAnimationObserver();
 
   return (
     <>

@@ -1,5 +1,5 @@
 import { getPageData } from 'hooks/api';
-import { useEffect } from 'react';
+import useAnimationObserver from 'hooks/useAnimationObserver';
 
 import Banner from 'components/global/banner/Banner';
 import BallisticChart from 'components/global/ballistic-chart/BallisticChart';
@@ -7,31 +7,7 @@ import BallisticChartBottom from 'components/global/ballistic-chart/BallisticCha
 
 function Ballistic(props) {
   // Animations
-  useEffect(() => {
-    const targets = document.querySelectorAll('.observe');
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.toggle('in-view', entry.isIntersecting);
-          }
-        });
-      },
-      {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.2,
-      }
-    );
-
-    targets.forEach((item) => observer.observe(item));
-
-    return () => {
-      targets.forEach((item) => observer.unobserve(item));
-      observer.disconnect();
-    };
-  }, []);
+  useAnimationObserver();
 
   return (
     <>

@@ -6,6 +6,10 @@
   opacity: 1;
 }
 
+.no-transition {
+  transition: none !important;
+}
+
 .fade-in-up {
   opacity: 0.2;
   transform: translateY(20px);

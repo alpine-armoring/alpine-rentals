@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { getPageData } from 'hooks/api';
+import useAnimationObserver from 'hooks/useAnimationObserver';
 import styles from '/components/listing/Listing.module.scss';
 import InventoryItem from 'components/listing/listing-item/ListingItem';
 import Banner from 'components/global/banner/Banner';
@@ -12,31 +12,7 @@ function Home(props) {
   topBanner.subtitle = null;
 
   // Animations
-  useEffect(() => {
-    const targets = document.querySelectorAll('.observe');
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.toggle('in-view', entry.isIntersecting);
-          }
-        });
-      },
-      {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.2,
-      }
-    );
-
-    targets.forEach((item) => observer.observe(item));
-
-    return () => {
-      targets.forEach((item) => observer.unobserve(item));
-      observer.disconnect();
-    };
-  }, []);
+  useAnimationObserver();
 
   const getBreadcrumbStructuredData = () => {
     const structuredData = {
