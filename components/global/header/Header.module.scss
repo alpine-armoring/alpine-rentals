@@ -32,8 +32,7 @@
 
   &.header_gray,
   &.down,
-  &.up,
-  &_navOpen {
+  &.up {
     .header_logo path,
     .header_logo rect,
     .header_logo polygon {
@@ -41,7 +40,7 @@
     }
   }
 
-  &:not(.header_navOpen):not(.header.up):not(.header.down):not(.header_gray) {
+  &:not(.header.up):not(.header.down):not(.header_gray) {
     --color-white: var(--color-primary);
 
     // .header_logo path,
@@ -65,8 +64,8 @@
   // &.down {
   //   transform: translateY(-100px);
   // }
-  &.down:not(.header_navOpen),
-  &.up:not(.header_navOpen) {
+  &.down,
+  &.up {
     background: var(--color-dark);
     .header_logo_gold {
       display: block;
@@ -76,12 +75,6 @@
     }
   }
 
-  &_navOpen {
-    background: transparent;
-    backdrop-filter: none;
-  }
-
-  &_navOpen,
   &_searchOpen {
     @include breakpoint('medium') {
       margin-right: 17px;
@@ -187,33 +180,6 @@
           &:after {
             background: var(--color-dark);
           }
-        }
-      }
-    }
-
-    .header_navOpen & {
-      &:before {
-        background: white;
-        transform: scale(0.9);
-        transition: transform 0.2s ease-in-out;
-      }
-      @include breakpoint(large) {
-        &:hover:before {
-          transform: scale(1);
-        }
-      }
-      .header_burger_inner {
-        background: transparent !important;
-        &:before,
-        &:after {
-          margin: 0;
-          background: var(--color-dark);
-        }
-        &:before {
-          transform: rotate(135deg);
-        }
-        &:after {
-          transform: rotate(225deg);
         }
       }
     }

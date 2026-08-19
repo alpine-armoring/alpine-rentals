@@ -3,10 +3,6 @@
     display: none;
   }
   @include breakpoint('large') {
-    &_navOpen {
-      visibility: hidden;
-    }
-
     &_list {
       display: grid;
       grid-auto-flow: column;

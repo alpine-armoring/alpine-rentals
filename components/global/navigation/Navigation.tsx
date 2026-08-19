@@ -2,17 +2,14 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import styles from './Navigation.module.scss';
-import { NavigationProps } from 'types';
 
-const Navigation = ({ isNavOpen }: NavigationProps) => {
+const Navigation = () => {
   const router = useRouter();
 
   const links = [{ path: '/armored-rentals', text: 'Ready to Rent' }];
 
   return (
-    <nav
-      className={`${styles.navigation} ${isNavOpen ? styles.navigation_navOpen : ''}`}
-    >
+    <nav className={styles.navigation}>
       <ul className={styles.navigation_list}>
         {links.map((link, index) => (
           <li

@@ -11,7 +11,9 @@ const Header = ({ setNavOpen, isNavOpen, isHeaderGray }: HeaderProps) => {
   const [hState, sethState] = useState('-top');
 
   useEffect(() => {
-    if (isNavOpen) {
+    const isDesktop = window.innerWidth >= 1280;
+
+    if (isNavOpen && !isDesktop) {
       document.body.style.marginRight =
         window.innerWidth - document.body.offsetWidth + 'px';
       document.body.classList.add('no-scroll');
@@ -55,8 +57,7 @@ const Header = ({ setNavOpen, isNavOpen, isHeaderGray }: HeaderProps) => {
       className={`
         ${styles.header}
         ${styles[hState]}
-        ${isNavOpen ? styles.header_navOpen : ''}
-        ${isHeaderGray ? styles.header_gray : ''}     
+        ${isHeaderGray ? styles.header_gray : ''}
         b-header
       `}
     >
@@ -76,18 +77,9 @@ const Header = ({ setNavOpen, isNavOpen, isHeaderGray }: HeaderProps) => {
           </Link>
         </div>
 
-        <Navigation isNavOpen={isNavOpen} />
+        <Navigation />
 
         <div className={`${styles.header_right}`}>
-          <div
-            className={`${styles.header_burger} mobile-only`}
-            onClick={() => {
-              setNavOpen((prevState) => !prevState);
-            }}
-          >
-            <div className={`${styles.header_burger_inner}`}></div>
-          </div>
-
           <div className={`desktop-only flex`}>
             <Button
               href="/contact"
@@ -95,6 +87,15 @@ const Header = ({ setNavOpen, isNavOpen, isHeaderGray }: HeaderProps) => {
             >
               <span onClick={() => setNavOpen(false)}>Contact</span>
             </Button>
+          </div>
+
+          <div
+            className={`${styles.header_burger}`}
+            onClick={() => {
+              setNavOpen((prevState) => !prevState);
+            }}
+          >
+            <div className={`${styles.header_burger_inner}`}></div>
           </div>
         </div>
       </div>
