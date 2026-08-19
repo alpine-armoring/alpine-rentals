@@ -226,34 +226,31 @@ const Form: React.FC<FormProps> = ({ vehicles }) => {
       submitBtn.innerHTML = '';
 
       try {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/emails`,
-          {
-            method: 'POST',
-            headers,
-            body: JSON.stringify({
-              data: {
-                name: fullname,
-                email: email,
-                mobileNumber: mobile,
-                phoneNumber: phone,
-                company: company,
-                state: state,
-                message: sanitizedMessage,
-                route: window.location.origin + router.asPath,
-                date: Date.now(),
-                mileage: mileage,
-                driverNeeded: driverNeeded,
-                fromDate: fromDate,
-                toDate: toDate,
-                vehicleType: vehicleType,
-                vehicleModel: vehicleModel,
-                domain: 'rentals',
-                trackingData: trackingData,
-              },
-            }),
-          }
-        );
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers,
+          body: JSON.stringify({
+            data: {
+              name: fullname,
+              email: email,
+              mobileNumber: mobile,
+              phoneNumber: phone,
+              company: company,
+              state: state,
+              message: sanitizedMessage,
+              route: window.location.origin + router.asPath,
+              date: Date.now(),
+              mileage: mileage,
+              driverNeeded: driverNeeded,
+              fromDate: fromDate,
+              toDate: toDate,
+              vehicleType: vehicleType,
+              vehicleModel: vehicleModel,
+              domain: 'rentals',
+              trackingData: trackingData,
+            },
+          }),
+        });
 
         if (!response.ok) {
           throw new Error('Failed to submit form');
