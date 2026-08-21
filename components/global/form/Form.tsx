@@ -1,9 +1,53 @@
 import React, { useState } from 'react';
+import Script from 'next/script';
 import styles from './Form.module.scss';
 import Button from 'components/global/button/Button';
 import Dropdown from 'components/global/form/Dropdown';
 import { useRouter } from 'next/router';
 import useGoogleAdsTracking from 'hooks/useGoogleAdsTracking';
+
+declare global {
+  interface Window {
+    grecaptcha?: {
+      ready: (cb: () => void | Promise<void>) => void;
+      execute: (
+        siteKey: string,
+        options: { action: string }
+      ) => Promise<string>;
+    };
+  }
+}
+
+const RECAPTCHA_SRC = `https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`;
+
+const getRecaptchaToken = (): Promise<string> =>
+  new Promise((resolve) => {
+    if (!window.grecaptcha) {
+      resolve('');
+      return;
+    }
+    window.grecaptcha.ready(() => {
+      window
+        .grecaptcha!.execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!, {
+          action: 'contact',
+        })
+        .then(resolve);
+    });
+  });
+
+const withTimeout = <T,>(
+  promise: Promise<T>,
+  ms: number,
+  fallback: T
+): Promise<T> => {
+  let timeoutId: ReturnType<typeof setTimeout>;
+  const timeout = new Promise<T>((resolve) => {
+    timeoutId = setTimeout(() => resolve(fallback), ms);
+  });
+  return Promise.race([promise, timeout]).finally(() =>
+    clearTimeout(timeoutId)
+  );
+};
 
 interface FormProps {
   vehicles?: {
@@ -226,10 +270,13 @@ const Form: React.FC<FormProps> = ({ vehicles }) => {
       submitBtn.innerHTML = '';
 
       try {
+        const token = await withTimeout(getRecaptchaToken(), 5000, '');
+
         const response = await fetch('/api/contact', {
           method: 'POST',
           headers,
           body: JSON.stringify({
+            token,
             data: {
               name: fullname,
               email: email,
@@ -296,6 +343,8 @@ const Form: React.FC<FormProps> = ({ vehicles }) => {
 
   return (
     <div className={`${styles.form}`}>
+      <Script src={RECAPTCHA_SRC} strategy="afterInteractive" />
+
       <div
         className={`${styles.form_group} ${
           errors.fullname ? styles.error : ''
