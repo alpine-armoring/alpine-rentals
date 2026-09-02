@@ -86,9 +86,33 @@ function Home(props) {
 }
 
 export async function getStaticProps() {
+  // Targeted populate instead of `deep`: the homepage only renders a handful of
+  // fields, but `featuredRentalVehicles` is a relation to the full vehicle
+  // collection. `deep` pulled every vehicle's galleries/videos/seo/faqs,
+  // ballooning the static payload past Vercel's ~19 MB ISR limit and breaking
+  // deploys. Keep this in sync with what the components below actually read.
+  const homepageQuery = [
+    'populate[bannerVideo][populate][video_webm][fields][0]=url',
+    'populate[bannerVideo][populate][video_webm][fields][1]=mime',
+    'populate[bannerVideo][populate][video_mp4][fields][0]=url',
+    'populate[bannerVideo][populate][video_mp4][fields][1]=mime',
+    'populate[quote][fields][0]=text',
+    'populate[quote][fields][1]=title',
+    'populate[featuredRentalVehicles][fields][0]=slug',
+    'populate[featuredRentalVehicles][fields][1]=title',
+    'populate[featuredRentalVehicles][populate][transparentImage][fields][0]=url',
+    'populate[featuredRentalVehicles][populate][transparentImage][fields][1]=alternativeText',
+    'populate[featuredRentalVehicles][populate][transparentImage][fields][2]=formats',
+    'populate[section1List][populate][image][fields][0]=url',
+    'populate[seo][populate][metaImage][fields][0]=url',
+    'populate[seo][populate][metaImage][fields][1]=formats',
+    'populate[seo][populate][metaSocial][populate][image][fields][0]=url',
+    'populate[seo][populate][metaSocial][populate][image][fields][1]=formats',
+  ].join('&');
+
   const homepageData = await getPageData({
     route: 'rentals-homepage',
-    populate: 'deep',
+    custom: homepageQuery,
   });
 
   const seoData = homepageData.data?.attributes.seo || null;
