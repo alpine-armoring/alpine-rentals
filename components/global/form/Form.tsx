@@ -55,6 +55,165 @@ interface FormProps {
   };
 }
 
+const companyOptions = [
+  {
+    label: 'US Government',
+    subOptions: [
+      'US Military',
+      'Federal Govt.',
+      'State Govt.',
+      'County Govt.',
+      'City Govt.',
+      'Other',
+    ],
+  },
+  {
+    label: 'Foreign Government',
+    subOptions: ['Military Sector', 'Non-Military Sector'],
+  },
+  'Business/Corporate',
+  {
+    label: 'Private/Individual',
+    subOptions: ['US Resident', 'Non-US Resident'],
+  },
+  'Broker',
+  'NGO',
+  'Other',
+];
+
+const inquiryOptions = [
+  {
+    label: 'Personal Protection',
+    subOptions: [
+      'SUVs',
+      'Sedans',
+      'Pickup trucks',
+      'Vans',
+      'All of the above',
+      'Other',
+    ],
+  },
+  {
+    label: 'Desired Rental Period',
+    subOptions: [
+      'Short Term (1 to 3 days)',
+      'Medium Term (4 to 8 days)',
+      'Long Term (9 or more days)',
+      'Lease (3 months or longer)',
+    ],
+  },
+  'Parts & Accessories',
+  'Warranty Related',
+  'Becoming a Dealer',
+  'Employment Opportunities',
+  'Other',
+];
+
+const preferredContactOptions = [
+  'Mobile',
+  'Landline',
+  'Email',
+  'Text',
+  'WhatsApp',
+];
+
+const hearOptions = [
+  {
+    label: 'Social Media',
+    subOptions: [
+      'YouTube',
+      'Instagram',
+      'TikTok',
+      'Facebook',
+      'X (Twitter)',
+      'LinkedIn',
+      'WeChat',
+      'Snapchat',
+      'Reddit',
+      'Other',
+    ],
+  },
+  {
+    label: 'Search Engines',
+    subOptions: ['Google', 'Bing', 'Yahoo', 'DuckDuckGo', 'Baidu', 'Other'],
+  },
+  {
+    label: 'AI',
+    subOptions: [
+      'Gemini',
+      'ChatGPT',
+      'Claude',
+      'CoPilot',
+      'Grok',
+      'Perplexity',
+      'Meta AI',
+      'Mistral',
+      'DeepSeek',
+    ],
+  },
+  'Trade Show',
+  'Referral',
+  'Repeat Customer',
+  'Third-Party Review',
+  'I already know about Alpine Armoring',
+  'Via "ArmoredVehicles.com" site',
+  'Friend',
+  'Other',
+];
+
+const stateOptions = [
+  'Alabama',
+  'Alaska',
+  'Arizona',
+  'Arkansas',
+  'California',
+  'Colorado',
+  'Connecticut',
+  'Delaware',
+  'Florida',
+  'Georgia',
+  'Hawaii',
+  'Idaho',
+  'Illinois',
+  'Indiana',
+  'Iowa',
+  'Kansas',
+  'Kentucky',
+  'Louisiana',
+  'Maine',
+  'Maryland',
+  'Massachusetts',
+  'Michigan',
+  'Minnesota',
+  'Mississippi',
+  'Missouri',
+  'Montana',
+  'Nebraska',
+  'Nevada',
+  'New Hampshire',
+  'New Jersey',
+  'New Mexico',
+  'New York',
+  'North Carolina',
+  'North Dakota',
+  'Ohio',
+  'Oklahoma',
+  'Oregon',
+  'Pennsylvania',
+  'Rhode Island',
+  'South Carolina',
+  'South Dakota',
+  'Tennessee',
+  'Texas',
+  'Utah',
+  'Vermont',
+  'Virginia',
+  'Washington',
+  'West Virginia',
+  'Wisconsin',
+  'Wyoming',
+];
+
 const Form: React.FC<FormProps> = ({ vehicles }) => {
   const [fullname, setFullname] = useState('');
   const [email, setEmail] = useState('');
@@ -63,6 +222,10 @@ const Form: React.FC<FormProps> = ({ vehicles }) => {
   const [company, setCompany] = useState('');
   const [state, setState] = useState('');
   const [message, setMessage] = useState('');
+
+  const [inquiry, setInquiry] = useState('');
+  const [preferredContact, setPreferredContact] = useState('');
+  const [hear, setHear] = useState('');
 
   const [mileage, setMileage] = useState('');
   const [driverNeeded, setDriverNeeded] = useState('');
@@ -80,64 +243,17 @@ const Form: React.FC<FormProps> = ({ vehicles }) => {
   const { getTrackingData } = useGoogleAdsTracking();
 
   const [isCompanyDropdownActive, setIsCompanyDropdownActive] = useState(false);
+  const [isInquiryDropdownActive, setIsInquiryDropdownActive] = useState(false);
+  const [
+    isPreferredContactDropdownActive,
+    setIsPreferredContactDropdownActive,
+  ] = useState(false);
+  const [isHearDropdownActive, setIsHearDropdownActive] = useState(false);
   const [isStateDropdownActive, setIsStateDropdownActive] = useState(false);
   const [isVehicleTypeDropdownActive, setIsVehicleTypeDropdownActive] =
     useState(false);
   const [isVehicleModelDropdownActive, setIsVehicleModelDropdownActive] =
     useState(false);
-
-  const stateOptions = [
-    'Alabama',
-    'Alaska',
-    'Arizona',
-    'Arkansas',
-    'California',
-    'Colorado',
-    'Connecticut',
-    'Delaware',
-    'Florida',
-    'Georgia',
-    'Hawaii',
-    'Idaho',
-    'Illinois',
-    'Indiana',
-    'Iowa',
-    'Kansas',
-    'Kentucky',
-    'Louisiana',
-    'Maine',
-    'Maryland',
-    'Massachusetts',
-    'Michigan',
-    'Minnesota',
-    'Mississippi',
-    'Missouri',
-    'Montana',
-    'Nebraska',
-    'Nevada',
-    'New Hampshire',
-    'New Jersey',
-    'New Mexico',
-    'New York',
-    'North Carolina',
-    'North Dakota',
-    'Ohio',
-    'Oklahoma',
-    'Oregon',
-    'Pennsylvania',
-    'Rhode Island',
-    'South Carolina',
-    'South Dakota',
-    'Tennessee',
-    'Texas',
-    'Utah',
-    'Vermont',
-    'Virginia',
-    'Washington',
-    'West Virginia',
-    'Wisconsin',
-    'Wyoming',
-  ];
 
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -283,6 +399,9 @@ const Form: React.FC<FormProps> = ({ vehicles }) => {
               mobileNumber: mobile,
               phoneNumber: phone,
               company: company,
+              inquiry: inquiry,
+              preferredContact: preferredContact,
+              hear: hear,
               state: state,
               message: sanitizedMessage,
               route: window.location.origin + router.asPath,
@@ -314,6 +433,9 @@ const Form: React.FC<FormProps> = ({ vehicles }) => {
         setPhone('');
         setMobile('');
         setCompany('');
+        setInquiry('');
+        setPreferredContact('');
+        setHear('');
         setState('');
         setMessage('');
         setFromDate('');
@@ -431,19 +553,59 @@ const Form: React.FC<FormProps> = ({ vehicles }) => {
       >
         <Dropdown
           label="Customer Type"
-          options={[
-            'Embassy/Consulate',
-            'Private',
-            'Broker',
-            'Limo Company',
-            'Security Firm',
-          ]}
+          options={companyOptions}
           selectedOption={company}
           setSelectedOption={setCompany}
           isActive={isCompanyDropdownActive}
           setIsActive={setIsCompanyDropdownActive}
         />
         <small className={`${styles.form_input_error}`}>{errors.company}</small>
+      </div>
+
+      <div
+        className={`${styles.form_group} ${errors.inquiry ? styles.error : ''}`}
+      >
+        <Dropdown
+          label="You Are Inquiring About"
+          options={inquiryOptions}
+          selectedOption={inquiry}
+          setSelectedOption={setInquiry}
+          isActive={isInquiryDropdownActive}
+          setIsActive={setIsInquiryDropdownActive}
+        />
+        <small className={`${styles.form_input_error}`}>{errors.inquiry}</small>
+      </div>
+
+      <div
+        className={`${styles.form_group} ${
+          errors.preferredContact ? styles.error : ''
+        }`}
+      >
+        <Dropdown
+          label="I Prefer To Be Contacted Via"
+          options={preferredContactOptions}
+          selectedOption={preferredContact}
+          setSelectedOption={setPreferredContact}
+          isActive={isPreferredContactDropdownActive}
+          setIsActive={setIsPreferredContactDropdownActive}
+        />
+        <small className={`${styles.form_input_error}`}>
+          {errors.preferredContact}
+        </small>
+      </div>
+
+      <div
+        className={`${styles.form_group} ${errors.hear ? styles.error : ''}`}
+      >
+        <Dropdown
+          label="How Did You Hear About Us?"
+          options={hearOptions}
+          selectedOption={hear}
+          setSelectedOption={setHear}
+          isActive={isHearDropdownActive}
+          setIsActive={setIsHearDropdownActive}
+        />
+        <small className={`${styles.form_input_error}`}>{errors.hear}</small>
       </div>
 
       <div
