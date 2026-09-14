@@ -19,7 +19,9 @@
     font-size: rem(14);
   }
 
-  &:hover:not(.shiny):not(.primary):not(.border):not(.attention):not(.icon):not(.white) {
+  &:hover:not(.shiny):not(.primary):not(.border):not(.attention):not(.icon):not(
+      .white
+    ) {
     background: transparent;
     border-color: var(--color-dark);
     color: var(--color-dark);
