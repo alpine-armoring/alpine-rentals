@@ -86,7 +86,7 @@
   aspect-ratio: 5 / 3;
   overflow: hidden;
 
-  img{
+  img {
     border-radius: 16px;
   }
 
@@ -97,20 +97,6 @@
     font-weight: var(--font-medium);
     letter-spacing: 0.03em;
     opacity: 0.65;
-  }
-
-  &_onDark {
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.08),
-      rgba(255, 255, 255, 0.18)
-    );
-    border-color: rgba(255, 255, 255, 0.28);
-
-    span {
-      color: var(--color-white);
-      opacity: 0.8;
-    }
   }
 }
 
