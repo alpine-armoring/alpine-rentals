@@ -19,7 +19,7 @@
     font-size: rem(14);
   }
 
-  &:hover:not(.shiny):not(.primary):not(.border):not(.attention):not(.icon) {
+  &:hover:not(.shiny):not(.primary):not(.border):not(.attention):not(.icon):not(.white) {
     background: transparent;
     border-color: var(--color-dark);
     color: var(--color-dark);
@@ -29,8 +29,9 @@
     --background: var(--color-primary);
 
     &:hover:not(.shiny) {
-      background: var(--color-white);
-      color: var(--color-dark);
+      background: transparent;
+      border-color: var(--color-primary);
+      color: var(--color-primary);
     }
   }
   &.rounded {
@@ -71,6 +72,12 @@
   &.white {
     background: var(--color-white);
     color: var(--color-dark);
+
+    &:hover {
+      background: var(--color-dark);
+      border-color: var(--color-dark);
+      color: var(--color-white);
+    }
   }
 
   &.attention {

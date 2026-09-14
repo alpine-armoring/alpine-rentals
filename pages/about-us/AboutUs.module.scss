@@ -73,12 +73,6 @@
   &_cta {
     :global(.c-button.white) {
       font-weight: var(--font-medium);
-
-      &:hover {
-        background: var(--color-rentals);
-        border-color: transparent;
-        color: var(--color-primary);
-      }
     }
   }
 }
@@ -161,7 +155,7 @@
   }
 
   &_title {
-    margin: 0 0 rem(40);
+    margin: 0 0 rem(20);
     color: var(--color-white);
     font-weight: var(--font-regular);
     font-size: clamp(1.75rem, 1.5rem + 1.1vw, 2.5rem);

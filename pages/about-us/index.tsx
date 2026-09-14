@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import Head from 'next/head';
+import Image from 'next/image';
 import Link from 'next/link';
 import Button from 'components/global/button/Button';
 import useAnimationObserver from 'hooks/useAnimationObserver';
@@ -62,7 +63,8 @@ const features = [
       'Executive protection detail escorting a client to an armored Alpine Armoring rental vehicle',
     imagePlaceholder:
       'Placeholder — protection detail escorting a client to the vehicle',
-    todoSrc: '/assets/about/clientele.jpg',
+    todoSrc: '/assets/who_rents_from_us.jpg',
+    imageSrc: '/assets/who_rents_from_us.jpg',
   },
   {
     eyebrow: 'Protection',
@@ -91,10 +93,11 @@ const features = [
       </>
     ),
     imageAlt:
-      'Detail shot of layered ballistic steel and multi-layered bullet-resistant glass on an Alpine Armoring conversion',
+      'Armored Cadillac Escalade ESV with ballistic-glass impact testing marks on the windshield and side windows',
     imagePlaceholder:
       'Placeholder — ballistic door panel / glass layering detail',
-    todoSrc: '/assets/about/protection.jpg',
+    todoSrc: '/assets/how_rental_fleet_is_protected.jpg',
+    imageSrc: '/assets/how_rental_fleet_is_protected.jpg',
     bgTint: true,
     reverse: true,
   },
@@ -134,9 +137,11 @@ const features = [
         </p>
       </>
     ),
-    imageAlt: 'Enclosed transport carrier delivering an armored rental vehicle',
+    imageAlt:
+      'Alpine Armoring transport truck delivering an armored rental vehicle',
     imagePlaceholder: 'Placeholder — enclosed transport carrier on delivery',
-    todoSrc: '/assets/about/logistics.jpg',
+    todoSrc: '/assets/armored_transport_2.jpg',
+    imageSrc: '/assets/armored_transport_2.jpg',
   },
 ];
 
@@ -147,6 +152,7 @@ function FeatureSection({
   imageAlt,
   imagePlaceholder,
   todoSrc,
+  imageSrc,
   bgTint,
   reverse,
 }: {
@@ -156,6 +162,7 @@ function FeatureSection({
   imageAlt: string;
   imagePlaceholder: string;
   todoSrc: string;
+  imageSrc?: string;
   bgTint?: boolean;
   reverse?: boolean;
 }) {
@@ -178,13 +185,20 @@ function FeatureSection({
           <div className="static">{body}</div>
         </div>
         <div className={`${styles.aboutUs_feature_image} observe fade-in-up`}>
-          {/*
-            TODO: swap this placeholder for a real <Image fill
-            style={{ objectFit: 'cover' }} /> using the suggested src/alt below.
-          */}
-          <div className={styles.imageSlot} data-suggested-src={todoSrc}>
-            <span title={imageAlt}>{imagePlaceholder}</span>
-          </div>
+          {imageSrc ? (
+            <div className={styles.imageSlot}>
+              <Image
+                src={imageSrc}
+                alt={imageAlt}
+                fill
+                style={{ objectFit: 'cover' }}
+              />
+            </div>
+          ) : (
+            <div className={styles.imageSlot} data-suggested-src={todoSrc}>
+              <span title={imageAlt}>{imagePlaceholder}</span>
+            </div>
+          )}
         </div>
       </div>
     </section>
@@ -311,20 +325,13 @@ function AboutUs() {
           </div>
 
           <div className={`${styles.aboutUs_hero_image} observe fade-in-up`}>
-            {/*
-              TODO: swap for real photography. Suggested markup:
+            <div className={`${styles.imageSlot} ${styles.imageSlot_onDark}`}>
               <Image
-                src="/assets/about/hero-escalade.jpg"
-                alt="Armored Cadillac Escalade ESV from the Alpine Armoring rental fleet, three-quarter exterior view"
+                src="/assets/about_alpine_fleet.jpg"
+                alt="Armored Cadillac Escalade, Chevrolet Suburban, Mercedes S-Class, and Maybach lined up in front of the U.S. Capitol"
                 fill
                 style={{ objectFit: 'cover' }}
               />
-            */}
-            <div className={`${styles.imageSlot} ${styles.imageSlot_onDark}`}>
-              <span>
-                Hero photo placeholder &mdash; armored Escalade ESV,
-                three-quarter exterior view
-              </span>
             </div>
           </div>
         </div>
