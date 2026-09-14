@@ -191,7 +191,7 @@ function FeatureSection({
                 src={imageSrc}
                 alt={imageAlt}
                 fill
-                style={{ objectFit: 'cover' }}
+                style={{ objectFit: 'contain' }}
               />
             </div>
           ) : (

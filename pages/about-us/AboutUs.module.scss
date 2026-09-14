@@ -84,16 +84,11 @@
   align-items: center;
   justify-content: center;
   aspect-ratio: 5 / 3;
-  border-radius: 16px;
   overflow: hidden;
-  padding: rem(16);
-  text-align: center;
-  background: linear-gradient(
-    135deg,
-    rgba(6, 55, 78, 0.06),
-    rgba(6, 55, 78, 0.14)
-  );
-  border: 1px solid rgba(6, 55, 78, 0.12);
+
+  img{
+    border-radius: 16px;
+  }
 
   span {
     max-width: 240px;
